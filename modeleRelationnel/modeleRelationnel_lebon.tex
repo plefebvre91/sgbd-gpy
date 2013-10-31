@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage[normalem]{ulem}
+
+\newenvironment{mld}
+{\par\begin{minipage}{\linewidth}\begin{tabular}{rp{\linewidth}}}
+{\end{tabular}\end{minipage}\par}
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{\emph{#1}}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
+\begin{document}
+
+\begin{mld}
+  \relat{Joueur} & (\prim{idJoueur}, \attr{pseudo}, \attr{nom}, \attr{prenom}, \attr{mail}, \foreign{idCategorie}, \foreign{idPlateforme})\\
+  \relat{Pouce} & (\prim{idPouce}, \attr{valeur}, \foreign{idJoueur}, \foreign{idCommentaire})\\
+  \relat{Commentaire} & ( \prim{\foreign{idJoueur}, \foreign{idJeu}}, \attr{note}, \attr{commentaire}, \attr{date}, \foreign{idPlateforme})\\
+  \relat{Categorie} & (\prim{idCategorie}, \attr{nomCategorie})\\
+  \relat{Jeu} & (\prim{idJeu}, \attr{nomJeu}, \foreign{idEditeur})\\
+  \relat{Plateforme} & (\prim{idPlateforme}, \attr{nomPlateforme})\\
+  \relat{Editeur} & (\prim{idEditeur}, \attr{nomEditeur})\\
+  \relat{Appartient} & (\prim{\foreign{idCategorie}}, \prim{\foreign{idJeu}})\\
+  \relat{Est disponible} & (\prim{\foreign{idPlateforme}}, \prim{\foreign{idJeu}})\\
+\end{mld}
+
+\end{document}
