@@ -1,0 +1,16 @@
+-- Convention --
+_attribut_ : attribut est une clé primaire
+#attribut : attribut est une clé étrangère
+
+-- Modèle relationnel --
+
+JOUEUR (_idJoueur_, pseudo, nom, prenom, mail, #idCategorie, #idPlateforme)
+POUCE (_idPouce_, valeur, #idJoueur, #idCommentaire)
+COMMENTAIRE (_idCommentaire_, note, commentaire, date, #idJoueur, #idJeu, #idPlateforme)
+CATEGORIE (_idCategorie, nomCategorie)
+JEU (_idJeu_, nomJeu, #idEditeur)
+PLATEFORME (_idPlateforme_, nomPlateforme)
+EDITEUR (_idEditeur_, nomEditeur)
+
+appartient (_idAppartient_, #idCategorie, #idJeu)
+est disponible (_idEstDisponible_, #idPlateforme, #idJeu)
