@@ -1,0 +1,34 @@
+Tables: joueur, pouce, commentaire, categorie, plateforme, editeur, jeu
+
+Liste des requetes à effectuer:
+
+-> Sur les différentes tables
+   Informations de base
+
+-> Avancees
+
+l'ensemble des jeux critiqués disponibles sur une plateforme donnée, classés par catégorie ;
+pour un joueur donné, la liste des commentaires se référant à un jeu dans sa catégorie préférée,
+disponible sur sa plateforme préférée ;
+pour un commentaire, la liste des joueurs qui l'ont apprécié.
+
+
+-> Statistiques
+
+les joueurs, classés selon le nombre de jeux qu'ils ont notés ;
+la liste des n commentaires les plus récents ;
+le commentaire qui laisse le moins indifférent (celui qui a reçu le plus de jugements) ;
+
+chaque commentaire à un indice de confiance égal à 1+c / 1+d
+où c est le nombre d'appréciations positives et d le nombre d'appréciations négatives ; classer
+les commentaires selon leur indice de confiance.
+
+
+-> Mise à jour
+
+Ajout, suppression, modification d'un jeu, d'un joueur, d'un commentaire. On prendra soin à
+ce que les requêtes de mise à jour conservent l'intégrité et la cohérence de la base.
+Toute autre requête que vous jugeriez utile pour la gestion de cette base.
+
+
+-> Idees pour la creation de la base:
