@@ -1,6 +1,10 @@
 \documentclass{article}
 \usepackage[normalem]{ulem}
 
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc} % \usepackage[latin1]{inputenc} L'option dépend du système sur lequel on compile
+\usepackage[T1]{fontenc}
+
 \newenvironment{mld}
 {\par\begin{minipage}{\linewidth}\begin{tabular}{rp{\linewidth}}}
 {\end{tabular}\end{minipage}\par}
@@ -9,17 +13,15 @@
 \newcommand{\prim}[1]{\uline{#1}}
 \newcommand{\foreign}[1]{\#\textsl{#1}}
 
-\begin{document}
+\title{Modèle relationnel en troisième forme normale}
 
-\begin{center}
-Mod\`ele relationnel en troisi\`eme forme normale,\\
-(ou presque, on fait ce que M. Lombardy a dit)\\
-\end{center}
+\begin{document}
+\maketitle{}
 
 \begin{mld}
   \relat{Joueur} & (\prim{pseudo}, \attr{nom}, \attr{prenom}, \attr{mail}, \foreign{idCategorie}, \foreign{idPlateforme})\\
   \relat{Pouce} & (\prim{idPouce}, \attr{valeur}, \foreign{idJoueur}, \foreign{idCommentaire})\\
-  \relat{Commentaire} & ( \prim{\foreign{idJoueur}, \foreign{idJeu}}, \attr{note}, \attr{commentaire}, \attr{date}, \foreign{idPlateforme})\\
+  \relat{Commentaire} & (\prim{\foreign{idJoueur}, \foreign{idJeu}}, \attr{note}, \attr{commentaire}, \attr{date}, \foreign{idPlateforme})\\
   \relat{Categorie} & (\prim{idCategorie}, \attr{nomCategorie})\\
   \relat{Jeu} & (\prim{idJeu}, \attr{nomJeu}, \foreign{idEditeur})\\
   \relat{Plateforme} & (\prim{idPlateforme}, \attr{nomPlateforme})\\
