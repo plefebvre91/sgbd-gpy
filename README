@@ -4,4 +4,22 @@ Team members :
  -plefebvre
  -ygarbage
 
-Lorem ipsum dolor sit amet lol xd mdr
+-- Lancer le client MySQL en ligne de commande (avec la configuration par défaut) --
+
+   /opt/lampp/bin/mysql -uroot -p
+
+-- Lancer le client MySQL en ligne de commande avec d'autres login / password --
+   
+   /opt/lampp/bin/mysql -ulogin -ppassword
+
+-- Lancer le client MySQL en ligne de commande et se connecter à une BDD précise --
+
+   /opt/lampp/bin/mysql -uroot -p nomDeLaBDD
+
+-- Exécuter un script sur une BDD en ligne de commande --
+   
+   /opt/lampp/bin/mysql -uroot -p nomDeLaBDD < script.sql
+   
+-- Exemple --
+
+   /opt/lampp/bin/mysql -uroot -p jeuxvideos < sgbd-gpy/mysql_test/base.sql
