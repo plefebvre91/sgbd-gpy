@@ -93,7 +93,7 @@ commit;
 
 insert into pouce values (1, '+', 'joueur2', 1);
 insert into pouce values (2, '-', 'joueur3', 1);
-insert into pouce values (3, '+', 'joueur4', 1);
+insert into pouce values (3, '+', 'joueur4', 6);
 insert into pouce values (4, '+', 'joueur1', 5);
 insert into pouce values (5, '+', 'joueur1', 6);
 
