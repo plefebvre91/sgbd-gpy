@@ -65,17 +65,37 @@ commit;
 -- TABLE joueur
 -- insert into joueur values (pseudo, nom, prenom, mail, idCategorie, idPlateforme);
 
+insert into joueur values ('joueur1', 'nom1', 'prenom1', 'mail1', 1, 1);
+insert into joueur values ('joueur2', 'nom2', 'prenom2', 'mail2', 1, 2);
+insert into joueur values ('joueur3', 'nom3', 'prenom3', 'mail3', 1, 3);
+insert into joueur values ('joueur4', 'nom4', 'prenom4', 'mail4', 3, 2);
+insert into joueur values ('joueur5', 'nom5', 'prenom5', 'mail5', 3, 3);
+
+
 commit;
 
 
 -- TABLE commentaire
 -- insert into commentaire values (idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlateforme);
 
+insert into commentaire values (1, 12, 'potable'        , '01-JAN-13', 'joueur1', 1, 1);
+insert into commentaire values (2,  8, 'nul'            , '11-JAN-13', 'joueur1', 1, 2);
+insert into commentaire values (3, 18, 'genial, parfait', '01-FEV-13', 'joueur1', 1, 3);
+insert into commentaire values (4, 11, 'bof'            , '01-JAN-14', 'joueur2', 2, 2);
+insert into commentaire values (5,  4, 'lol'            , '21-JAN-14', 'joueur3', 3, 3);
+insert into commentaire values (6, 16, 'cool'           , '01-MAR-14', 'joueur4', 4, 1);
+
 commit;
 
 
 -- TABLE pouce
 -- insert into pouce values (idPouce, valeur, pseudo, idCommentaire);
+
+insert into pouce values (1, '+', 'joueur2', 1);
+insert into pouce values (2, '+', 'joueur3', 1);
+insert into pouce values (3, '+', 'joueur4', 1);
+insert into pouce values (4, '+', 'joueur1', 2);
+insert into pouce values (5, '+', 'joueur1', 3);
 
 commit;
 
