@@ -20,8 +20,8 @@
 
 \begin{mld}
   \relat{Joueur} & (\prim{pseudo}, \attr{nom}, \attr{prenom}, \attr{mail}, \foreign{idCategorie}, \foreign{idPlateforme})\\
-  \relat{Pouce} & (\prim{idPouce}, \attr{valeur}, \foreign{idJoueur}, \foreign{idCommentaire})\\
-  \relat{Commentaire} & (\prim{\foreign{idJoueur}, \foreign{idJeu}}, \attr{note}, \attr{commentaire}, \attr{date}, \foreign{idPlateforme})\\
+  \relat{Pouce} & (\prim{idPouce}, \attr{valeur}, \foreign{pseudo}, \foreign{idCommentaire})\\
+  \relat{Commentaire} & (\prim{idCommentaire}, \attr{note}, \attr{commentaire}, \attr{date}, \foreign{pseudo}, \foreign{idJeu}, \foreign{idPlateforme})\\
   \relat{Categorie} & (\prim{idCategorie}, \attr{nomCategorie})\\
   \relat{Jeu} & (\prim{idJeu}, \attr{nomJeu}, \foreign{idEditeur})\\
   \relat{Plateforme} & (\prim{idPlateforme}, \attr{nomPlateforme})\\
