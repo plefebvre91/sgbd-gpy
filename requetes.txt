@@ -8,6 +8,39 @@ Liste des requetes à effectuer:
 -> Avancees
 
 l'ensemble des jeux critiqués disponibles sur une plateforme donnée, classés par catégorie ;
+
+Ensemble des jeux:
+SELECT *
+FROM jeu;
+
+Ensemble des jeux classés par idCategorie:
+SELECT jeu.* , appartient.idCategorie
+FROM jeu
+INNER JOIN appartient ON jeu.idJeu = appartient.idJeu
+ORDER BY idCategorie ASC;
+
+Ensemble des jeux classés par catégorie:
+SELECT ssrqt.idJeu, ssrqt.nomJeu, categorie.nomCategorie
+FROM (
+     SELECT jeu.* , appartient.idCategorie
+     FROM jeu
+     INNER JOIN appartient ON jeu.idJeu = appartient.idJeu
+     ) as ssrqt
+     LEFT OUTER JOIN categorie
+ON ssrqt.idCategorie  = categorie.idCategorie
+ORDER BY categorie.nomCategorie ASC;
+
+Requête complète qui ne fonctionne pas :
+SELECT * 
+FROM (((jeu INNER JOIN appartient 
+ON jeu.idJeu = appartient.idJeu) INNER JOIN categorie 
+ON appartient.idCategorie = categorie.idCategorie) INNER estDisponible
+ON jeu.idJeu = estDisponible.idJeu) INNER JOIN plateforme
+ON estDisponible.idPlateforme = plateforme.idPlateforme
+WHERE nomPlateforme = "ps3"
+GROUP BY categorie
+ORDER BY categorie ASC;
+
 pour un joueur donné, la liste des commentaires se référant à un jeu dans sa catégorie préférée,
 disponible sur sa plateforme préférée ;
 pour un commentaire, la liste des joueurs qui l'ont apprécié.
@@ -32,3 +65,7 @@ Toute autre requête que vous jugeriez utile pour la gestion de cette base.
 
 
 -> Idees pour la creation de la base:
+
+
+-> Requetes SQL
+
