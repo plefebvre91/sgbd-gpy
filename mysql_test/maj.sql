@@ -13,7 +13,7 @@ SELECT jeu.idJeu WHERE jeu.nomJeu='nom';
 --Selection de idPlateforme depuis nomJeu (5)
 SELECT plateforme LEFT INNER JOIN jeu 
 ON plateforme.idPlateforme = jeu.idJeu
-WHERE jeu.nomJeu='nomDuJeu'
+WHERE jeu.nomJeu='nomDuJeu';
 
 --Ajout d'un jeu
 -- idEditeur = selection avec (1)
@@ -45,3 +45,32 @@ INSERT INTO editeur ('','nom');
 INSERT INTO categorie ('', 'nom');
 
 --------------------- MISE A JOUR -------------------
+--Mise a jour d'un joueur
+--Pour le changement des preferences
+--idPlateforme = selection avec (2)
+--idCategorie = selection avec (3)
+
+UPDATE joueur
+SET nom='nom', prenom='prenom', mail='mail', idCategorie='nouvel_id', idPlateforme='nouvel_id'
+WHERE pseudo='le_pseudo';
+
+--Mise a jour d'un jeu
+--Pour le changement d'editeur
+--idEditeur = selection avec (1)
+UPDATE jeu
+SET nomJeu='nom', idEditeur='nouvel_id'
+WHERE idJeu='id';
+
+
+--Mise a jour d'un commentaire
+--Pour le changement d'editeur
+--idPlateforme = selection avec (2)
+UPDATE commentaire
+SET note='nouvelle_note', commentaire='nouveau_commentaire', idPlateforme='nouvel_id'
+WHERE idCommentaire='idCommentaire';
+
+
+
+------------------------- SUPPRESSION ------------------
+--La coherence est gardee avec les 'ON DELETE CASCADE' dans la creation des tables
+DELETE FROM 'nom_de_la_table' WHERE nom_de_la_cle='id';
