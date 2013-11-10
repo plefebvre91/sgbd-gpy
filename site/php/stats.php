@@ -1,5 +1,5 @@
 <?php
-require("base.php");
+require_once("include.php");
 
 //Recuperation des n derniers commentaires
 function get_lasts_comments($nb_comments) {
@@ -21,6 +21,19 @@ function get_active_players(){
   $result = mysql_query($query) or die (mysql_error());
   
   return $result;
+}
+
+
+function get_comments_by_appreciation(){
+  $query = "SELECT idCommentaire, (1 + res.c)/(1 + res.d) as 'indiceConfiance' FROM (
+       SELECT commentaire.idCommentaire, SUM(IF(pouce.valeur = '+', 1, 0)) AS 'c', SUM(IF(pouce.valeur = '-', 1, 0)) AS 'd'
+       FROM pouce INNER JOIN commentaire ON pouce.idCommentaire = commentaire.idCommentaire
+       GROUP BY commentaire.idCommentaire) as res
+       ORDER BY (1 + res.c)/(1 + res.d) DESC;";
+
+  $result = mysql_query($query) or die(mysql_error());
+
+  return result;
 }
 
 ?>

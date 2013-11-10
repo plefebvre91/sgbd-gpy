@@ -1,5 +1,5 @@
 <?php
-require("base.php");
+require_once("include.php");
 
 /* - MISE A JOUR - */
 /* Mise a jour d'un joueur */
