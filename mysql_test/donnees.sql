@@ -92,26 +92,48 @@ commit;
 -- TABLE joueur
 -- insert into joueur values (pseudo, nom, prenom, mail, idCategorie, idPlateforme);
 
-insert into joueur values ('joueur1', 'nom1', 'prenom1', 'mail1', 1, 1);
-insert into joueur values ('joueur2', 'nom2', 'prenom2', 'mail2', 1, 2);
-insert into joueur values ('joueur3', 'nom3', 'prenom3', 'mail3', 1, 3);
-insert into joueur values ('joueur4', 'nom4', 'prenom4', 'mail4', 3, 2);
-insert into joueur values ('joueur5', 'nom5', 'prenom5', 'mail5', 3, 3);
-
-
-commit;
+insert into joueur values ('wandujar'    , 'andujar'    , 'william'  , 'william.andujar@enseirb-matmeca.fr'   ,  2, 5);
+insert into joueur values ('nbelin'      , 'belin'      , 'nicolas'  , 'nicolas.belin@enseirb-matmeca.fr'     ,  3, 3);
+insert into joueur values ('hbrunie'     , 'brunie'     , 'huge'     , 'hugo.brunie@enseirb-matmeca.fr'       ,  4, 1);
+insert into joueur values ('jcatala'     , 'catala'     , 'julien'   , 'julien.catala@enseirb-matmeca.fr'     ,  5, 6);
+insert into joueur values ('achoblet'    , 'choblet'    , 'anais'    , 'anais.choblet@enseirb-matmeca.fr'     ,  6, 1);
+insert into joueur values ('ldauphin'    , 'dauphin'    , 'loic'     , 'loic.dauphin@enseirb-matmeca.fr'      ,  7, 3);
+insert into joueur values ('ygarbage'    , 'garbage'    , 'yvon'     , 'yvon.garbage@enseirb-matmeca.fr'      ,  8, 1);
+insert into joueur values ('sguitouni'   , 'guitouni'   , 'souhaib'  , 'souhaib.guitouni@enseirb-matmeca.fr'  ,  9, 7);
+insert into joueur values ('phennequin'  , 'hennequin'  , 'philippe' , 'philippe.hennequin@enseirb-matmeca.fr', 10, 1);
+insert into joueur values ('mherbreteau' , 'herbreteau' , 'maxime'   , 'maxime.herbreteau@enseirb-matmeca.fr' , 11, 7);
+insert into joueur values ('klabourdette', 'labourdette', 'kevin'    , 'kevin.labourdette@enseirb-matmeca.fr' ,  1, 1);
+insert into joueur values ('plefebvre'   , 'lefebvre'   , 'pierre'   , 'pierre.lefebvre@enseirb-matmeca.fr'   ,  1, 1);
+insert into joueur values ('imhamdi'     , 'mhamdi'     , 'imen'     , 'imen.mhamdi@enseirb-matmeca.fr'       ,  1, 1);
+insert into joueur values ('ymentagui'   , 'mentagui'   , 'yassine'  , 'yassine.mentagui@enseirb-matmeca.fr'  ,  1, 1);
+insert into joueur values ('rmillet'     , 'millet'     , 'remi'     , 'remi.millet@enseirb-matmeca.fr'       ,  1, 1);
+insert into joueur values ('gpichon'     , 'pichon'     , 'gregoire' , 'gregoire.pichon@enseirb-matmeca.fr'   ,  1, 1);
+insert into joueur values ('grollin'     , 'rollin'     , 'guillaume', 'guillaume.rollin@enseirb-matmeca.fr'  ,  1, 1);
 
 
 -- TABLE commentaire
 -- insert into commentaire values (idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlateforme);
 
-insert into commentaire values (1, 12, 'potable'        , '2013-01-01', 'joueur1', 1, 1);
-insert into commentaire values (2,  8, 'nul'            , '2013-11-01', 'joueur1', 1, 2);
-insert into commentaire values (3, 18, 'genial, parfait', '2013-02-01', 'joueur1', 1, 3);
-insert into commentaire values (4, 11, 'bof'            , '2014-01-01', 'joueur2', 2, 2);
-insert into commentaire values (5,  4, 'lol'            , '2014-01-14', 'joueur3', 3, 3);
-insert into commentaire values (6, 16, 'cool'           , '2014-04-01', 'joueur4', 4, 1);
-insert into commentaire values (7, 17, 'super cool'     , '2014-04-05', 'joueur4', 4, 1);
+insert into commentaire values ( 1,  8, 'bof bof'                                , '2013-01-01', 'wandujar'    , 10, 1);
+insert into commentaire values ( 2, 10, 'mouais'                                 , '2013-11-01', 'nbelin'      , 10, 3);
+insert into commentaire values ( 3, 12, 'moyen'                                  , '2013-02-01', 'hbrunie'     , 10, 5);
+insert into commentaire values ( 4,  6, 'pourri'                                 , '2014-01-01', 'jcatala'     , 11, 1);
+insert into commentaire values ( 5, 18, 'fantastique'                            , '2014-01-14', 'achoblet'    , 11, 7);
+insert into commentaire values ( 6, 20, 'ne peux plus dormir...'                 , '2014-04-01', 'ldauphin'    , 12, 1);
+insert into commentaire values ( 7,  4, 'lol la roulade'                         , '2014-04-05', 'ygarbage'    , 12, 7);
+insert into commentaire values ( 8, 14, 'pas mal'                                , '2013-01-01', 'sguitouni'   , 12, 3);
+insert into commentaire values ( 9,  6, 'pourquoi tant de haine?'                , '2013-11-01', 'ldauphin'    , 12, 5);
+insert into commentaire values (10, 17, 'parfait'                                , '2013-02-01', 'mherbreteau' , 13, 4);
+insert into commentaire values (11, 13, 'cool a jouer'                           , '2014-01-01', 'klabourdette', 13, 5);
+insert into commentaire values (12, 11, 'design nul'                             , '2014-01-14', 'plefebvre'   , 14, 1);
+insert into commentaire values (13, 20, 'occupe ma vie'                          , '2014-04-01', 'imhamdi'     , 14, 4);
+insert into commentaire values (14, 18, 'trop bien'                              , '2014-04-05', 'ymentagui'   , 14, 5);
+insert into commentaire values (15, 18, 'j adore'                                , '2013-01-01', 'rmillet'     , 15, 1);
+insert into commentaire values (16,  5, 'euh..'                                  , '2013-11-01', 'gpichon'     , 15, 7);
+insert into commentaire values (17, 10, 'non'                                    , '2013-02-01', 'grollin'     , 16, 1);
+insert into commentaire values (18,  8, 'pas top, vraiment pas top'              , '2014-01-01', 'wandujar'    , 16, 3);
+insert into commentaire values (19,  9, 'non'                                    , '2014-01-14', 'wandujar'    , 16, 5);
+insert into commentaire values (20, 13, 'passe le temps mais pas trop longtemps' , '2014-04-01', 'ldauphin'    , 16, 7);
 
 commit;
 
@@ -119,11 +141,11 @@ commit;
 -- TABLE pouce
 -- insert into pouce values (idPouce, valeur, pseudo, idCommentaire);
 
-insert into pouce values (1, '+', 'joueur2', 1);
-insert into pouce values (2, '-', 'joueur3', 1);
-insert into pouce values (3, '+', 'joueur4', 6);
-insert into pouce values (4, '+', 'joueur1', 5);
-insert into pouce values (5, '+', 'joueur1', 6);
+insert into pouce values (1, '+', 'ygarbage' , 1);
+insert into pouce values (2, '-', 'plefebvre', 1);
+insert into pouce values (3, '+', 'ygarbage' , 6);
+insert into pouce values (4, '+', 'gpichon'  , 5);
+insert into pouce values (5, '+', 'plefebvre', 6);
 
 commit;
 

@@ -21,7 +21,7 @@ CREATE TABLE joueur (
   pseudo       VARCHAR(32),
   nom          VARCHAR(32),
   prenom       VARCHAR(32),
-  mail         VARCHAR(32),
+  mail         VARCHAR(64),
   idCategorie  int,
   idPlateforme int,
   PRIMARY KEY(pseudo)
