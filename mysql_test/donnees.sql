@@ -19,9 +19,13 @@ commit;
 -- TABLE editeur
 -- insert into editeur values(idEditeur, nomEditeur);
 
-insert into editeur values (1, 'Editeur A');
-insert into editeur values (2, 'Editeur B');
-insert into editeur values (3, 'Editeur C');
+insert into editeur values (1, 'Ubisoft');
+insert into editeur values (2, 'Ankama');
+insert into editeur values (3, 'Arkane Studios');
+insert into editeur values (4, 'Asobo Studio');
+insert into editeur values (5, 'Blizzard Entertainment');
+insert into editeur values (6, 'Electronic Arts');
+insert into editeur values (7, 'Valve Corporation');
 
 commit;
 
@@ -29,9 +33,17 @@ commit;
 -- TABLE plateforme
 -- insert into plateforme values (idPlateforme, nomPlateForme);
 
-insert into plateforme values (1, 'Plateforme A');
-insert into plateforme values (2, 'Plateforme B');
-insert into plateforme values (3, 'Plateforme C');
+insert into plateforme values (1 , 'PC Windows');
+insert into plateforme values (2 , 'Xbox');
+insert into plateforme values (3 , 'Xbox 360');
+insert into plateforme values (4 , 'Play Station 2');
+insert into plateforme values (5 , 'Play Station 3');
+insert into plateforme values (6 , 'Wii');
+insert into plateforme values (7 , 'OS X');
+insert into plateforme values (8 , 'PSP');
+insert into plateforme values (9 , 'Android');
+insert into plateforme values (10, 'PC Linux');
+
 
 commit;
 
@@ -39,10 +51,17 @@ commit;
 -- TABLE categorie
 -- insert into categorie values (idCategorie, nomCategorie);
 
-insert into categorie values (1, 'Categorie A');
-insert into categorie values (2, 'Categorie B');
-insert into categorie values (3, 'Categorie C');
-insert into categorie values (4, 'Categorie D');
+insert into categorie values ( 1, 'MMORPG');
+insert into categorie values ( 2, 'Simulation sportive');
+insert into categorie values ( 3, 'Plate-forme');
+insert into categorie values ( 4, 'Reflexion');
+insert into categorie values ( 5, 'Jeu de rythme');
+insert into categorie values ( 6, 'Tir en vue subjective');
+insert into categorie values ( 7, 'Course');
+insert into categorie values ( 8, 'Humour');
+insert into categorie values ( 9, 'Action-aventure');
+insert into categorie values (10, 'Hack n Slash');
+insert into categorie values (11, 'Multijoueur');
 
 commit;
 
@@ -50,14 +69,22 @@ commit;
 -- TABLE jeu
 -- insert into jeu values (idJeu, nomJeu, idEditeur);
 
-insert into jeu values (1, 'Jeu A', 1);
-insert into jeu values (2, 'Jeu B', 2);
-insert into jeu values (3, 'Jeu C', 3);
-insert into jeu values (4, 'Jeu D', 1);
-insert into jeu values (5, 'Jeu E', 2);
-insert into jeu values (6, 'Jeu F', 3);
-insert into jeu values (7, 'Jeu G', 1);
-insert into jeu values (8, 'Jeu H', 2);
+insert into jeu values ( 1, 'Just Dance'        , 1);
+insert into jeu values ( 2, 'Les lapins cretins', 1);
+insert into jeu values ( 3, 'ShootMania'        , 1);
+insert into jeu values ( 4, 'Dofus'             , 2);
+insert into jeu values ( 5, 'Wakfu'             , 2);
+insert into jeu values ( 6, 'Fly n'             , 2);
+insert into jeu values ( 7, 'BioShock 2'        , 3);
+insert into jeu values ( 8, 'Dishonored'        , 3);
+insert into jeu values ( 9, 'Toy Story 3'       , 4);
+insert into jeu values (10, 'Fuel'              , 4);
+insert into jeu values (11, 'World of Warcraft' , 5);
+insert into jeu values (12, 'Diablo III'        , 5);
+insert into jeu values (13, 'FIFA football'     , 6);
+insert into jeu values (14, 'NBA Live'          , 6);
+insert into jeu values (15, 'Dota 2'            , 7);
+insert into jeu values (16, 'Counter Strike'    , 7);
 
 commit;
 
@@ -104,21 +131,49 @@ commit;
 -- TABLE estDisponible
 -- insert into estDisponible values(idPlateforme, idJeu);
 
-insert into estDisponible values(1, 1);
-insert into estDisponible values(2, 2);
-insert into estDisponible values(3, 3);
+insert into estDisponible values(6, 1);
+insert into estDisponible values(1, 2);
+insert into estDisponible values(1, 3);
 insert into estDisponible values(1, 4);
-insert into estDisponible values(2, 5);
-insert into estDisponible values(3, 6);
+insert into estDisponible values(7, 4);
+insert into estDisponible values(10, 4);
+insert into estDisponible values(1, 5);
+insert into estDisponible values(7, 5);
+insert into estDisponible values(10, 5);
+insert into estDisponible values(1, 6);
 insert into estDisponible values(1, 7);
-insert into estDisponible values(2, 8);
-
--- Jeu 1 sur toutes les plateformes
-insert into estDisponible values(2, 1);
-insert into estDisponible values(3, 1);
-
--- Jeu 2 sur plateformes 2 et 3
-insert into estDisponible values(3, 2);
+insert into estDisponible values(3, 7);
+insert into estDisponible values(5, 7);
+insert into estDisponible values(7, 7);
+insert into estDisponible values(1, 8);
+insert into estDisponible values(3, 8);
+insert into estDisponible values(5, 8);
+insert into estDisponible values(1, 9);
+insert into estDisponible values(3, 9);
+insert into estDisponible values(4, 9);
+insert into estDisponible values(5, 9);
+insert into estDisponible values(6, 9);
+insert into estDisponible values(1, 10);
+insert into estDisponible values(3, 10);
+insert into estDisponible values(5, 10);
+insert into estDisponible values(1, 11);
+insert into estDisponible values(7, 11);
+insert into estDisponible values(1, 12);
+insert into estDisponible values(7, 12);
+insert into estDisponible values(3, 12);
+insert into estDisponible values(5, 12);
+insert into estDisponible values(4, 13);
+insert into estDisponible values(5, 13);
+insert into estDisponible values(1, 14);
+insert into estDisponible values(4, 14);
+insert into estDisponible values(5, 14);
+insert into estDisponible values(1, 15);
+insert into estDisponible values(7, 15);
+insert into estDisponible values(10, 15);
+insert into estDisponible values(1, 16);
+insert into estDisponible values(3, 16);
+insert into estDisponible values(5, 16);
+insert into estDisponible values(7, 16);
 
 commit;
 
@@ -126,21 +181,23 @@ commit;
 -- TABLE appartient
 -- insert into appartient values(idCategorie, idJeu);
 
-insert into appartient values(1, 1);
-insert into appartient values(2, 2);
-insert into appartient values(3, 3);
+insert into appartient values(5, 1);
+insert into appartient values(6, 2);
+insert into appartient values(8, 3);
 insert into appartient values(1, 4);
-insert into appartient values(2, 5);
-insert into appartient values(3, 6);
-insert into appartient values(1, 7);
-insert into appartient values(2, 8);
-
--- Jeu 1 appartient à toutes les catégories
-insert into appartient values(2, 1);
-insert into appartient values(3, 1);
-
--- Jeu 2 appartient aux catégories B et C
-insert into appartient values(3, 2);
+insert into appartient values(1, 5);
+insert into appartient values(4, 6);
+insert into appartient values(6, 7);
+insert into appartient values(6, 8);
+insert into appartient values(9, 9);
+insert into appartient values(7, 10);
+insert into appartient values(1, 11);
+insert into appartient values(10, 12);
+insert into appartient values(1, 13);
+insert into appartient values(2, 14);
+insert into appartient values(11, 15);
+insert into appartient values(6, 16);
+insert into appartient values(11, 16);
 
 commit;
 
