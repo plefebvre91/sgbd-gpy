@@ -30,6 +30,27 @@ FROM (
 ON ssrqt.idCategorie  = categorie.idCategorie
 ORDER BY categorie.nomCategorie ASC;
 
+Ensemble des jeux classés par catégorie disponibles sur une plateforme donnée:
+SELECT jeuCat.idJeu, jeuCat.nomJeu, nomCategorie
+FROM ((
+     -- Jeux classes par categorie
+     SELECT ssrqt.idJeu, ssrqt.nomJeu, categorie.nomCategorie
+     FROM (
+     SELECT jeu.* , appartient.idCategorie
+     FROM jeu
+     INNER JOIN appartient ON jeu.idJeu = appartient.idJeu
+     ) as ssrqt
+     LEFT OUTER JOIN categorie
+     ON ssrqt.idCategorie  = categorie.idCategorie
+     ORDER BY categorie.nomCategorie ASC
+     ) as jeuCat
+LEFT OUTER JOIN estDisponible
+ON jeuCat.idJeu = estDisponible.idJeu)
+LEFT OUTER JOIN  plateforme
+USING (idPlateforme)
+WHERE nomPlateforme = "Plateforme A"
+ORDER BY nomCategorie ASC;
+
 Requête complète qui ne fonctionne pas :
 SELECT * 
 FROM (((jeu INNER JOIN appartient 

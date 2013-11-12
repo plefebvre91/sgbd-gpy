@@ -8,6 +8,19 @@ function secure_string($str){
 }
 
 
+function exec_query($filename){
+  $query = get_file_content($filename);
+  
+  if(!$query){
+    echo "Probleme lors de l'ouverture du fichier de requete\n";
+    exit;
+  }
+  
+  $result = mysql_query($query);
+
+  return $result;
+}
+
 //Renvoie l'id de l'editeur correspondant au nom (1)
 function get_editor_by_name($name) {
 	 $query = "SELECT editeur.idEditeur WHERE editeur.nomEditeur='$name'";

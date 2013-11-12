@@ -8,7 +8,7 @@ $_DB_HOST = "localhost";
 $_DB_USER = "root";
 
 //Mot de passe utilise lors de la connexion a la base
-$_DB_PASSWORF = "1234";
+$_DB_PASSWORD = "klmfffqsd";
 
 //Nom de la base selectionnee
 $_DB_NAME = "jeuxvideos";

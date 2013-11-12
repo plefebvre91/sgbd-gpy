@@ -35,7 +35,9 @@
 -- 		     	    INNER JOIN commentaire ON pouce.idCommentaire = commentaire.idCommentaire 
 -- 					  	   WHERE commentaire.idCommentaire = 1
 -- 						   AND pouce.valeur = '+');
-
+select pouce.pseudo from pouce inner join commentaire 
+on pouce.idCommentaire = commentaire.idCommentaire
+where commentaire.idCommentaire='5' and pouce.valeur='+';
 
 -- pour un joueur donné, la liste des commentaires se référant à un jeu dans sa catégorie préférée,
 -- disponible sur sa plateforme préférée ;
