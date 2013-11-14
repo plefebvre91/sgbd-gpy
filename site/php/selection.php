@@ -23,4 +23,34 @@ function select_commented_games($platform){
   
   return $result;
 }
+
+//Pour un commentaire donne (par id), la liste des joueurs qui l'ont appricie
+function select_players_from_comments($id){
+  $query =  "SELECT * FROM joueur WHERE joueur.pseudo IN
+             (SELECT pouce.pseudo FROM pouce INNER JOIN commentaire 
+             ON pouce.idCommentaire = commentaire.idCommentaire 
+             WHERE commentaire.idCommentaire = '$id' AND pouce.valeur = '+');"
+
+  $result = mysql_query($query) or die(mysql_error());
+  
+  return $result;
+}
+
+
+//Pour un joueur donné, la liste des commentaires se référant à un jeu 
+//dans sa catégorie préférée disponible sur sa plateforme préférée                                                                                  
+function select_comments_from_preferences($login){
+  $query =  "SELECT commentaire.* FROM commentaire INNER JOIN jeu ON commentaire.idJeu = jeu.idJeu
+            WHERE jeu.idJeu IN
+            (SELECT jeu.idJeu FROM jeu WHERE jeu.idJeu IN
+                  (SELECT appartient.idJeu FROM appartient INNER JOIN jeu
+                            ON jeu.idJeu = appartient.idJeu
+                            WHERE appartient.idCategorie = (SELECT idCategorie FROM joueur WHERE joueur.pseudo = '$login')))
+                            AND commentaire.idPlateforme IN
+                            (SELECT idPlateforme FROM joueur WHERE joueur.pseudo = '$login')";
+  
+  $result = mysql_query($query) or die(mysql_error());
+  
+  return $result;
+}
 ?>
