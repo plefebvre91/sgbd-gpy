@@ -29,9 +29,9 @@ function select_players_from_comments($id){
   $query =  "SELECT * FROM joueur WHERE joueur.pseudo IN
              (SELECT pouce.pseudo FROM pouce INNER JOIN commentaire 
              ON pouce.idCommentaire = commentaire.idCommentaire 
-             WHERE commentaire.idCommentaire = '$id' AND pouce.valeur = '+');"
+            WHERE commentaire.idCommentaire = '$id' AND pouce.valeur = '+')";
 
-  $result = mysql_query($query) or die(mysql_error());
+    $result = mysql_query($query) or die(mysql_error());
   
   return $result;
 }
