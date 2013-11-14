@@ -6,10 +6,26 @@ function loading(){
     $("#result").html("Chargement");
 }
 
-function selection(){
+function selection_player(){
     loading();
-    var categorie = $("#cat").val();
-    var request = $.ajax({type:"GET",url:"ajax/ajax_select.php", data:{cat:categorie}});
+    var request = $.get("ajax/ajax_select_players.php", $( "#testform" ).serialize());
     request.done(function(msg){$("#result").html(msg);});
     request.fail(failure);
+    return false;
+}
+
+function selection_games(){
+    loading();
+    var request = $.get("ajax/ajax_select_games.php", $( "#testform" ).serialize());
+    request.done(function(msg){$("#result").html(msg);});
+    request.fail(failure);
+    return false;
+}
+
+function selection_comments(){
+    loading();
+    var request = $.get("ajax/ajax_select_comments.php", $( "#testform" ).serialize());
+    request.done(function(msg){$("#result").html(msg);});
+    request.fail(failure);
+    return false;
 }
