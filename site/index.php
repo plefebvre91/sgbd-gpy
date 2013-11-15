@@ -1,3 +1,11 @@
+<?php
+$page = $_GET["action"];
+if(empty($page)){
+  $page = "accueil";
+}
+$page = $page.".php";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -14,8 +22,6 @@
     <!-- Our CSS -->
     <link href="css/style.css" rel="stylesheet">
 	
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,11 +46,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Accueil</a></li>
-            <li><a href="consultation.html">Consultation</a></li>
-            <li><a href="ajout.html">Ajout</a></li>
-            <li><a href="maj.html">Mise à jour</a></li>
-            <li><a href="supression.html">Supression</a></li>
+            <li class="active"><a href="index.php?action=">Accueil</a></li>
+            <li><a href="index.php?action=consultation">Consultation</a></li>
+            <li><a href="index.php?action=ajout">Ajout</a></li>
+            <li><a href="index.php?action=maj">Mise à jour</a></li>
+            <li><a href="index.php?action=suppression">Supression</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../navbar/">About</a></li>
@@ -54,7 +60,7 @@
     </div>
 
     <div class="container">
-
+     
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>dot<span class="game">game</span></h1>
@@ -64,7 +70,9 @@
     </div> <!-- /container -->
 
     <div class="container">
-      <div class="row">
+     
+ <?php require($page); ?>
+ <div class="row">
         <div class="span1">
           <p class="lead text-center">Cliquez sur la barre située en haut de la page selon l'action que vous souhaitez effectuer.</p>
         </div>
