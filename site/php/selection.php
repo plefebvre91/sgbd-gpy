@@ -53,4 +53,25 @@ function select_comments_from_preferences($login){
   
   return $result;
 }
+
+function select_comments(){
+  $query =  "SELECT * FROM commentaire";
+  $result = mysql_query($query) or die(mysql_error());
+  return $result;
+}
+  
+
+function select_games(){
+  $query =  "SELECT idJeu, nomJeu, nomEditeur FROM jeu INNER JOIN editeur ON jeu.idEditeur = editeur.idEditeur";
+  $result = mysql_query($query) or die(mysql_error());
+  return $result;
+}
+  
+
+function select_players(){
+  $query =  "SELECT * FROM joueur";
+  $result = mysql_query($query) or die(mysql_error());
+  return $result;
+}
+
 ?>

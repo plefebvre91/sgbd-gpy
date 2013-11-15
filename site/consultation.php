@@ -1,131 +1,56 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+<div class="container">
+   <div class="well top-message">
+   <p>Cliquez sur les différents onglets pour accéder aux trois requêtes de consultation.</p>
 
-    <title>gamebook - Consultation</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <!-- Our CSS -->
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Afficher le menu</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-	  <a class="navbar-brand" href="index.html">dot<span class="game">game</span></a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="index.html">Accueil</a></li>
-            <li class="active"><a href="#">Consultation</a></li>
-            <li><a href="ajout.html">Ajout</a></li>
-            <li><a href="maj.html">Mise à jour</a></li>
-            <li><a href="supression.html">Supression</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">About</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
-    <div class="container">
-      
-      <div class="well top-message">
-	<p>
-	  Cliquez sur les différents onglets pour accéder aux trois requêtes de consultation.
-	</p>
-
-	<ul>
-	  <li>L'ensemble des jeux critiqués disponibles sur une plateoforme donnée, classés par catégorie,</li>
+   <ul>
+   <li>L'ensemble des jeux critiqués disponibles sur une plateoforme donnée, classés par catégorie,</li>
 	  <li>Pour un jeu donné, la liste des commentaires se référant à un jeu dans sa catégorie préférée, disponible sur sa plateforme préférée,</li>
 	  <li>Pour un commentaire, la liste des joueurs qui l'ont apprécié.</li>
-	</ul>
-      </div>
+   </ul>
+   </div>
 
-      <!-- Nav tabs -->
-    <ul class="nav nav-tabs" id="myTab">
-      <li><a href="#consultation1" data-toggle="tab">Requête 1</a></li>
-      <li><a href="#consultation2" data-toggle="tab">Requête 2</a></li>
-      <li><a href="#consultation3" data-toggle="tab">Requête 3</a></li>
-    </ul>
+   <!-- Nav tabs -->
+   <ul class="nav nav-tabs" id="myTab">
+   <li><a href="#consultation1" data-toggle="tab">Requête 1</a></li>
+   <li><a href="#consultation2" data-toggle="tab">Requête 2</a></li>
+   <li><a href="#consultation3" data-toggle="tab">Requête 3</a></li>
+   </ul>
 
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div class="tab-pane active" id="consultation1">
-	  <p>Requête 1</p>
-	</div>
-        <div class="tab-pane" id="consultation2">
-	  <p>Requête 2</p>
-	</div>
-        <div class="tab-pane" id="consultation3">
-	  <p>Requête 3</p>
-	</div>
-      </div>
-    </div>
+   <!-- Tab panes -->
+   <div class="tab-content">
+   <div class="tab-pane active" id="consultation1">
+   <p>Requête 1</p>
+   </div>
+   <div class="tab-pane" id="consultation2">
+   <p>Requête 2</p>
+   </div>
+   <div class="tab-pane" id="consultation3">
+   <p>Requête 3</p>
+   </div>
+   </div>
+   </div>
 
-    <!-- <div class="container"> -->
-    <!--   <form role="form"> -->
-    <!--     <div class="form-group"> -->
-    <!--       <label for="exampleInputEmail1">Email address</label> -->
-    <!--       <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> -->
-    <!--     </div> -->
-    <!--     <div class="form-group"> -->
-    <!--       <label for="exampleInputPassword1">Password</label> -->
-    <!--       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
-    <!--     </div> -->
-    <!--     <div class="form-group"> -->
-    <!--       <label for="exampleInputFile">File input</label> -->
-    <!--       <input type="file" id="exampleInputFile"> -->
-    <!--       <p class="help-block">Example block-level help text here.</p> -->
-    <!--     </div> -->
-    <!--     <div class="checkbox"> -->
-    <!--       <label> -->
-    <!--         <input type="checkbox"> Check me out -->
-    <!--       </label> -->
-    <!--     </div> -->
-    <!--     <button id="send_request" type="submit" class="btn btn-warning btn-lg">Envoi de la requête</button> -->
-    <!--   </form> -->
-    <!-- </div> <\!-- /container -\-> -->
+   <!-- <div class="container"> -->
+   <!--   <form role="form"> -->
+   <!--     <div class="form-group"> -->
+   <!--       <label for="exampleInputEmail1">Email address</label> -->
+   <!--       <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> -->
+   <!--     </div> -->
+   <!--     <div class="form-group"> -->
+   <!--       <label for="exampleInputPassword1">Password</label> -->
+   <!--       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
+   <!--     </div> -->
+   <!--     <div class="form-group"> -->
+   <!--       <label for="exampleInputFile">File input</label> -->
+   <!--       <input type="file" id="exampleInputFile"> -->
+   <!--       <p class="help-block">Example block-level help text here.</p> -->
+   <!--     </div> -->
+   <!--     <div class="checkbox"> -->
+   <!--       <label> -->
+   <!--         <input type="checkbox"> Check me out -->
+   <!--       </label> -->
+   <!--     </div> -->
+   <!--     <button id="send_request" type="submit" class="btn btn-warning btn-lg">Envoi de la requête</button> -->
+   <!--   </form> -->
+   <!-- </div> <\!-- /container -\-> -->
 
-    <div id="footer">
-      <div class="container text-center">
-        <p class="text-muted credit">Projet SGBD - dotgame</p>
-        <p class="credit">Grégoire PICHON - Pierre LEFEBVRE - Yvon GARBAGE</p>
-      </div>
-    </div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/consultation.js"></script>
-  </body>
-</html>
