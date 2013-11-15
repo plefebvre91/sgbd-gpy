@@ -53,7 +53,7 @@ $page = $page.".php";
             <li><a href="index.php?action=suppression">Supression</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">About</a></li>
+          <li><a href="index.php?action=about">&Agrave; propos...</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
