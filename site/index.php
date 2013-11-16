@@ -1,9 +1,14 @@
 <?php
-$page = $_GET["action"];
-if(empty($page)){
-  $page = "accueil";
+if(isset($_GET["action"])){
+    $page = $_GET["action"];
+    if(empty($page)){
+      $page = "accueil";
+    }
+    $page = $page.".php";
+  }
+else{
+  $page = "accueil.php";
 }
-$page = $page.".php";
 ?>
 
 <!DOCTYPE html>
@@ -46,17 +51,19 @@ $page = $page.".php";
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">dot<span class="game">game</span></a>
+          <a class="navbar-brand" href="index.php">dot<span class="game">game</span></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 	  <!-- Todo : Changer le active en fonction de la page -->
-            <!-- <li class="active"><a href="index.php?action=">Accueil</a></li> -->
+            <!-- <li class="active"><a href="index.php">Accueil</a></li> -->
             <li><a href="index.php?action=">Accueil</a></li>
             <li><a href="index.php?action=consultation">Consultation</a></li>
             <li><a href="index.php?action=ajout">Ajout</a></li>
             <li><a href="index.php?action=maj">Mise à jour</a></li>
-            <li><a href="index.php?action=suppression">Supression</a></li>
+
+            <li><a href="index.php?action=suppression">Suppression</a></li>
+            <li><a href="index.php?action=statistiques">Statistiques</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           <li><a href="index.php?action=about">&Agrave; propos...</a></li>

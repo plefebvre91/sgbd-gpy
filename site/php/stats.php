@@ -2,7 +2,7 @@
 require_once("include.php");
 
 //Recuperation des n derniers commentaires
-function get_lasts_comments($nb_comments) {
+function get_last_comments($nb_comments) {
   $nb_comments = ($nb_comments <= 0) ? 1:$nb_comments;
   
   $query = "SELECT * FROM commentaire ORDER BY commentaire.dateCommentaire DESC LIMIT $nb_comments";
@@ -23,17 +23,29 @@ function get_active_players(){
   return $result;
 }
 
-
+//Commentaires selon leur appréciation
 function get_comments_by_appreciation(){
-  $query = "SELECT idCommentaire, (1 + res.c)/(1 + res.d) as 'indiceConfiance' FROM (
-       SELECT commentaire.idCommentaire, SUM(IF(pouce.valeur = '+', 1, 0)) AS 'c', SUM(IF(pouce.valeur = '-', 1, 0)) AS 'd'
-       FROM pouce INNER JOIN commentaire ON pouce.idCommentaire = commentaire.idCommentaire
-       GROUP BY commentaire.idCommentaire) as res
-       ORDER BY (1 + res.c)/(1 + res.d) DESC;";
+  $query = "SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlateforme, (1 + res.c)/(1 + res.d) AS indiceConfiance FROM (
+       SELECT commentaire.*, SUM(IF(pouce.valeur = '+', 1, 0)) AS c, SUM(IF(pouce.valeur = '-', 1, 0)) AS d
+       FROM commentaire LEFT OUTER JOIN pouce ON commentaire.idCommentaire = pouce.idCommentaire
+       GROUP BY commentaire.idCommentaire) AS res
+       ORDER BY (1 + res.c)/(1 + res.d) DESC, res.dateCommentaire DESC";
+
 
   $result = mysql_query($query) or die(mysql_error());
 
-  return result;
+  return $result;
 }
+
+function get_most_attractive_comment(){
+  $query = "SELECT distinct commentaire.* FROM pouce INNER JOIN commentaire ON pouce.idCommentaire = commentaire.idCommentaire
+       WHERE pouce.idCommentaire IN
+       (SELECT idCommentaire FROM pouce GROUP BY pouce.idCommentaire HAVING count(*) = (SELECT count(*) FROM pouce GROUP BY pouce.idCommentaire ASC LIMIT 1))";
+  
+  $result = mysql_query($query) or die(mysql_error());
+  
+  return $result;
+}
+       
 
 ?>

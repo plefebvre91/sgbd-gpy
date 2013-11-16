@@ -1,0 +1,23 @@
+Pour les ajouts :
+
+
+Pour les mises à jour:
+3 onglets pour jeu, joueur, commentaire
+
+Pour joueur:
+6 elements de formulaire
+login : liste deroulante ?
+prenom et nom et mail: champ texte
+plateforme : liste deroulante
+categorie: ensemble de checkbox vu qu'il y en a plusieurs
+
+Pour jeu:
+2 elements
+nom : champ texte
+editeur : liste deroulante
+
+Pour commentaire:
+3 elements:
+note : un truc qui fait défiler des entiers
+commentaire : un textarea 
+plateforme : une liste déroulante.
