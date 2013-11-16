@@ -36,7 +36,7 @@ function delete_player(id_player){
 
 function delete_editor(id_editor){
     $("#result").html("Chargement...");
-    var str_id = "#"+id_editor;
+    var str_id = "#editor"+id_editor;
     var request = $.get("ajax/ajax_delete_editor.php", {id: id_editor});
 
     request.done(function(msg){success(str_id, msg); $(str_id).fadeOut('slow'); });

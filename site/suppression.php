@@ -1,6 +1,7 @@
 <?php 
 require_once("php/include.php"); 
 require_once("php/selection.php");
+require_once("php/delete.php");
 ?>
 <script src="js/delete.js"></script>
 <div class="alert alert-info" id="result"></div>
