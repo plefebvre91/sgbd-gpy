@@ -24,7 +24,7 @@ CREATE TABLE joueur (
   mail         VARCHAR(64),
   idCategorie  int,
   idPlateforme int,
-  PRIMARY KEY(pseudo)
+  CONSTRAINT pk_joueur PRIMARY KEY(pseudo)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
@@ -33,7 +33,7 @@ CREATE TABLE pouce (
   valeur        CHAR(1),
   pseudo        VARCHAR(32),
   idCommentaire int,
-  PRIMARY KEY(idPouce)
+  CONSTRAINT pk_pouce PRIMARY KEY(idPouce)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
@@ -45,14 +45,14 @@ CREATE TABLE commentaire (
   pseudo          VARCHAR(32),
   idJeu           int,
   idPlateforme    int,
-  PRIMARY KEY(idCommentaire)
+  CONSTRAINT pk_commentaire PRIMARY KEY(idCommentaire)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE categorie (
   idCategorie  int NOT NULL AUTO_INCREMENT,
   nomCategorie VARCHAR(128),	
-  PRIMARY KEY(idCategorie)
+  CONSTRAINT pk_categorie PRIMARY KEY(idCategorie)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
@@ -60,14 +60,14 @@ CREATE TABLE jeu (
   idJeu     int NOT NULL AUTO_INCREMENT,
   nomJeu    VARCHAR(128),	
   idEditeur int,
-  PRIMARY KEY(idJeu)
+  CONSTRAINT pk_jeu PRIMARY KEY(idJeu)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE plateforme (
   idPlateforme  int NOT NULL AUTO_INCREMENT,
   nomPlateForme VARCHAR(128),	
-  PRIMARY KEY(idPlateforme)
+  CONSTRAINT pk_plateforme PRIMARY KEY(idPlateforme)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
@@ -81,27 +81,27 @@ CREATE TABLE editeur (
 CREATE TABLE appartient (
   idCategorie int,
   idJeu       int,
-  PRIMARY KEY(idCategorie, idJeu)
+  CONSTRAINT pk_appartient PRIMARY KEY(idCategorie, idJeu)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE estDisponible (
   idPlateforme int,
   idJeu        int,
-  PRIMARY KEY(idPlateforme, idJeu)
+  CONSTRAINT pk_estDisponible  PRIMARY KEY(idPlateforme, idJeu)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 -- Définitions des clés étrangères
 
-ALTER TABLE joueur      ADD FOREIGN KEY (idCategorie)   REFERENCES categorie   (idCategorie);
-ALTER TABLE joueur      ADD FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme);
+ALTER TABLE joueur      ADD CONSTRAINT fk1_joueur      FOREIGN KEY (idCategorie)   REFERENCES categorie   (idCategorie);
+ALTER TABLE joueur      ADD CONSTRAINT fk2_joueur      FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme);
 
-ALTER TABLE commentaire ADD FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo);
-ALTER TABLE commentaire ADD FOREIGN KEY (idJeu)         REFERENCES jeu         (idJeu);
-ALTER TABLE commentaire ADD FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme);
+ALTER TABLE commentaire ADD CONSTRAINT fk1_commentaire FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo);
+ALTER TABLE commentaire ADD CONSTRAINT fk2_commentaire FOREIGN KEY (idJeu)         REFERENCES jeu         (idJeu);
+ALTER TABLE commentaire ADD CONSTRAINT fk3_commentaire FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme);
 
-ALTER TABLE jeu         ADD FOREIGN KEY (idEditeur)     REFERENCES editeur     (idEditeur);
+ALTER TABLE jeu         ADD CONSTRAINT fk1_jeu         FOREIGN KEY (idEditeur)     REFERENCES editeur     (idEditeur);
 
-ALTER TABLE pouce       ADD FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo);
-ALTER TABLE pouce       ADD FOREIGN KEY (idCommentaire) REFERENCES commentaire (idCommentaire);
+ALTER TABLE pouce       ADD CONSTRAINT fk1_pouce       FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo);
+ALTER TABLE pouce       ADD CONSTRAINT fk2_pouce       FOREIGN KEY (idCommentaire) REFERENCES commentaire (idCommentaire);
