@@ -1,17 +1,3 @@
-function failure(){
-    $("#result").html("Une erreur (AJAX) est survenue");
-}
-
-function loading(){
-    $("#result").html("Chargement");
-}
-
-function success(id, msg){
-    $("#result").text(msg);
-    $(id).fadeOut('slow');
-}
-
-
 function delete_comment(id_comment){
     $("#result").html("Chargement...");
     var str_id = "#comment"+id_comment;

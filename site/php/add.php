@@ -27,11 +27,13 @@ function add_game($name, $category, $platform, $editor){
  /* Ajout d'un joueur */
  /* idPlateforme preferee = selection avec (2) */
  /* idCategorie preferee = selection avec (3) */
-function add_player($login, $last__name, $first_name, $mail, $platform, $category){
-  $id_platform = get_platform_by_name($platform);
-  $id_category = get_category_by_name($category);
+function add_player($login, $last_name, $first_name, $mail, $id_platform, $id_category){
+  //  $id_platform = get_platform_by_name($platform);
+  //$id_category = get_category_by_name($category);
 
-  $query = "INSERT INTO joueur VALUES ('', '$last_name', '$first_name', '$mail', '$id_platform', '$id_category')";
-  mysql_query($query) or die(mysql_error());
+  $query = "INSERT INTO joueur VALUES ('$login', '$last_name', '$first_name', '$mail', '$id_platform', '$id_category')";
+  $result = mysql_query($query) or die(mysql_error());
+
+  return $result;
 }
 ?>

@@ -1,18 +1,3 @@
-function failure(){
-    $("#result").html("Une erreur (AJAX) est survenue");
-}
-
-function loading(){
-    $("#result").html("Chargement");
-}
-
-
-function success(msg){
-    $("#result").text(msg);
-}
-
-
-
 function selection_players(){
     $("#result").html("Chargement...");
     var request = $.get("ajax/ajax_select_players.php", $("#form-consultation3").serialize());

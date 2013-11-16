@@ -18,8 +18,10 @@
 
    <div class="tab-pane active" id="ajout1">
    	<div class="container">
+<div id="result" class="alert alert-warning"></div>
 	     <p class="lead">Ajout d'un joueur.</p>
-	     <form action="#" if="form-ajout1">
+
+   <form action="#" id="form-ajout1">
  	     	   <div class="form-group">
 	     	   	<label for="pseudo">Pseudo</label>
 			<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo du joueur à ajouter ici..">
@@ -58,7 +60,7 @@
       	<div class="container">
 	     <p class="lead">Pour un joueur donné, la liste des commentaires se référant à un jeu dans sa catégorie préférée,<br />
 	     disponible sur sa plateforme préférée.</p>
-	     <form action="#" if="form-ajout2">
+	     <form action="#" id="form-ajout2">
  	     	   <div class="form-group">
 	     	   	<label for="pseudo">Pseudo du joueur</label>
 			<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo ici..">
@@ -87,3 +89,7 @@
 
    </div> <!-- Tab panes -->
 </div> <!-- Container -->
+
+<script>
+   $("#form-ajout1").submit(add_player);
+</script>

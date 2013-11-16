@@ -22,7 +22,9 @@ $page = $page.".php";
     <!-- Our CSS -->
   <link href="css/style.css" rel="stylesheet">
   <script src="js/jquery.js"></script>
+  <script src="js/base.js"></script>
   <script src="js/select.js"></script>
+    <script src="js/add.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
