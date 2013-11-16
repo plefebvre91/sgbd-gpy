@@ -46,3 +46,27 @@ function delete_player(id_player){
 
     return false;
 }
+
+
+function delete_editor(id_editor){
+    $("#result").html("Chargement...");
+    var str_id = "#"+id_editor;
+    var request = $.get("ajax/ajax_delete_editor.php", {id: id_editor});
+
+    request.done(function(msg){success(str_id, msg); $(str_id).fadeOut('slow'); });
+    request.fail(failure);
+
+    return false;
+}
+
+
+function delete_platform(id_platform){
+    $("#result").html("Chargement...");
+    var str_id = "#"+id_platform;
+    var request = $.get("ajax/ajax_delete_platform.php", {id: id_platform});
+
+    request.done(function(msg){success(str_id, msg); $(str_id).fadeOut('slow'); });
+    request.fail(failure);
+
+    return false;
+}

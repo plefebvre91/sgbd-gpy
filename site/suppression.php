@@ -68,6 +68,25 @@ echo "</table>";
 
 
 
+/******************************************* ONGLET 4 ***********************************/
+
+
+$editors = select_editors();
+
+  echo "<table class=\"table table-striped\">";
+  echo "<tr><th>ID</th><th>Editeur</th><th>Suppression</th></tr>";
+
+while($att = mysql_fetch_array($editors)){
+  $id = $att["idEditeur"];
+  $editor = $att["nomEditeur"];
+  
+  echo "<tr id=\"editor$id\">
+        <td>$id</td><td>$editor</td><td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_editor($id);\">Supprimer</button></td></tr>\n";
+}
+
+echo "</table>";
+
+
   
 ?>
 </form>

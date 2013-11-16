@@ -74,4 +74,19 @@ function select_players(){
   return $result;
 }
 
+
+function select_platforms(){
+  $query =  "SELECT * FROM plateforme";
+  $result = mysql_query($query) or die(mysql_error());
+  return $result;
+}
+
+
+
+function select_editors(){
+  $query =  "SELECT * FROM editeur";
+  $result = mysql_query($query) or die(mysql_error());
+  return $result;
+}
+
 ?>
