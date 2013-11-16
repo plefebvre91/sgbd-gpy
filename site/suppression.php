@@ -2,10 +2,30 @@
 require_once("php/include.php"); 
 require_once("php/selection.php");
 ?>
-<h2>Formulaire de commentaire</h2>
 <script src="js/delete.js"></script>
 <div class="alert alert-info" id="result"></div>
-   <?php
+
+<div class="container">
+   <div class="well top-message">
+   <p>Cliquez sur les différents onglets pour accéder aux trois requêtes de consultation.</p>
+
+   </div>
+
+   <!-- Nav tabs -->
+   <ul class="nav nav-tabs" id="myTab">
+       <li><a href="#consultation1" data-toggle="tab">Commentaires</a></li>
+       <li><a href="#consultation2" data-toggle="tab">Jeux</a></li>
+       <li><a href="#consultation3" data-toggle="tab">Joueurs</a></li>
+       <li><a href="#consultation4" data-toggle="tab">Editeurs</a></li>
+   </ul>
+
+   <!-- Tab panes -->
+   <div class="tab-content">
+
+ <div class="tab-pane active" id="consultation1">
+   	<div class="container">
+  
+     <?php
    db_connect();
    $comments = select_comments();
 
@@ -25,11 +45,14 @@ while($att = mysql_fetch_array($comments)){
         <td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_comment($id);\">Supprimer</button></td></tr>";
 }
 
-echo "</table>";
+echo "</table>";?>
+	</div> 
+   </div>
+   
+   <div class="tab-pane" id="consultation2">
+      	<div class="container">
 
-/********************* DEUXIEME ONGLET **********************************/
-
-
+<?php
 $games = select_games();
 
   echo "<table class=\"table table-striped\">";
@@ -44,11 +67,15 @@ while($att = mysql_fetch_array($games)){
         <td>$name</td><td>$editor</td><td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_game($id);\">Supprimer</button></td></tr>\n";
 }
 
-echo "</table>";
+echo "</table>"; ?>
 
 
-/******************************** TROISIEME ONGLET *******************************/
+	</div> 
+   </div>
 
+   <div class="tab-pane" id="consultation3">
+      	<div class="container">
+  <?php
 $players = select_players();
 
   echo "<table class=\"table table-striped\">";
@@ -64,13 +91,15 @@ while($att = mysql_fetch_array($players)){
         <td>$id</td><td>$last_name</td><td>$first_name</td><td>$mail</td><td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_player('$id');\">Supprimer</button></td></tr>\n";
 }
 
-echo "</table>";
+echo "</table>";?>
 
 
-
-/******************************************* ONGLET 4 ***********************************/
-
-
+	</div> 
+   </div>
+   
+     <div class="tab-pane" id="consultation4">
+      	<div class="container">
+  <?php
 $editors = select_editors();
 
   echo "<table class=\"table table-striped\">";
@@ -89,5 +118,12 @@ echo "</table>";
 
   
 ?>
-</form>
-</form>
+  
+	</div> 
+   </div>
+
+   
+   </div> <!-- Tab panes -->
+
+   
+</div> <!-- Container -->
