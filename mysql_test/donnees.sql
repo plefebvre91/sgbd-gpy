@@ -69,22 +69,22 @@ commit;
 -- TABLE jeu
 -- insert into jeu values (idJeu, nomJeu, idEditeur);
 
-insert into jeu values ( 1, 'Just Dance'        , 1);
-insert into jeu values ( 2, 'Les lapins cretins', 1);
-insert into jeu values ( 3, 'ShootMania'        , 1);
-insert into jeu values ( 4, 'Dofus'             , 2);
-insert into jeu values ( 5, 'Wakfu'             , 2);
-insert into jeu values ( 6, 'Fly n'             , 2);
-insert into jeu values ( 7, 'BioShock 2'        , 3);
-insert into jeu values ( 8, 'Dishonored'        , 3);
-insert into jeu values ( 9, 'Toy Story 3'       , 4);
-insert into jeu values (10, 'Fuel'              , 4);
-insert into jeu values (11, 'World of Warcraft' , 5);
-insert into jeu values (12, 'Diablo III'        , 5);
-insert into jeu values (13, 'FIFA football'     , 6);
-insert into jeu values (14, 'NBA Live'          , 6);
-insert into jeu values (15, 'Dota 2'            , 7);
-insert into jeu values (16, 'Counter Strike'    , 7);
+insert into jeu values ( 1, 'Just Dance'        , (select idEditeur from editeur where nomEditeur='Ubisoft'));
+insert into jeu values ( 2, 'Les lapins cretins', (select idEditeur from editeur where nomEditeur='Ubisoft'));
+insert into jeu values ( 3, 'ShootMania'        , (select idEditeur from editeur where nomEditeur='Ubisoft'));
+insert into jeu values ( 4, 'Dofus'             , (select idEditeur from editeur where nomEditeur='Ankama'));
+insert into jeu values ( 5, 'Wakfu'             , (select idEditeur from editeur where nomEditeur='Ankama'));
+insert into jeu values ( 6, 'Fly n'             , (select idEditeur from editeur where nomEditeur='Ankama'));
+insert into jeu values ( 7, 'BioShock 2'        , (select idEditeur from editeur where nomEditeur='Arkane Studios'));
+insert into jeu values ( 8, 'Dishonored'        , (select idEditeur from editeur where nomEditeur='Arkane Studios'));
+insert into jeu values ( 9, 'Toy Story 3'       , (select idEditeur from editeur where nomEditeur='Asobo Studio'));
+insert into jeu values (10, 'Fuel'              , (select idEditeur from editeur where nomEditeur='Asobo Studio'));
+insert into jeu values (11, 'World of Warcraft' , (select idEditeur from editeur where nomEditeur='Blizzard Entertainment'));
+insert into jeu values (12, 'Diablo III'        , (select idEditeur from editeur where nomEditeur='Blizzard Entertainment'));
+insert into jeu values (13, 'FIFA football'     , (select idEditeur from editeur where nomEditeur='Electronic Arts'));
+insert into jeu values (14, 'NBA Live'          , (select idEditeur from editeur where nomEditeur='Electronic Arts'));
+insert into jeu values (15, 'Dota 2'            , (select idEditeur from editeur where nomEditeur='Valve Corporation'));
+insert into jeu values (16, 'Counter Strike'    , (select idEditeur from editeur where nomEditeur='Valve Corporation'));
 
 commit;
 
