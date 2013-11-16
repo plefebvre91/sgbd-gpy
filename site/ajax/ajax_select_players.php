@@ -6,10 +6,15 @@ require_once("../php/selection.php");
 db_connect();
 
 //Protection des de la chaine de caractere
-$id = secure_string($_GET["id"]);
-
+$id = secure_string($_GET["idCommentaire"]);
 //Selection dans la base
 $result = select_players_from_comments($id);
+
+if(!$result){
+  echo "Une erreur est survenue lors de la selection dans la base";
+  exit;
+}
+
 
 //Affichage du resultat
 echo "<table class=\"table table-striped\">";

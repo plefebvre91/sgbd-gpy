@@ -6,10 +6,15 @@ require_once("../php/selection.php");
 db_connect();
 
 //Protection des de la chaine de caractere
-$platform = secure_string($_GET["cat"]);
+$platform = secure_string($_GET["nomPlateforme"]);
 
 //Selection dans la base
 $result = select_commented_games($platform);
+
+if(!$result){
+  echo "Une erreur est survenue lors de la selection dans la base";
+  exit;
+}
 
 //Affichage du resultat
 echo "<table class=\"table table-striped\">";
