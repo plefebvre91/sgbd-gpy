@@ -4,7 +4,7 @@ require_once("php/selection.php");
 ?>
 <h2>Formulaire de commentaire</h2>
 <script src="js/delete.js"></script>
-<div class="alert alert-info"></div>
+<div class="alert alert-info" id="result"></div>
    <?php
    db_connect();
    $comments = select_comments();

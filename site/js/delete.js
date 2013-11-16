@@ -1,42 +1,48 @@
 function failure(){
-    $("#result").html("Erreur");
+    $("#result").html("Une erreur (AJAX) est survenue");
 }
 
 function loading(){
     $("#result").html("Chargement");
 }
 
+function success(id, msg){
+    $("#result").text(msg);
+    $(id).fadeOut('slow');
+}
 
 
 function delete_comment(id_comment){
-    loading();
+    $("#result").html("Chargement...");
     var str_id = "#comment"+id_comment;
-
     var request = $.get("ajax/ajax_delete_comment.php", {id: id_comment});
 
-    request.done(function(msg){$(str_id).fadeOut('slow'); });
     request.fail(failure);
+    request.done(function(msg){success(str_id, msg); $(str_id).fadeOut('slow'); });
+
     return false;
 }
 
 
 
 function delete_game(id_game){
-    loading();
+    $("#result").html("Chargement...");
     var str_id = "#game"+id_game;
     var request = $.get("ajax/ajax_delete_game.php", {id: id_game});
 
-    request.done(function(msg){$(str_id).fadeOut('slow'); });
     request.fail(failure);
+    request.done(function(msg){success(str_id, msg); $(str_id).fadeOut('slow'); });
+
     return false;
 }
 
 function delete_player(id_player){
-    loading();
+    $("#result").html("Chargement...");
     var str_id = "#"+id_player;
     var request = $.get("ajax/ajax_delete_player.php", {pseudo: id_player});
 
-    request.done(function(msg){$(str_id).fadeOut('slow'); });
+    request.done(function(msg){success(str_id, msg); $(str_id).fadeOut('slow'); });
     request.fail(failure);
+
     return false;
 }
