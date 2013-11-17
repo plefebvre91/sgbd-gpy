@@ -11,7 +11,7 @@ if(!$err){
 }
 
 //Protection des de la chaine de caractere
-$pseudo = secure_string($_GET["pseudo"]);
+$pseudo = secure_string($_GET["id"]);
 //Selection dans la base
 if(!delete_player($pseudo)){
   echo "Une erreur est survenue lors de la suppression";
