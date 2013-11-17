@@ -1,6 +1,7 @@
 <?php 
 require_once("php/include.php"); 
 require_once("php/stats.php");
+    
 ?>
 <div class="container">
    <div class="well top-message">
@@ -21,12 +22,16 @@ require_once("php/stats.php");
 
  <div class="tab-pane active" id="consultation1">
    	<div class="container">
-  
+  <form action="index.php?action=statistiques" method="post">
+  <input type="text" name="nbCommentaires">
+  <input type="submit" value="Envoyer">
+</form>
      <?php
   //Les derniers commentaires
    db_connect();
 
-   $comments = get_last_comments(10);
+
+   $comments = get_last_comments($nb_comments);
 
   echo "<table class=\"table table-striped\">";
   echo "<tr><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th></tr>";

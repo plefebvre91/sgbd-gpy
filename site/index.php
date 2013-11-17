@@ -9,7 +9,14 @@ if(isset($_GET["action"])){
 else{
   $page = "accueil.php";
 }
+
+$nb_comments = 10;
+if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
+    $nb_comments = $_POST["nbCommentaires"];
+    echo "lllllllooooooooooool".$nb_comments;
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
