@@ -11,7 +11,7 @@ function add_game(){
     $("#result").html("Chargement...");
     var request = $.get("ajax/ajax_add_game.php", $("#form-ajout2").serialize());
     request.done(function(msg){$("#result").html(msg);
-			       $("#form-ajout7").fadeOut("slow");});
+			       $("#form-ajout2").fadeOut("slow");});
     request.fail(failure);
     return false;
 }
