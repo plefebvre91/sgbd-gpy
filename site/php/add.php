@@ -61,5 +61,26 @@ function add_category($category){
   return $result;
 }
 
+function add_comment($id_comment, $note, $comment, $date, $pseudo, $id_game, $id_platform){
+  //$pseudo = get_player_by_name($player);
+  //$id_game = get_game_by_name($game);
+  //$id_category = get_category_by_name($category);
+
+  $query = "INSERT INTO commentaire VALUES ('$id_comment', '$note', '$comment', '$date', '$pseudo', '$id_game', '$id_platform')";
+  $result = mysql_query($query) or die(mysql_error());
+
+  return $result;
+}
+
+function add_inch($inch, $value, $pseudo, $id_comment){
+  //$pseudo = get_player_by_name($player);
+  //$id_comment = get_comment_by_name($comment);
+
+  $query = "INSERT INTO pouce VALUES ('$inch', '$value', '$pseudo', '$id_comment')";
+  $result = mysql_query($query) or die(mysql_error());o
+
+  return $result;
+}
+
 
 ?>
