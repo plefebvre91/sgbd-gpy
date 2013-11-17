@@ -36,4 +36,30 @@ function add_player($login, $last_name, $first_name, $mail, $id_platform, $id_ca
 
   return $result;
 }
+
+function add_editor($name){
+
+  $query = "INSERT INTO  editeur VALUES ('', '$name')";
+  $result = mysql_query($query) or die(mysql_error());
+
+  return $result;
+}
+
+function add_platform($platform){
+
+  $query = "INSERT INTO  plateforme VALUES ('', '$platform')";
+  $result = mysql_query($query) or die(mysql_error());
+
+  return $result;
+}
+
+function add_category($category){
+
+  $query = "INSERT INTO  categorie VALUES ('', '$category')";
+  $result = mysql_query($query) or die(mysql_error());
+
+  return $result;
+}
+
+
 ?>

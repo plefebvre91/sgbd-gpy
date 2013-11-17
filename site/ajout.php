@@ -10,15 +10,19 @@
    <!-- Nav tabs -->
    <ul class="nav nav-tabs" id="myTab">
        <li><a href="#ajout1" data-toggle="tab">Ajout d'un joueur</a></li>
-       <li><a href="#ajout2" data-toggle="tab">Ajout d'un jeu</a></li>
+       <li><a href="#ajout2" data-toggle="tab">Ajout ...</a></li>
+       <li><a href="#ajout3" data-toggle="tab">Ajout d'un editeur</a></li>
+       <li><a href="#ajout4" data-toggle="tab">Ajout d'une plateforme</a></li>
+     <li><a href="#ajout5" data-toggle="tab">Ajout d'une catégorie</a></li>
    </ul>
 
    <!-- Tab panes -->
+<div id="result" class="alert alert-warning"></div>
    <div class="tab-content">
 
    <div class="tab-pane active" id="ajout1">
    	<div class="container">
-<div id="result" class="alert alert-warning"></div>
+
 	     <p class="lead">Ajout d'un joueur.</p>
 
    <form action="#" id="form-ajout1">
@@ -71,14 +75,14 @@
 	     </form>
 	</div> 
    </div>
-
+<!-- AJOUT EDITEUR -->
    <div class="tab-pane" id="ajout3">
       	<div class="container">
-	     <p class="lead">Pour un commentaire, la liste des joueurs qui l'ont apprécié.</p>
-	     <form action="#" if="form-ajout3">
+	     <p class="lead">Ajouter un éditeur</p>
+	     <form action="#" id="form-ajout3">
  	     	   <div class="form-group">
-	     	   	<label for="idCommentaire">Numéro du commentaire</label>
-			<input type="text" name="idCommentaire" id="idCommentaire" class="form-control" placeholder="Saisissez le numéro du commentaire ici..">
+	     	   	<label for="nomEditeur">Nom de l'éditeur</label>
+			<input type="text" name="nomEditeur" id="nomEditeur" class="form-control" placeholder="Saisissez le nom de l'éditeur..">
 	     	   </div>
 	     	   <div class="form-group text-center">
 	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout3" value="Envoyer la requête">
@@ -87,9 +91,46 @@
 	</div> 
    </div>
 
+
+   <div class="tab-pane" id="ajout4">
+      	<div class="container">
+	     <p class="lead">Ajouter une plateforme</p>
+	     <form action="#" id="form-ajout4">
+ 	     	   <div class="form-group">
+	     	   	<label for="nomPlateforme">Nom de la plateforme</label>
+			<input type="text" name="nomPlateforme" id="nomPlateforme" class="form-control" placeholder="Saisissez le nom de plateforme..">
+	     	   </div>
+	     	   <div class="form-group text-center">
+	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout4" value="Envoyer la requête">
+	     	   </div>
+	     </form>
+	</div> 
+   </div>
+
+   <div class="tab-pane" id="ajout5">
+      	<div class="container">
+	     <p class="lead">Ajouter une catégorie</p>
+	     <form action="#" id="form-ajout5">
+ 	     	   <div class="form-group">
+	     	   	<label for="nomCategorie">Nom de la categorie</label>
+			<input type="text" name="nomCategorie" id="nomCategorie" class="form-control" placeholder="Saisissez le nom de catégorie..">
+	     	   </div>
+	     	   <div class="form-group text-center">
+	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout5" value="Envoyer la requête">
+	     	   </div>
+	     </form>
+	</div> 
+   </div>
+
+
+
    </div> <!-- Tab panes -->
 </div> <!-- Container -->
 
 <script>
    $("#form-ajout1").submit(add_player);
+
+   $("#form-ajout3").submit(add_editor);
+   $("#form-ajout4").submit(add_platform);
+   $("#form-ajout5").submit(add_category);
 </script>
