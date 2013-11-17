@@ -64,7 +64,6 @@ function add_category($category){
 function add_comment($note, $comment, $pseudo, $id_game, $id_platform){
   //$id_game = get_game_by_name($game);
 
-
   $query = "INSERT INTO commentaire VALUES ('', '$note', '$comment', (SELECT CURDATE()), '$pseudo', '$id_game', '$id_platform')";
   $result = mysql_query($query) or die(mysql_error());
 
@@ -78,5 +77,13 @@ function add_inch($value, $pseudo, $id_comment){
   return $result;
 }
 
+function add_game($game_name, $id_editor){
+  //$id_editor = get_editor_by_name($editor);
+
+  $query = "INSERT INTO jeu VALUES ('', '$game_name', '$id_editor')";
+  $result = mysql_query($query) or die(mysql_error());
+
+  return $result;
+}
 
 ?>
