@@ -9,11 +9,13 @@
 
    <!-- Nav tabs -->
    <ul class="nav nav-tabs" id="myTab">
-       <li><a href="#ajout1" data-toggle="tab">Ajout d'un joueur</a></li>
+       <li><a href="#ajout1" data-toggle="tab">Joueur</a></li>
        <li><a href="#ajout2" data-toggle="tab">Ajout ...</a></li>
-       <li><a href="#ajout3" data-toggle="tab">Ajout d'un editeur</a></li>
-       <li><a href="#ajout4" data-toggle="tab">Ajout d'une plateforme</a></li>
-     <li><a href="#ajout5" data-toggle="tab">Ajout d'une catégorie</a></li>
+       <li><a href="#ajout3" data-toggle="tab">Editeur</a></li>
+       <li><a href="#ajout4" data-toggle="tab">Plateforme</a></li>
+     <li><a href="#ajout5" data-toggle="tab">Catégorie</a></li>
+     <li><a href="#ajout6" data-toggle="tab">Appréciation</a></li>
+     <li><a href="#ajout7" data-toggle="tab">Commentaire</a></li>
    </ul>
 
    <!-- Tab panes -->
@@ -123,6 +125,88 @@
    </div>
 
 
+<!--- AJOUT POUCE -->
+   <div class="tab-pane active" id="ajout6">
+   	<div class="container">
+
+	     <p class="lead">Ajout d'un joueur.</p>
+
+   <form action="#" id="form-ajout6">
+
+ 	     	   <div class="form-group">
+	     	   	<label for="valeur">Valeur</label>
+			<input type="text" name="valeur" id="valeur" class="form-control" placeholder="Saisissez la valeur de l'appréciation (+ ou -)..">
+	     	   </div>
+
+
+ 	     	   <div class="form-group">
+	     	   	<label for="pseudo">Pseudo</label>
+			<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo du joueur à ajouter ici..">
+	     	   </div>
+
+
+
+		   <div class="form-group">
+	     	   	<label for="idCommentaire">Commentaire concerné (ID)</label>
+			<input type="text" name="idCommentaire" id="idCommentaire" class="form-control" placeholder="Saisissez le numéro du commentaire..">
+	     	   </div>
+
+	     	   <div class="form-group text-center">
+	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout6" value="Envoyer la requête">
+	     	   </div>
+	     </form>
+	</div> 
+   </div>
+
+<!-- AJOUT COMMENTAIRE -->
+   <div class="tab-pane active" id="ajout7">
+   	<div class="container">
+
+	     <p class="lead">Ajout d'un commentaire.</p>
+
+   <form action="#" id="form-ajout7">
+
+ 	     	   <div class="form-group">
+	     	   	<label for="note">Note</label>
+			<input type="text" name="note" id="note" class="form-control" placeholder="Saisissez la note...">
+	     	   </div>
+
+
+ 	     	   <div class="form-group">
+	     	   	<label for="commentaire">Commentaire</label>
+			<input type="text" name="commentaire" id="commentaire" class="form-control" placeholder="Saisissez le commentaire du joueur à ajouter ici..">
+	     	   </div>
+
+
+
+		   <div class="form-group">
+	     	   	<label for="pseudo">Auteur</label>
+			<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo...">
+	     	   </div>
+
+   
+		   <div class="form-group">
+	     	   	<label for="idJeu">Jeu</label>
+			<input type="text" name="idJeu" id="idJeu" class="form-control" placeholder="Saisissez le jeu concerné (ID)...">
+	     	   </div>
+
+   
+		   <div class="form-group">
+	     	   	<label for="idPlateforme">Jeu</label>
+			<input type="text" name="idPlateforme" id="idPlateforme" class="form-control" placeholder="Saisissez la plateforme concerné (ID)...">
+	     	   </div>
+
+	     	   <div class="form-group text-center">
+	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout6" value="Envoyer la requête">
+	     	   </div>
+	     </form>
+	</div> 
+   </div>
+
+
+
+
+
 
    </div> <!-- Tab panes -->
 </div> <!-- Container -->
@@ -133,4 +217,6 @@
    $("#form-ajout3").submit(add_editor);
    $("#form-ajout4").submit(add_platform);
    $("#form-ajout5").submit(add_category);
+   $("#form-ajout6").submit(add_inch);
+   $("#form-ajout7").submit(add_comment);
 </script>

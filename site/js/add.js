@@ -38,21 +38,22 @@ function add_category(){
 }
 
 
-function add_comment(){
-    $("#result").html("Chargement...");
-    var request = $.get("ajax/ajax_add_comment.php", $("#form-ajout5").serialize());
-    request.done(function(msg){$("#result").html(msg);
-			       $("#form-ajout5").fadeOut("slow");});
-    request.fail(failure);
-    return false;
-}
 
 
 function add_inch(){
     $("#result").html("Chargement...");
-    var request = $.get("ajax/ajax_add_inch.php", $("#form-ajout5").serialize());
+    var request = $.get("ajax/ajax_add_inch.php", $("#form-ajout6").serialize());
     request.done(function(msg){$("#result").html(msg);
-			       $("#form-ajout5").fadeOut("slow");});
+			       $("#form-ajout6").fadeOut("slow");});
+    request.fail(failure);
+    return false;
+}
+
+function add_comment(){
+    $("#result").html("Chargement...");
+    var request = $.get("ajax/ajax_add_comment.php", $("#form-ajout7").serialize());
+    request.done(function(msg){$("#result").html(msg);
+			       $("#form-ajout7").fadeOut("slow");});
     request.fail(failure);
     return false;
 }

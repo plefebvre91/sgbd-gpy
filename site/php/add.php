@@ -61,23 +61,19 @@ function add_category($category){
   return $result;
 }
 
-function add_comment($id_comment, $note, $comment, $date, $pseudo, $id_game, $id_platform){
-  //$pseudo = get_player_by_name($player);
+function add_comment($note, $comment, $pseudo, $id_game, $id_platform){
   //$id_game = get_game_by_name($game);
-  //$id_category = get_category_by_name($category);
 
-  $query = "INSERT INTO commentaire VALUES ('$id_comment', '$note', '$comment', '$date', '$pseudo', '$id_game', '$id_platform')";
+
+  $query = "INSERT INTO commentaire VALUES ('', '$note', '$comment', (SELECT CURDATE()), '$pseudo', '$id_game', '$id_platform')";
   $result = mysql_query($query) or die(mysql_error());
 
   return $result;
 }
 
-function add_inch($inch, $value, $pseudo, $id_comment){
-  //$pseudo = get_player_by_name($player);
-  //$id_comment = get_comment_by_name($comment);
-
-  $query = "INSERT INTO pouce VALUES ('$inch', '$value', '$pseudo', '$id_comment')";
-  $result = mysql_query($query) or die(mysql_error());o
+function add_inch($value, $pseudo, $id_comment){
+  $query = "INSERT INTO pouce VALUES ('', '$value', '$pseudo', '$id_comment')";
+  $result = mysql_query($query) or die(mysql_error());
 
   return $result;
 }

@@ -11,19 +11,16 @@ if(!$err){
 }
 
 //Protection des de la chaine de caractere
-$inch        = secure_string($_GET["idPouce"]);
+//$inch        = secure_string($_GET["idPouce"]);
 $value       = secure_string($_GET["valeur"]);
 $pseudo      = secure_string($_GET["pseudo"]);
 $id_comment  = secure_string($_GET["idCommentaire"]);
 
 //Selection dans la base
-if(!add_inch($inch, $value, $pseudo, $id_comment){
+if(!add_inch($value, $pseudo, $id_comment)){
   echo "Une erreur est survenue lors de l'ajout pouce";
   exit;
 }
 
 echo "Le pouce a bien été ajouté";
-
-}
-
 ?>
