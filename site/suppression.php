@@ -31,19 +31,26 @@ require_once("php/delete.php");
    $comments = select_comments();
 
   echo "<table class=\"table table-striped\">";
-  echo "<tr><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th><th>Suppression</th></tr>";
+echo "<tr><th>Commentaire</th>";
+echo "<th>Auteur</th>";
+echo "<th>Date</th>";
+echo "<th>Note</th>";
+echo "<th>Suppression</th></tr>";
 
 while($att = mysql_fetch_array($comments)){
   $id = $att["idCommentaire"];
   $mark = $att["note"];
   $author = $att["pseudo"];
   $date = $att["dateCommentaire"];
-  $comment = substr($att["commentaire"], 0, 100)."...";
+  $comment = substr($att["commentaire"], 0, 137)."...";
 
   
-  echo "<tr id=\"comment$id\">
-        <td>$comment</td><td>$author</td><td>$date</td><td>$mark</td>
-        <td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_comment($id);\">Supprimer</button></td></tr>";
+  echo "<tr id=\"comment$id\">";
+  echo "<td>$comment</td>";
+  echo "<td>$author</td>";
+  echo "<td>$date</td>";
+  echo "<td>$mark</td>";
+  echo "<td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_comment($id);\">Supprimer</button></td></tr>";
 }
 
 echo "</table>";?>

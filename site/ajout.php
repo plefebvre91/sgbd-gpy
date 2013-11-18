@@ -130,8 +130,39 @@
    <div class="tab-pane active" id="ajout6">
    	<div class="container">
 
-	     <p class="lead">Ajout d'un joueur.</p>
+	     <p class="lead">Ajout d'une appréciation de commentaire</p>
+<?php
+  require("php/include.php");
+  require("php/selection.php");
+  db_connect();
+  $comments = select_no_appreciated_comments();
 
+  echo "<table class=\"table table-striped\">";
+  echo "<tr><th>Commentaire</th>";
+  echo "<th>Auteur</th>";
+  echo "<th>Date</th>";
+  echo "<th>Note</th>";
+  echo "<th>Appreciation</th></tr>";
+
+  while($att = mysql_fetch_array($comments)){
+    $id = $att["idCommentaire"];
+    $mark = $att["note"];
+    $author = $att["pseudo"];
+    $date = $att["dateCommentaire"];
+    $comment = substr($att["commentaire"], 0, 137)."...";
+
+  
+   echo "<tr id=\"comment$id\">";
+   echo "<td>$comment</td>";
+   echo "<td>$author</td>";
+   echo "<td>$date</td>";
+   echo "<td>$mark</td>";
+   echo "<td><button class=\"btn btn-success btn-xs\" onclick=\"javascript:return false;\">+</button>&nbsp;";
+   echo "<button class=\"btn btn-danger btn-xs\" onclick=\"javascript:return false;\">-</button></td></tr>";
+}
+
+echo "</table>";?>
+<!--
    <form action="#" id="form-ajout6">
 
  	     	   <div class="form-group">
@@ -155,7 +186,7 @@
 	     	   <div class="form-group text-center">
 	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout6" value="Envoyer la requête">
 	     	   </div>
-	     </form>
+	     </form>-->
 	</div> 
    </div>
 

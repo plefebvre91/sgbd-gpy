@@ -59,6 +59,12 @@ function select_comments(){
   $result = mysql_query($query) or die(mysql_error());
   return $result;
 }
+
+function select_no_appreciated_comments(){
+  $query =  "SELECT * FROM commentaire WHERE commentaire.idCommentaire NOT IN (select idCommentaire FROM pouce)";
+  $result = mysql_query($query) or die(mysql_error());
+  return $result;
+}
   
 
 function select_games(){
