@@ -142,7 +142,7 @@
   echo "<th>Auteur</th>";
   echo "<th>Date</th>";
   echo "<th>Note</th>";
-  echo "<th align="center">Appreciation</th></tr>";
+  echo "<th align=\"center\">Appreciation</th></tr>";
 
   while($att = mysql_fetch_array($comments)){
     $id = $att["idCommentaire"];
