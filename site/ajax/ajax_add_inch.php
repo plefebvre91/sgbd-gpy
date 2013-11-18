@@ -12,7 +12,7 @@ if(!$err){
 
 //Protection des de la chaine de caractere
 //$inch        = secure_string($_GET["idPouce"]);
-$value       = secure_string($_GET["valeur"]);
+$value       = secure_string($_GET["value"]);
 $pseudo      = secure_string($_GET["pseudo"]);
 $id_comment  = secure_string($_GET["idCommentaire"]);
 

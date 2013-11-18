@@ -46,11 +46,11 @@ function add_category(){
 }
 
 
-function add_inch(){
+function add_inch(id, value){
+    var comment_id = "#comment"+id;
     $("#result").html("Chargement...");
-    var request = $.get("ajax/ajax_add_inch.php", $("#form-ajout6").serialize());
-    request.done(function(msg){$("#result").html(msg);
-			       $("#form-ajout6").fadeOut("slow");});
+    var request = $.get("ajax/ajax_add_inch.php", {idCommentaire: id, value: value, pseudo: "plefebvre"});
+    request.done(function(msg){$("#result").html(msg);});
     request.fail(failure);
     return false;
 }

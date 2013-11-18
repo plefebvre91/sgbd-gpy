@@ -60,13 +60,6 @@ function select_comments(){
   return $result;
 }
 
-function select_no_appreciated_comments(){
-  $query =  "SELECT * FROM commentaire WHERE commentaire.idCommentaire NOT IN (select idCommentaire FROM pouce)";
-  $result = mysql_query($query) or die(mysql_error());
-  return $result;
-}
-  
-
 function select_games(){
   $query =  "SELECT idJeu, nomJeu, nomEditeur FROM jeu INNER JOIN editeur ON jeu.idEditeur = editeur.idEditeur";
   $result = mysql_query($query) or die(mysql_error());

@@ -135,21 +135,21 @@
   require("php/include.php");
   require("php/selection.php");
   db_connect();
-  $comments = select_no_appreciated_comments();
+  $comments = select_comments();
 
   echo "<table class=\"table table-striped\">";
   echo "<tr><th>Commentaire</th>";
   echo "<th>Auteur</th>";
   echo "<th>Date</th>";
   echo "<th>Note</th>";
-  echo "<th>Appreciation</th></tr>";
+  echo "<th align="center">Appreciation</th></tr>";
 
   while($att = mysql_fetch_array($comments)){
     $id = $att["idCommentaire"];
     $mark = $att["note"];
     $author = $att["pseudo"];
     $date = $att["dateCommentaire"];
-    $comment = substr($att["commentaire"], 0, 137)."...";
+    $comment = $att["commentaire"];
 
   
    echo "<tr id=\"comment$id\">";
@@ -157,8 +157,8 @@
    echo "<td>$author</td>";
    echo "<td>$date</td>";
    echo "<td>$mark</td>";
-   echo "<td align=\"center\"><button class=\"btn btn-success btn-xs\" onclick=\"javascript:return false;\">+</button>&nbsp;";
-   echo "<button class=\"btn btn-danger btn-xs\" onclick=\"javascript:return false;\">-</button></td></tr>";
+   echo "<td align=\"center\"><button class=\"btn btn-success btn-xs\" onclick=\"javascript:add_inch($id, '+');\">+</button>&nbsp;";
+   echo "<button class=\"btn btn-danger btn-xs\" onclick=\"javascript:add_inch($id, '-');\">-</button></td></tr>";
 }
 
 echo "</table>";?>
