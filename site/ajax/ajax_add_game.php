@@ -10,7 +10,7 @@ if(!$err){
   exit;
 }
 
-//Protection des de la chaine de caractere
+//Protection des chaîne de caracteres
 $game_name = secure_string($_GET["nomJeu"]);
 $id_editor = secure_string($_GET["idEditeur"]);
 

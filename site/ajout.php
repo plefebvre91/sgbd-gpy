@@ -10,7 +10,7 @@
    <!-- Nav tabs -->
    <ul class="nav nav-tabs" id="myTab">
        <li><a href="#ajout1" data-toggle="tab">Joueur</a></li>
-       <li><a href="#ajout2" data-toggle="tab">Ajout ...</a></li>
+       <li><a href="#ajout2" data-toggle="tab">Jeu</a></li>
        <li><a href="#ajout3" data-toggle="tab">Editeur</a></li>
        <li><a href="#ajout4" data-toggle="tab">Plateforme</a></li>
      <li><a href="#ajout5" data-toggle="tab">Catégorie</a></li>
@@ -64,13 +64,14 @@
    
    <div class="tab-pane" id="ajout2">
       	<div class="container">
-	     <p class="lead">Pour un joueur donné, la liste des commentaires se référant à un jeu dans sa catégorie préférée,<br />
-	     disponible sur sa plateforme préférée.</p>
+     	     <p class="lead">Ajout d'un jeu.</p>
+
 	     <form action="#" id="form-ajout2">
- 	     	   <div class="form-group">
-	     	   	<label for="pseudo">Pseudo du joueur</label>
-			<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo ici..">
+	      	   <div class="form-group">
+	     	   	<label for="nomJeu">Nom du jeu</label>
+			<input type="text" name="nomJeu" id="nomJeu" class="form-control" placeholder="Saisissez le nom du jeu à ajouter ici..">
 	     	   </div>
+ 	     	   
 	     	   <div class="form-group text-center">
 	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout2" value="Envoyer la requête">
 	     	   </div>
