@@ -23,8 +23,13 @@ require_once("php/stats.php");
  <div class="tab-pane active" id="consultation1">
    	<div class="container">
   <form action="index.php?action=statistiques" method="post">
-  <input type="text" name="nbCommentaires">
-  <input type="submit" value="Envoyer">
+  	<div class="form-group">
+  	     <label for="nbCommentaires">Nombre de commentaires à afficher</label>
+  	     <input type="text" name="nbCommentaires" id="nbCommentaires" class="form-control" placeholder="Saisissez le nombre de commentaires à afficher ici.."/>
+  	 </div>
+  	 <div class="form-group text-center">
+	      <input type="submit" class="btn btn-warning btn-lg" id="btn-statistiques1" value="Envoyer la requête">
+  	 </div>
 </form>
      <?php
   //Les derniers commentaires
