@@ -157,36 +157,11 @@
    echo "<td>$author</td>";
    echo "<td>$date</td>";
    echo "<td>$mark</td>";
-   echo "<td><button class=\"btn btn-success btn-xs\" onclick=\"javascript:return false;\">+</button>&nbsp;";
+   echo "<td align=\"center\"><button class=\"btn btn-success btn-xs\" onclick=\"javascript:return false;\">+</button>&nbsp;";
    echo "<button class=\"btn btn-danger btn-xs\" onclick=\"javascript:return false;\">-</button></td></tr>";
 }
 
 echo "</table>";?>
-<!--
-   <form action="#" id="form-ajout6">
-
- 	     	   <div class="form-group">
-	     	   	<label for="valeur">Valeur</label>
-			<input type="text" name="valeur" id="valeur" class="form-control" placeholder="Saisissez la valeur de l'appréciation (+ ou -)..">
-	     	   </div>
-
-
- 	     	   <div class="form-group">
-	     	   	<label for="pseudo">Pseudo</label>
-			<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo du joueur à ajouter ici..">
-	     	   </div>
-
-
-
-		   <div class="form-group">
-	     	   	<label for="idCommentaire">Commentaire concerné (ID)</label>
-			<input type="text" name="idCommentaire" id="idCommentaire" class="form-control" placeholder="Saisissez le numéro du commentaire..">
-	     	   </div>
-
-	     	   <div class="form-group text-center">
-	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout6" value="Envoyer la requête">
-	     	   </div>
-	     </form>-->
 	</div> 
    </div>
 
