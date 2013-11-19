@@ -172,10 +172,9 @@ echo "</table>";?>
 	     <p class="lead">Ajout d'un commentaire.</p>
 
    <form action="#" id="form-ajout7">
-
- 	     	   <div class="form-group">
+    	     	   <div class="form-group">
 	     	   	<label for="note">Note</label>
-			<input type="text" name="note" id="note" class="form-control" placeholder="Saisissez la note...">
+   <input name="note" id="note" type="number" class="form-control" step="1" value="10" min="0" max="20">
 	     	   </div>
 
 

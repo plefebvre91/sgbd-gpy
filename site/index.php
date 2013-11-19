@@ -1,4 +1,5 @@
 <?php
+require_once("php/include.php");
 if(isset($_GET["action"])){
     $page = $_GET["action"];
     if(empty($page)){
@@ -12,8 +13,7 @@ else{
 
 $nb_comments = 10;
 if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
-    $nb_comments = $_POST["nbCommentaires"];
-    echo "lllllllooooooooooool".$nb_comments;
+  $nb_comments = secure_string($_POST["nbCommentaires"]);
 }
 ?>
 

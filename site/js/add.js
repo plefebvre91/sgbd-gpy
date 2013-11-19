@@ -57,6 +57,7 @@ function add_inch(id, value){
 
 function add_comment(){
     $("#result").html("Chargement...");
+
     var request = $.get("ajax/ajax_add_comment.php", $("#form-ajout7").serialize());
     request.done(function(msg){$("#result").html(msg);
 			       $("#form-ajout7").fadeOut("slow");});

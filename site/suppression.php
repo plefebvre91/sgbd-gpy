@@ -123,8 +123,7 @@ while($att = mysql_fetch_array($editors)){
 
 echo "</table>";
 
-
-  
+ 
 ?>
   
 	</div> 

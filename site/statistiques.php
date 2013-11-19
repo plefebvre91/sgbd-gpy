@@ -25,7 +25,7 @@ require_once("php/stats.php");
   <form action="index.php?action=statistiques" method="post">
   	<div class="form-group">
   	     <label for="nbCommentaires">Nombre de commentaires à afficher</label>
-  	     <input type="text" name="nbCommentaires" id="nbCommentaires" class="form-control" placeholder="Saisissez le nombre de commentaires à afficher ici.."/>
+  <input type="number" min="0" step="5" name="nbCommentaires" id="nbCommentaires" class="form-control" placeholder="Saisissez le nombre de commentaires à afficher ici.."/>
   	 </div>
   	 <div class="form-group text-center">
 	      <input type="submit" class="btn btn-warning btn-lg" id="btn-statistiques1" value="Envoyer la requête">
