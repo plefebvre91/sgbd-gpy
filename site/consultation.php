@@ -25,12 +25,14 @@
 	     <p class="lead">L'ensemble des jeux critiqués disponibles sur une plateforme donnée, classés par catégorie.</p>
 	     <form action="#" id="form-consultation1">
  	     	   <div class="form-group">
-	     	   	<label for="nomPlateforme">Plateforme</label>
-			<input type="text" name="nomPlateforme" id="nomPlateforme" class="form-control" placeholder="Saisissez la plateforme ici.."/>
-	     	   </div>
-	     	   <div class="form-group text-center">
-	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-consultation1" value="Envoyer la requête"/>
-	     	   </div>
+		        <label for="nomPlateforme">Plateforme</label>
+		   	<div class="input-group">
+			     <input type="text" name="nomPlateforme" id="nomPlateforme" class="form-control" placeholder="Saisissez la plateforme ici.."/>
+      			     <span class="input-group-btn">
+        		     	   <button class="btn btn-warning" type="button">Envoyer la requête</button>
+      			     </span>
+			</div><!-- /input-group -->
+	     	   </div><!-- /form-group -->
 	     </form>
 	</div> 
    </div>
