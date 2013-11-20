@@ -27,9 +27,9 @@
  	     	   <div class="form-group">
 		        <label for="nomPlateforme">Plateforme</label>
 		   	<div class="input-group">
-			     <input type="text" name="nomPlateforme" id="nomPlateforme" class="form-control" placeholder="Saisissez la plateforme ici.."/>
+			     <input type="text" name="nomPlateforme" id="nomPlateforme" class="form-control" placeholder="Saisissez la plateforme ici..">
       			     <span class="input-group-btn">
-        		     	   <button class="btn btn-warning" type="button">Envoyer la requête</button>
+     	     	    	    	<input type="submit" class="btn btn-warning" id="btn-consultation1" value="Envoyer la requête">
       			     </span>
 			</div><!-- /input-group -->
 	     	   </div><!-- /form-group -->
@@ -42,36 +42,38 @@
 	     <p class="lead">Pour un joueur donné, la liste des commentaires se référant à un jeu dans sa catégorie préférée,<br />
 	     disponible sur sa plateforme préférée.</p>
 	     <form action="#" id="form-consultation2">
- 	     	   <div class="form-group">
+	     	   <div class="form-group">
 	     	   	<label for="pseudo">Pseudo du joueur</label>
-			<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo ici.."/>
-	     	   </div>
-	     	   <div class="form-group text-center">
-	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-consultation2" value="Envoyer la requête"/>
-	     	   </div>
+		   	<div class="input-group">
+			     <input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo ici..">
+      			     <span class="input-group-btn">
+	     	    	    	<input type="submit" class="btn btn-warning" id="btn-consultation2" value="Envoyer la requête">
+      			     </span>
+			</div><!-- /input-group -->
+	     	   </div><!-- /form-group -->
 	     </form>
 	</div> 
    </div>
 
    <div class="tab-pane" id="consultation3">
       	<div class="container">
-	<p class="lead">Pour un commentaire, la liste des joueurs qui l'ont apprécié.</p>
-   <form action="#" id="form-consultation3">
- 	     	   <div class="form-group">
-	     	   	<label for="idCommentaire">Numéro du commentaire</label>
-			<input type="text" name="idCommentaire" id="idCommentaire" class="form-control" placeholder="Saisissez le numéro du commentaire ici.."/>
-	     	   </div>
-	     	   <div class="form-group text-center">
-
-	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-consultation3" value="Envoyer la requête"/>
-	     	   </div>
+	     <p class="lead">Pour un commentaire, la liste des joueurs qui l'ont apprécié.</p>
+   	     <form action="#" id="form-consultation3">
+   	     	   <div class="form-group">
+		   	<label for="idCommentaire">Numéro du commentaire</label>
+		   	<div class="input-group">
+			     <input type="text" name="idCommentaire" id="idCommentaire" class="form-control" placeholder="Saisissez le numéro du commentaire ici.."/>
+			     <span class="input-group-btn">
+	     	    	    	<input type="submit" class="btn btn-warning" id="btn-consultation3" value="Envoyer la requête">
+      			     </span>
+			</div><!-- /input-group -->
+	     	   </div><!-- /form-group -->
 	     </form>
-	
 	</div> 
    </div>
    
-   
    </div> <!-- Tab panes -->
+
    <div id="result"></div>
    
 </div> <!-- Container -->
