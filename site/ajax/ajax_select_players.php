@@ -18,7 +18,7 @@ if(!$result){
 
 //Affichage du resultat
 echo "<table class=\"table table-striped\">";
-echo "<tr><th>Pseudo</th><th>Nom</th><th>Mail</th></tr>";
+echo "<tr><th>Pseudo</th><th>Prénom</th><th>Nom</th><th>Mail</th></tr>";
 
 while($att = mysql_fetch_array($result)){
   $login = $att["pseudo"];
