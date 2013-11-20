@@ -1,0 +1,102 @@
+\documentclass{article}
+
+\usepackage[french]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amssymb}
+%\usepackage[french]{algorithm2e}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+%\geometry{top=80, bottom=80, left=80, right=80}
+
+%%%%%%%%%%%%%%%% Lengths %%%%%%%%%%%%%%%%
+\setlength{\textwidth}{15.5cm}
+\setlength{\evensidemargin}{0.5cm}
+\setlength{\oddsidemargin}{0.5cm}
+
+\begin{document}
+
+\makeatletter
+\def\clap#1{\hbox to 0pt{\hss #1\hss}}%
+\def\ligne#1{%
+\hbox to \hsize{%
+\vbox{\centering #1}}}%
+\def\haut#1#2#3{%
+\hbox to \hsize{%
+\rlap{\vtop{\raggedright #1}}%
+\hss
+\clap{\vtop{\centering #2}}%
+\hss
+\llap{\vtop{\raggedleft #3}}}}%
+\def\bas#1#2#3{%
+\hbox to \hsize{%
+\rlap{\vbox{\raggedright #1}}%
+\hss
+\clap{\vbox{\centering #2}}%
+\hss
+\llap{\vbox{\raggedleft #3}}}}%
+\def\maketitle{%
+\thispagestyle{empty}\vbox to \vsize{%
+\haut{}{\@blurb}{}
+\vfill
+\vspace{1cm}
+\begin{flushright}
+\usefont{OT1}{ptm}{m}{n}
+\huge \@title
+\end{flushright}
+\par
+\hrule height 4pt
+\par
+\begin{flushright}
+\usefont{OT1}{phv}{m}{n}
+\Large \@author
+\par
+\end{flushright}
+\vspace{1cm}
+\vfill
+\vfill
+\bas{}{Deuxième année, filière informatique.\\\@location, le \@date}{}
+}%
+\cleardoublepage
+}
+\def\date#1{\def\@date{#1}}
+\def\author#1{\def\@author{#1}}
+\def\title#1{\def\@title{#1}}
+\def\location#1{\def\@location{#1}}
+\def\blurb#1{\def\@blurb{#1}}
+\date{\today}
+\author{}
+\title{}
+\blurb{}
+\makeatother
+\title{Projet \emph{SGBD} : dotGame}
+\author{Yvon Garbage, Pierre Lefebvre, Grégoire Pichon\\}
+\location{Bordeaux}
+\blurb{%
+}%
+
+\begin{figure}[!tp]
+\centering
+\includegraphics[width=0.6\textwidth]{enseirb-matmeca}
+\label{fig:logo}
+\end{figure}
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+
+\section*{Introduction}
+
+\section{Présentation du sujet}
+
+\section{Modélisation}
+
+\section{Zoom sur les requêtes importantes}
+
+\section{Interface: réalisation et utilisation}
+
+\section*{Conclusion}
+
+\end{document}
