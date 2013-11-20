@@ -13,9 +13,9 @@
        <li><a href="#ajout2" data-toggle="tab">Jeu</a></li>
        <li><a href="#ajout3" data-toggle="tab">Editeur</a></li>
        <li><a href="#ajout4" data-toggle="tab">Plateforme</a></li>
-     <li><a href="#ajout5" data-toggle="tab">Catégorie</a></li>
-     <li><a href="#ajout6" data-toggle="tab">Appréciation</a></li>
-     <li><a href="#ajout7" data-toggle="tab">Commentaire</a></li>
+       <li><a href="#ajout5" data-toggle="tab">Catégorie</a></li>
+       <li><a href="#ajout6" data-toggle="tab">Appréciation</a></li>
+       <li><a href="#ajout7" data-toggle="tab">Commentaire</a></li>
    </ul>
 
    <!-- Tab panes -->
@@ -127,7 +127,7 @@
 
 
 <!--- AJOUT POUCE -->
-   <div class="tab-pane active" id="ajout6">
+   <div class="tab-pane" id="ajout6">
    	<div class="container">
 
 	     <p class="lead">Ajout d'une appréciation de commentaire</p>
@@ -166,7 +166,7 @@ echo "</table>";?>
    </div>
 
 <!-- AJOUT COMMENTAIRE -->
-   <div class="tab-pane active" id="ajout7">
+   <div class="tab-pane" id="ajout7">
    	<div class="container">
 
 	     <p class="lead">Ajout d'un commentaire.</p>
