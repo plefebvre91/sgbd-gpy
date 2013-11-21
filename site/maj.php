@@ -43,7 +43,9 @@ while ($att = mysql_fetch_array($players)) {
   $last_name = $att["nom"];
   $first_name = $att["prenom"];
   $mail = $att["mail"];
-   
+  $idPlateforme = $att["idPlateforme"];
+  $idCategorie = $att["idCategorie"];
+ 
   echo "<div class=\"panel panel-default\">";
   echo "<div class=\"panel-heading\">";
   echo "<h4 class=\"panel-title\">";
@@ -56,26 +58,58 @@ while ($att = mysql_fetch_array($players)) {
   echo "<form action=\"#\" id=\"form-maj-$id\">";
 
   echo "<div class=\"form-group\">";
-  echo "<label for=\"nom\">Nom</label>";
+  echo "<label>Nom</label>";
   echo "<input type=\"text\" name=\"nom\" id=\"nom\" class=\"form-control\" placeholder=\"Saisissez le nom du joueur à ajouter ici..\" value=\"$last_name\">";
   echo "</div><!--form-group Nom-->";
 
   echo "<div class=\"form-group\">";
-  echo "<label for=\"prenom\">Prénom</label>";
+  echo "<label>Prénom</label>";
   echo "<input type=\"text\" name=\"prenom\" id=\"prenom\" class=\"form-control\" placeholder=\"Saisissez le prénom du joueur à ajouter ici..\" value=\"$first_name\">";
   echo "</div><!--form-group Prénom-->";
 
   echo "<div class=\"form-group\">";
-  echo "<label for=\"mail\">Mail</label>";
+  echo "<label>Mail</label>";
   echo "<div class=\"input-group\">";
   echo "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-envelope\"></span></span>";
   echo "<input type=\"email\" name=\"mail\" id=\"mail\" class=\"form-control\" placeholder=\"Saisissez le mail du joueur à ajouter ici..\" value=\"$mail\">";
   echo "</div>";
   echo "</div><!--form-group Mail-->";  
 
+  echo "<div class=\"form-group\">";
+  echo "<label>Plateforme de jeu préférée</label>";
+  echo "<select name=\"nomPlateforme\" class=\"form-control\">";
+  $platforms = select_platforms();  
+  while($options = mysql_fetch_array($platforms)) {
+  	$name = $options["nomPlateForme"];
+	if ($options[idPlateforme] == $idPlateforme) {
+	   echo "<option value=\"$name\" selected>$name</option>";
+	}
+	else {
+	   echo "<option value=\"$name\">$name</option>";
+	}
+  }
+  echo "</select>";
+  echo "</div><!--form-group nomPlateforme-->";
+
+  echo "<div class=\"form-group\">";
+  echo "<label>Catégorie de jeu préférée</label>";
+  echo "<select name=\"nomCategorie\" class=\"form-control\">";
+  $categories = select_categories();  
+  while($options = mysql_fetch_array($categories)) {
+  	$name = $options["nomCategorie"];
+	if ($options[idCategorie] == $idCategorie) {
+	   echo "<option value=\"$name\" selected>$name</option>";
+	}
+	else {
+	   echo "<option value=\"$name\">$name</option>";
+	}
+  }
+  echo "</select>";
+  echo "</div><!--form-group nomCategorie-->";
+
   echo "<div class=\"form-group text-center\">";
-  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\">";
-  echo "</div><!--form-group Bouton-->";    
+  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_player('$id');\">";
+  echo "</div><!--form-group Bouton-->";
 
   echo "</form><!--form-maj-$id-->";
   echo "</div><!--panel-body-->";
