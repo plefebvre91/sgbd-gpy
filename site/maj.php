@@ -35,7 +35,7 @@ db_connect();
 	     <p class="lead">Mise à jour d'un joueur.</p>
 
 <?php
-$players = select_players();
+$players = select_all("joueur");
 
 echo "<div class=\"panel-group\" id=\"accordion\">";
 
@@ -79,7 +79,7 @@ while ($att = mysql_fetch_array($players)) {
   echo "<div class=\"form-group\">";
   echo "<label>Plateforme de jeu préférée</label>";
   echo "<select name=\"nomPlateforme\" class=\"form-control\">";
-  $platforms = select_platforms();  
+  $platforms = select_all("plateforme");  
   while($options = mysql_fetch_array($platforms)) {
   	$name = $options["nomPlateForme"];
 	if ($options["idPlateforme"] == $idPlateforme) {
@@ -95,7 +95,7 @@ while ($att = mysql_fetch_array($players)) {
   echo "<div class=\"form-group\">";
   echo "<label>Catégorie de jeu préférée</label>";
   echo "<select name=\"nomCategorie\" class=\"form-control\">";
-  $categories = select_categories();  
+  $categories = select_all("categorie");  
   while($options = mysql_fetch_array($categories)) {
   	$name = $options["nomCategorie"];
 	if ($options["idCategorie"] == $idCategorie) {

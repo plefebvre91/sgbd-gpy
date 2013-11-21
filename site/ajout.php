@@ -135,7 +135,7 @@
   require("php/include.php");
   require("php/selection.php");
   db_connect();
-  $comments = select_comments();
+  $comments = select_all("commentaire");
 
   echo "<table class=\"table table-striped\">";
   echo "<tr><th>Commentaire</th>";

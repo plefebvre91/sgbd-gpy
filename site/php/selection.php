@@ -54,6 +54,13 @@ function select_comments_from_preferences($login){
   return $result;
 }
 
+function select_all($table){
+  $query =  "SELECT * FROM $table";
+  $result = mysql_query($query) or die(mysql_error());
+  return $result;
+}
+
+
 function select_comments(){
   $query =  "SELECT * FROM commentaire";
   $result = mysql_query($query) or die(mysql_error());

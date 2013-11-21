@@ -28,7 +28,7 @@ require_once("php/delete.php");
   
      <?php
    db_connect();
-   $comments = select_comments();
+   $comments = select_all("commentaire");
 
   echo "<table class=\"table table-striped\">";
 echo "<tr><th>Commentaire</th>";
@@ -61,7 +61,7 @@ echo "</table>";?>
       	<div class="container">
 
 <?php
-$games = select_games();
+  $games = select_all("jeu");
 
   echo "<table class=\"table table-striped\">";
   echo "<tr><th>Jeu</th><th>Editeur</th><th>Suppression</th></tr>";
@@ -84,7 +84,7 @@ echo "</table>"; ?>
    <div class="tab-pane" id="consultation3">
       	<div class="container">
   <?php
-$players = select_players();
+$players = select_all("joueur");
 
   echo "<table class=\"table table-striped\">";
   echo "<tr><th>Pseudo</th><th>Nom</th><th>Prenom</th><th>Adresse mail</th></tr>";
@@ -108,7 +108,7 @@ echo "</table>";?>
      <div class="tab-pane" id="consultation4">
       	<div class="container">
   <?php
-$editors = select_editors();
+$editors = select_all("editeur");
 
   echo "<table class=\"table table-striped\">";
   echo "<tr><th>ID</th><th>Editeur</th><th>Suppression</th></tr>";
