@@ -88,4 +88,12 @@ function select_editors(){
   return $result;
 }
 
+
+function select_categories(){
+  $query =  "SELECT * FROM categorie";
+  $result = mysql_query($query) or die(mysql_error());
+  return $result;
+}
+
+
 ?>
