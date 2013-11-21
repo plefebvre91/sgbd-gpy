@@ -3,7 +3,7 @@ require_once("php/include.php");
 require_once("php/selection.php");
 db_connect();	
 ?>
-
+<script src="js/update.js"></script>
 <div class="container">
    <div class="well top-message">
    	<p>Cliquez sur les différents onglets pour accéder aux requêtes de mise à jour.</p>
@@ -26,6 +26,7 @@ db_connect();
    </ul>
    
    <!-- Tab panes -->
+   <div id="result" class="alert alert-warning"></div>
    <div class="tab-content">
 
    <div class="tab-pane active" id="ajout1">
@@ -108,7 +109,7 @@ while ($att = mysql_fetch_array($players)) {
   echo "</div><!--form-group nomCategorie-->";
 
   echo "<div class=\"form-group text-center\">";
-  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_player('$id');return false;\">";
+  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_player('$id');\">";
   echo "</div><!--form-group Bouton-->";
 
   echo "</form><!--form-maj-$id-->";
@@ -121,39 +122,12 @@ while ($att = mysql_fetch_array($players)) {
 echo "</div><!--panel-group-->";
 ;?>
 
-   <form action="#" id="form-ajout1">
- 	     	   <div class="form-group">
-	     	   	<label for="pseudo">Pseudo</label>
-			<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo du joueur à ajouter ici..">
-	     	   </div>
-		   <div class="form-group">
-	     	   	<label for="nom">Nom</label>
-			<input type="text" name="nom" id="nom" class="form-control" placeholder="Saisissez le nom du joueur à ajouter ici..">
-	     	   </div>
-		   <div class="form-group">
-	     	   	<label for="prenom">Prénom</label>
-			<input type="text" name="prenom" id="prenom" class="form-control" placeholder="Saisissez le prénom du joueur à ajouter ici..">
-	     	   </div>
-		   <div class="form-group">
-		   	<label for="mail">Mail</label>
-  		   	<div class="input-group">
-			     <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-			     <input type="email" name="mail" id="mail" class="form-control" placeholder="Saisissez le mail du joueur à ajouter ici..">
-			</div>
-	     	   </div>
-		   <div class="form-group">
-	     	   	<label for="idCategorie">Catégorie de jeu préférée (numéro de la catégorie)</label>
-			<input type="text" name="idCategorie" id="idCategorie" class="form-control" placeholder="Saisissez le numéro de la catégorie préférée du joueur à ajouter ici..">
-	     	   </div>
-		   <div class="form-group">
-	     	   	<label for="idPlateforme">Plateforme de jeu préférée (numéro de la plateforme)</label>
-			<input type="text" name="idPlateforme" id="idPlateforme" class="form-control" placeholder="Saisissez le numéro de la plateforme préférée du joueur à ajouter ici..">
-	     	   </div>
-	     	   <div class="form-group text-center">
-	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout1" value="Envoyer la requête">
-	     	   </div>
-	     </form>
-	</div> 
+</div> 
+
    </div><!-- tab-content -->
    
 </div> <!-- container -->
+
+<script>
+$("form").submit(function(event){event.preventDefault();});
+</script>

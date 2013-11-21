@@ -11,12 +11,11 @@ function update_player($login, $last_name, $first_name, $mail, $category, $platf
   $id_platform = get_platform_by_name($platform);
   $id_category = get_category_by_name($category);
 
-  $query = "UPDATE joueur SET nom='$last_name', prenom='$first_name', mail='$mail', idCategorie='$id_category', idPlateforme='$id_platform' \\
-            WHERE pseudo='$login'";
+  $query = "UPDATE joueur SET nom='$last_name', prenom='$first_name', mail='$mail', idCategorie='$id_category', idPlateforme='$id_platform' WHERE pseudo='$login'";
 
   $result = mysql_query($query) or die(mysql_error());
   
-  return $result;
+  return (($result)?"true":"false");
 }
 
   
