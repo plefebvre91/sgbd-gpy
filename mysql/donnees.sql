@@ -94,7 +94,7 @@ commit;
 
 insert into joueur values ('wandujar'    , 'andujar'    , 'william'  , 'william.andujar@enseirb-matmeca.fr'   ,  2, 5);
 insert into joueur values ('nbelin'      , 'belin'      , 'nicolas'  , 'nicolas.belin@enseirb-matmeca.fr'     ,  3, 3);
-insert into joueur values ('hbrunie'     , 'brunie'     , 'huge'     , 'hugo.brunie@enseirb-matmeca.fr'       ,  4, 1);
+insert into joueur values ('hbrunie'     , 'brunie'     , 'hugo'     , 'hugo.brunie@enseirb-matmeca.fr'       ,  4, 1);
 insert into joueur values ('jcatala'     , 'catala'     , 'julien'   , 'julien.catala@enseirb-matmeca.fr'     ,  5, 6);
 insert into joueur values ('achoblet'    , 'choblet'    , 'anais'    , 'anais.choblet@enseirb-matmeca.fr'     ,  6, 1);
 insert into joueur values ('ldauphin'    , 'dauphin'    , 'loic'     , 'loic.dauphin@enseirb-matmeca.fr'      ,  7, 3);
