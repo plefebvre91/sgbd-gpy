@@ -26,7 +26,7 @@ db_connect();
    </ul>
    
    <!-- Tab panes -->
-   <div id="result" class="alert alert-warning"></div>
+
    <div class="tab-content">
 
    <div class="tab-pane active" id="ajout1">
@@ -50,7 +50,7 @@ while ($att = mysql_fetch_array($players)) {
   echo "<div class=\"panel panel-default\">";
   echo "<div class=\"panel-heading\">";
   echo "<h4 class=\"panel-title\">";
-  echo "<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-$id\">$id</a>";
+  echo "<a id=\"result-$id\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-$id\">$id</a>";
   echo "</h4>";
   echo "</div><!--panel-heading-->"; 
   echo "<div id=\"collapse-$id\" class=\"panel-collapse collapse\">";
