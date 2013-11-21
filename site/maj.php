@@ -49,21 +49,21 @@ while ($att = mysql_fetch_array($players)) {
   echo "<h4 class=\"panel-title\">";
   echo "<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-$id\">$id</a>";
   echo "</h4>";
-  echo "</div>";
+  echo "</div><!--panel-heading-->"; 
   echo "<div id=\"collapse-$id\" class=\"panel-collapse collapse\">";
   echo "<div class=\"panel-body\">";
   
-  echo "<form action=\"#\" id=\"form-ajout1\">"; // Todo : Changer l'id ou pas ?
+  echo "<form action=\"#\" id=\"form-maj-$id\">";
 
   echo "<div class=\"form-group\">";
   echo "<label for=\"nom\">Nom</label>";
   echo "<input type=\"text\" name=\"nom\" id=\"nom\" class=\"form-control\" placeholder=\"Saisissez le nom du joueur à ajouter ici..\" value=\"$last_name\">";
-  echo "</div>";
+  echo "</div><!--form-group Nom-->";
 
   echo "<div class=\"form-group\">";
   echo "<label for=\"prenom\">Prénom</label>";
   echo "<input type=\"text\" name=\"prenom\" id=\"prenom\" class=\"form-control\" placeholder=\"Saisissez le prénom du joueur à ajouter ici..\" value=\"$first_name\">";
-  echo "</div>";
+  echo "</div><!--form-group Prénom-->";
 
   echo "<div class=\"form-group\">";
   echo "<label for=\"mail\">Mail</label>";
@@ -71,20 +71,20 @@ while ($att = mysql_fetch_array($players)) {
   echo "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-envelope\"></span></span>";
   echo "<input type=\"email\" name=\"mail\" id=\"mail\" class=\"form-control\" placeholder=\"Saisissez le mail du joueur à ajouter ici..\" value=\"$mail\">";
   echo "</div>";
-    
-  echo "<div class=\"form-group text-center\">";
-  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" id=\"btn-ajout1\" value=\"Envoyer la requête\">"; // Todo : Changer l'id ou pas ?
-  echo "</div>";    
+  echo "</div><!--form-group Mail-->";  
 
-  echo "</div>";
-  echo "</form>";
-  
-  echo "</div>";
-  echo "</div>";
-  echo "</div>";
+  echo "<div class=\"form-group text-center\">";
+  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\">";
+  echo "</div><!--form-group Bouton-->";    
+
+  echo "</form><!--form-maj-$id-->";
+  echo "</div><!--panel-body-->";
+
+  echo "</div><!--collapse-$id-->";
+  echo "</div><!--panel panel-default-->";
 }
 
-echo "</div>";
+echo "</div><!--panel-group-->";
 ;?>
 
    <form action="#" id="form-ajout1">
