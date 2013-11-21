@@ -132,9 +132,6 @@
 
 	     <p class="lead">Ajout d'une appréciation de commentaire</p>
 <?php
-  require("php/include.php");
-  require("php/selection.php");
-  db_connect();
   $comments = select_all("commentaire");
 
   echo "<table class=\"table table-striped\">";

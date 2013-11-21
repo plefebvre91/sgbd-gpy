@@ -1,7 +1,10 @@
 <?php
-
 require_once("config.php");
 require_once("db.php");
 require_once("base.php");
-
+require_once("selection.php");
+require_once("add.php");
+require_once("delete.php");
+require_once("stats.php");
+require_once("update.php");
 ?>

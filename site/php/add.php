@@ -1,6 +1,4 @@
 <?php
-
-require_once("include.php");
 //Ajout d'un jeu
 // idEditeur = selection avec (1)
 // idPlateforme = selection avec (2)

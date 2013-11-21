@@ -1,8 +1,3 @@
-<?php 
-require_once("php/include.php"); 
-require_once("php/selection.php");
-require_once("php/delete.php");
-?>
 <script src="js/delete.js"></script>
 <div class="alert alert-info" id="result"></div>
 
@@ -27,7 +22,6 @@ require_once("php/delete.php");
    	<div class="container">
   
      <?php
-   db_connect();
    $comments = select_all("commentaire");
 
   echo "<table class=\"table table-striped\">";
@@ -64,15 +58,15 @@ echo "</table>";?>
   $games = select_all("jeu");
 
   echo "<table class=\"table table-striped\">";
-  echo "<tr><th>Jeu</th><th>Editeur</th><th>Suppression</th></tr>";
+  echo "<tr><th>Jeu</th><th>Suppression</th></tr>";
 
 while($att = mysql_fetch_array($games)){
   $id = $att["idJeu"];
-  $editor = $att["nomEditeur"];
   $name= $att["nomJeu"];
   
   echo "<tr id=\"game$id\">
-        <td>$name</td><td>$editor</td><td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_game($id);\">Supprimer</button></td></tr>\n";
+        <td>$name</td>
+        <td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_game($id);\">Supprimer</button></td></tr>\n";
 }
 
 echo "</table>"; ?>

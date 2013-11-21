@@ -1,8 +1,5 @@
 <?php
-require_once("include.php");
-
 //L'ensemble des jeux critiques disponibles sur une plateforme donnée classes par categorie
-
 function select_commented_games($platform){
   $query = " SELECT res.nomJeu, categorie.nomCategorie FROM categorie INNER JOIN
         (SELECT jeu.*, appartient.idCategorie FROM jeu LEFT OUTER JOIN appartient

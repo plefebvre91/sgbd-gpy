@@ -1,6 +1,4 @@
 <?php
-require_once("include.php");
-
 //Pour eviter les injection SQL/XSS
 //A faire avant chaque insertion dans la base
 function secure_string($str){

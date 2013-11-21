@@ -1,5 +1,6 @@
 <?php
 require_once("php/include.php");
+db_connect();
 if(isset($_GET["action"])){
     $page = $_GET["action"];
     if(empty($page)){

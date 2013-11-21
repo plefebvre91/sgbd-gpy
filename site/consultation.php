@@ -1,4 +1,3 @@
-
 <div class="container">
    <div class="well top-message">
    <p>Cliquez sur les différents onglets pour accéder aux trois requêtes de consultation.</p>

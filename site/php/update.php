@@ -1,12 +1,6 @@
 <?php
-require_once("include.php");
 
-/* - MISE A JOUR - */
 /* Mise a jour d'un joueur */
-/* Pour le changement des preferences */
-/* idPlateforme = selection avec (2) */
-/* idCategorie = selection avec (3) */
-
 function update_player($login, $last_name, $first_name, $mail, $category, $platform) {
   $id_platform = get_platform_by_name($platform);
   $id_category = get_category_by_name($category);

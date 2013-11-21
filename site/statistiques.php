@@ -1,8 +1,3 @@
-<?php 
-require_once("php/include.php"); 
-require_once("php/stats.php");
-    
-?>
 <div class="container">
    <div class="well top-message">
    <p>Cliquez sur les différents onglets pour accéder aux quatre requêtes de statistiques.</p>
@@ -32,10 +27,6 @@ require_once("php/stats.php");
   	 </div>
 </form>
      <?php
-  //Les derniers commentaires
-   db_connect();
-
-
    $comments = get_last_comments($nb_comments);
 
   echo "<table class=\"table table-striped\">";

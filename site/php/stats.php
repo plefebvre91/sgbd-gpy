@@ -1,6 +1,4 @@
 <?php
-require_once("include.php");
-
 //Recuperation des n derniers commentaires
 function get_last_comments($nb_comments) {
   $nb_comments = ($nb_comments <= 0) ? 1:$nb_comments;
