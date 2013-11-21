@@ -81,7 +81,7 @@ while ($att = mysql_fetch_array($players)) {
   $platforms = select_platforms();  
   while($options = mysql_fetch_array($platforms)) {
   	$name = $options["nomPlateForme"];
-	if ($options[idPlateforme] == $idPlateforme) {
+	if ($options["idPlateforme"] == $idPlateforme) {
 	   echo "<option value=\"$name\" selected>$name</option>";
 	}
 	else {
@@ -97,7 +97,7 @@ while ($att = mysql_fetch_array($players)) {
   $categories = select_categories();  
   while($options = mysql_fetch_array($categories)) {
   	$name = $options["nomCategorie"];
-	if ($options[idCategorie] == $idCategorie) {
+	if ($options["idCategorie"] == $idCategorie) {
 	   echo "<option value=\"$name\" selected>$name</option>";
 	}
 	else {
@@ -108,7 +108,7 @@ while ($att = mysql_fetch_array($players)) {
   echo "</div><!--form-group nomCategorie-->";
 
   echo "<div class=\"form-group text-center\">";
-  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_player('$id');\">";
+  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_player('$id');return false;\">";
   echo "</div><!--form-group Bouton-->";
 
   echo "</form><!--form-maj-$id-->";
