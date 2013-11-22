@@ -80,24 +80,41 @@
 		   	<!-- Façon en demandant de saisir l'idEditeur -->   
 		   	<!--<label for="idEditeur">&Eacute;diteur du jeu</label>-->
 			<!--<input type="text" name="idEditeur" id="idEditeur" class="form-control" placeholder="Saisissez le numéro de l'éditeur du jeu à ajouter ici..">-->
-			<!-- Façon avec liste déroulante des noms d'éditeurs -->   
-<?
- echo "<label>&Eacute;diteur du jeu</label>";
- echo "<select name=\"nomEditeur\" class=\"form-control\">";
+			<!-- Façon avec liste déroulante des noms d'éditeurs -->
+			<label>&Eacute;diteur du jeu</label>
+			<select name="nomEditeur" class="form-control">
+<?php
  $editors = select_all("editeur");  
  while ($options = mysql_fetch_array($editors)) {
   	$name = $options["nomEditeur"];
 	echo "<option value=\"$name\">$name</option>";
  }
- echo "</select>";
 ;?>
+			</select>
 			<!-- Fin de : Façon avec liste déroulante des noms d'éditeurs -->   
 	     	   </div>
 
-		   <!--<div class="form-group">-->
+		   <div class="form-group">
+   		   	<!-- Façon en demandant de saisir un unique idPlateforme -->   
 	     	   	<!--<label for="idPlateforme">Plateforme</label>-->
 			<!--<input type="text" name="idPlateforme" id="idPlateforme" class="form-control" placeholder="Saisissez le numéro de la plateforme du jeu à ajouter ici..">-->
-	     	   <!--</div>-->
+			<!-- Façon avec cases à chocher des noms de plateformes -->
+			<label>Plateforme</label>
+			<p class="help-block">Cochez la (les) case(s) correspondant aux plateformes sur laquelle le jeu est disponible.</p>
+<?php
+  $platforms = select_all("plateforme");  
+  while ($boxes = mysql_fetch_array($platforms)) {
+  	$name = $boxes["nomPlateForme"];
+	$id = $boxes["idPlateforme"];
+	echo "<div class=\"checkbox\">
+	      	   <label>
+	      	   <input type=\"checkbox\" name=\"nomPlateForme\" value=\"$id\">$name</label>
+	      </div>\n";
+  }
+;?>
+			
+			<!-- Fin de : Façon avec cases à chocher des noms de plateformes -->   
+	     	   </div>
  	     	   
 	     	   <div class="form-group text-center">
 	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout2" value="Envoyer la requête">
