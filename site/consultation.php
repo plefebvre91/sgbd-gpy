@@ -1,6 +1,6 @@
 <div class="container">
    <div class="well top-message">
-   <p>Cliquez sur les différents onglets pour accéder aux trois requêtes de consultation.</p>
+   <p>Cliquez sur les différents onglets pour accéder aux requêtes de consultation.</p>
 
    <ul>
 	<li>L'ensemble des jeux critiqués disponibles sur une plateforme donnée, classés par catégorie,</li>
@@ -14,6 +14,10 @@
        <li><a href="#consultation1" data-toggle="tab">Requête 1</a></li>
        <li><a href="#consultation2" data-toggle="tab">Requête 2</a></li>
        <li><a href="#consultation3" data-toggle="tab">Requête 3</a></li>
+       <li><a href="#consultation-jeu" data-toggle="tab">Jeux</a></li>
+       <li><a href="#consultation-joueur" data-toggle="tab">Joueurs</a></li>
+       <li><a href="#consultation-commentaire" data-toggle="tab">Commentaires</a></li>
+       <li><a href="#consultation-pouce" data-toggle="tab">Pouces</a></li>
    </ul>
 
    <!-- Tab panes -->
@@ -70,6 +74,31 @@
 	     </form>
 	</div> 
    </div>
+
+   <div class="tab-pane" id="consultation-jeu">
+      	<div class="container">
+
+<?php
+  $games = select_all("jeu");
+
+  echo "<table class=\"table table-striped\">";
+  echo "<tr><th>Nom</th><th>&Eacute;diteur</th><th>Plateforme</th><th>Catégorie</th></tr>";
+
+while($att = mysql_fetch_array($games)){
+  $id = $att["idJeu"];
+  $name = $att["nomJeu"];
+  
+  echo "<tr>
+        <td>$id</td>
+        <td>$name</td>
+	</tr>\n";
+}
+
+echo "</table>";
+?>
+
+	</div> 
+   </div><!--consultation-jeu-->
    
    </div> <!-- Tab panes -->
 
