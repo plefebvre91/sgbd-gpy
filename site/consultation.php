@@ -164,9 +164,34 @@ echo "</table>";
 	</div> 
    </div><!--consultation-commentaire-->
 
-
       <div class="tab-pane" id="consultation-pouce">
       	<div class="container">
+
+<?php
+   $thumbs = select_all("pouce");
+
+echo "<table class=\"table table-striped\">";
+echo "<tr>
+	<th>Pseudo</th>
+     	<th>Valeur</th>
+     	<th>Commentaire (numéro)</th>
+      </tr>\n";
+
+while($att = mysql_fetch_array($thumbs)){
+  $idPouce = $att["idPouce"];
+  $value= $att["valeur"];
+  $author = $att["pseudo"];
+  $idComment = $att["idCommentaire"];
+  
+  echo "<tr>
+	  <td>$author</td>
+  	  <td>$value</td>
+  	  <td>$idComment</td>
+       </tr>";
+}
+
+echo "</table>";
+?>
 
 	</div> 
    </div><!--consultation-pouce-->
