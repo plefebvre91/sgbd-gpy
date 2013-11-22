@@ -99,6 +99,19 @@ echo "</table>";
 
 	</div> 
    </div><!--consultation-jeu-->
+
+   <div class="tab-pane" id="consultation-joueur">
+      	<div class="container">
+	</div> 
+   </div><!--consultation-joueur-->
+      <div class="tab-pane" id="consultation-commentaire">
+      	<div class="container">
+	</div> 
+   </div><!--consultation-commentaire-->
+      <div class="tab-pane" id="consultation-pouce">
+      	<div class="container">
+	</div> 
+   </div><!--consultation-pouce-->
    
    </div> <!-- Tab panes -->
 
