@@ -102,8 +102,33 @@ echo "</table>";
 
    <div class="tab-pane" id="consultation-joueur">
       	<div class="container">
+
+<?php
+  $players = select_all("joueur");
+
+  echo "<table class=\"table table-striped\">";
+  echo "<tr><th>pseudo</th><th>Nom</th><th>Prénom</th><th>Adresse mail</th><th>Plateforme</th><th>Catégorie</th></tr>";
+
+while($att = mysql_fetch_array($players)){
+  $id = $att["pseudo"];
+  $last_name = $att["nom"];
+  $first_name = $att["prenom"];
+  $mail = $att["mail"];
+  
+  echo "<tr>
+        <td>$id</td>
+        <td>$last_name</td>
+	<td>$first_name</td>
+        <td>$mail</td>
+	</tr>\n";
+}
+
+echo "</table>";
+?>
+
 	</div> 
    </div><!--consultation-joueur-->
+
       <div class="tab-pane" id="consultation-commentaire">
       	<div class="container">
 	</div> 
