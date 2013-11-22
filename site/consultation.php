@@ -129,12 +129,45 @@ echo "</table>";
 	</div> 
    </div><!--consultation-joueur-->
 
-      <div class="tab-pane" id="consultation-commentaire">
+   <div class="tab-pane" id="consultation-commentaire">
       	<div class="container">
+
+<?php
+   $comments = select_all("commentaire");
+
+echo "<table class=\"table table-striped\">";
+echo "<tr>
+	<th>Commentaire</th>
+     	<th>Auteur</th>
+     	<th>Date</th>
+     	<th>Note</th>
+      </tr>\n";
+
+while($att = mysql_fetch_array($comments)){
+  $id = $att["idCommentaire"];
+  $mark = $att["note"];
+  $author = $att["pseudo"];
+  $date = $att["dateCommentaire"];
+  $comment = $att["commentaire"];
+  
+  echo "<tr>
+	  <td>$comment</td>
+  	  <td>$author</td>
+  	  <td>$date</td>
+	  <td>$mark</td>
+       </tr>";
+}
+
+echo "</table>";
+?>
+
 	</div> 
    </div><!--consultation-commentaire-->
+
+
       <div class="tab-pane" id="consultation-pouce">
       	<div class="container">
+
 	</div> 
    </div><!--consultation-pouce-->
    
