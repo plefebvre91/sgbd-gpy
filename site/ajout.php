@@ -30,7 +30,7 @@
    <div class="tab-pane active" id="ajout1">
    	<div class="container">
 
-	     <p class="lead">Ajout d'un joueur.</p>
+	     <p class="lead">Ajouter un joueur</p>
 
    <form action="#" id="form-ajout1">
  	     	   <div class="form-group">
@@ -69,13 +69,35 @@
    
    <div class="tab-pane" id="ajout2">
       	<div class="container">
-     	     <p class="lead">Ajout d'un jeu.</p>
+     	     <p class="lead">Ajouter un jeu</p>
 
 	     <form action="#" id="form-ajout2">
 	      	   <div class="form-group">
 	     	   	<label for="nomJeu">Nom du jeu</label>
 			<input type="text" name="nomJeu" id="nomJeu" class="form-control" placeholder="Saisissez le nom du jeu à ajouter ici..">
 	     	   </div>
+		   <div class="form-group">
+		   	<!-- Façon en demandant de saisir l'idEditeur -->   
+		   	<!--<label for="idEditeur">&Eacute;diteur du jeu</label>-->
+			<!--<input type="text" name="idEditeur" id="idEditeur" class="form-control" placeholder="Saisissez le numéro de l'éditeur du jeu à ajouter ici..">-->
+			<!-- Façon avec liste déroulante des noms d'éditeurs -->   
+<?
+ echo "<label>&Eacute;diteur du jeu</label>";
+ echo "<select name=\"nomEditeur\" class=\"form-control\">";
+ $editors = select_all("editeur");  
+ while ($options = mysql_fetch_array($editors)) {
+  	$name = $options["nomEditeur"];
+	echo "<option value=\"$name\">$name</option>";
+ }
+ echo "</select>";
+;?>
+			<!-- Fin de : Façon avec liste déroulante des noms d'éditeurs -->   
+	     	   </div>
+
+		   <!--<div class="form-group">-->
+	     	   	<!--<label for="idPlateforme">Plateforme</label>-->
+			<!--<input type="text" name="idPlateforme" id="idPlateforme" class="form-control" placeholder="Saisissez le numéro de la plateforme du jeu à ajouter ici..">-->
+	     	   <!--</div>-->
  	     	   
 	     	   <div class="form-group text-center">
 	    	    	<input type="submit" class="btn btn-warning btn-lg" id="btn-ajout2" value="Envoyer la requête">
@@ -135,7 +157,7 @@
    <div class="tab-pane" id="ajout6">
    	<div class="container">
 
-	     <p class="lead">Ajout d'une appréciation de commentaire</p>
+	     <p class="lead">Ajouter une appréciation de commentaire</p>
 <?php
   $comments = select_all("commentaire");
 
@@ -171,7 +193,7 @@ echo "</table>";?>
    <div class="tab-pane" id="ajout7">
    	<div class="container">
 
-	     <p class="lead">Ajout d'un commentaire.</p>
+	     <p class="lead">Ajouter un commentaire</p>
 
    <form action="#" id="form-ajout7">
     	     	   <div class="form-group">
@@ -216,7 +238,7 @@ echo "</table>";?>
 
 <script>
    $("#form-ajout1").submit(add_player);
-
+   $("#form-ajout2").submit(add_game);
    $("#form-ajout3").submit(add_editor);
    $("#form-ajout4").submit(add_platform);
    $("#form-ajout5").submit(add_category);
