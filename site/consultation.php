@@ -11,7 +11,7 @@
 	<li>La liste de tous les jeux,</li>
 	<li>La liste de tous les joueurs,</li>
 	<li>La liste de tous les commentaires,</li>
-	<li>La liste de tous les pouces (appréciations de commentaires).</li>
+	<li>La liste de toutes les appréciations de commentaires.</li>
    </ul>
    </div>
 
@@ -23,7 +23,7 @@
        <li><a href="#consultation-jeu" data-toggle="tab">Jeux</a></li>
        <li><a href="#consultation-joueur" data-toggle="tab">Joueurs</a></li>
        <li><a href="#consultation-commentaire" data-toggle="tab">Commentaires</a></li>
-       <li><a href="#consultation-pouce" data-toggle="tab">Pouces</a></li>
+       <li><a href="#consultation-pouce" data-toggle="tab">Appréciations de commentaires</a></li>
    </ul>
 
    <!-- Tab panes -->
@@ -113,7 +113,7 @@ echo "</table>";
   $players = select_all("joueur");
 
   echo "<table class=\"table table-striped\">";
-  echo "<tr><th>pseudo</th><th>Nom</th><th>Prénom</th><th>Adresse mail</th><th>Plateforme</th><th>Catégorie</th></tr>";
+  echo "<tr><th>Pseudo</th><th>Nom</th><th>Prénom</th><th>Adresse mail</th><th>Plateforme préférée</th><th>Catégorie préférée</th></tr>";
 
 while($att = mysql_fetch_array($players)){
   $id = $att["pseudo"];
