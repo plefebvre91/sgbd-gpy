@@ -3,7 +3,12 @@
    	<p>Cliquez sur les différents onglets pour accéder aux requêtes d'ajout.</p>
    	<ul>
 		<li>Ajout d'un joueur,</li>
-   		<li>Ajout d'un jeu.</li>
+   		<li>Ajout d'un jeu,</li>
+		<li>Ajout d'un éditeur,</li>
+		<li>Ajout d'une plateforme,</li>
+		<li>Ajout d'une catégorie,</li>
+		<li>Ajout d'une appréciation de commentaire,</li>
+		<li>Ajout d'un commentaire.</li>
    	</ul>
    </div>
 
@@ -14,7 +19,7 @@
        <li><a href="#ajout3" data-toggle="tab">Editeur</a></li>
        <li><a href="#ajout4" data-toggle="tab">Plateforme</a></li>
        <li><a href="#ajout5" data-toggle="tab">Catégorie</a></li>
-       <li><a href="#ajout6" data-toggle="tab">Appréciation</a></li>
+       <li><a href="#ajout6" data-toggle="tab">Appréciation de commentaire</a></li>
        <li><a href="#ajout7" data-toggle="tab">Commentaire</a></li>
    </ul>
 
@@ -205,11 +210,6 @@ echo "</table>";?>
 	     </form>
 	</div> 
    </div>
-
-
-
-
-
 
    </div> <!-- Tab panes -->
 </div> <!-- Container -->
