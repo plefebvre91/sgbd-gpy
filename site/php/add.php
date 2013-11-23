@@ -4,21 +4,32 @@
 // idPlateforme = selection avec (2)
 // idCategorie = selection avec (3)
 
-function add_game($name, $category, $platform, $editor){
+function add_game($name, $categories, $platforms, $editor){
   $id_category = get_category_by_name($category);
   $id_platform = get_plateform_by_name($platform);
   $id_editor = get_editor_by_name($editor);
 
-  $query = "INSERT INTO jeu VALUES ('', '$name', idEditeur);";
+  $query = "INSERT INTO jeu VALUES ('', '$name', idEditeur)";
   mysql_query($query) or die(mysql_error());
 
+  //Recuperation du dernier id de jeu insere
   $last_game_id = mysql_query("SELECT LAST_INSERT_ID() FROM jeu");
-  
-  $query = "INSERT INTO estDisponible VALUES ('$id_platform', '$last_game_id')";
-  mysql_query($query) or die(mysql_error());
-  
-  $query = "INSERT INTO appartient VALUES ('$id_category',  '$last_game_id)'";
-  mysql_query($query) or die(mysql_error());
+ 
+  //Construction de la requete d'insertion pour les plateformes
+  $query = "INSERT INTO estDisponible VALUES"; 
+  foreach ($platforms as $id_platform){
+    $query .= " ('$id_platform', '$last_game_id'),";
+  }
+  $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
+  mysql_query($query) or die(mysql_error()); 
+
+  //Construction de la requete d'insertion pour les categories
+  $query = "INSERT INTO appartient VALUES"; 
+  foreach ($categories as $id_category){
+    $query .= " ('$id_category', '$last_game_id'),";
+  }
+  $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
+  mysql_query($query) or die(mysql_error()); 
 }
 
 

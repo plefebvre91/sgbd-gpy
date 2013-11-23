@@ -108,7 +108,7 @@
 	$id = $boxes["idPlateforme"];
 	echo "<div class=\"checkbox\">
 	      	   <label>
-	      	   <input type=\"checkbox\" name=\"nomPlateForme\" value=\"$id\">$name</label>
+   <input type=\"checkbox\" name=\"idPlateforme[]\" value=\"$id\">$name</label>
 	      </div>\n";
   }
 ;?>
