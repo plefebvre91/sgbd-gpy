@@ -2,12 +2,12 @@
 require_once("php/include.php");
 db_connect();
 if(isset($_GET["action"])){
-    $page = $_GET["action"];
-    if(empty($page)){
-      $page = "accueil";
-    }
-    $page = $page.".php";
+  $page = $_GET["action"];
+  if(empty($page)){
+    $page = "accueil";
   }
+  $page = $page.".php";
+}
 else{
   $page = "accueil.php";
 }
@@ -33,17 +33,17 @@ if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <!-- Our CSS -->
-  <link href="css/style.css" rel="stylesheet">
-  <script src="js/jquery.js"></script>
-  <script src="js/base.js"></script>
-  <script src="js/select.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/base.js"></script>
+    <script src="js/select.js"></script>
     <script src="js/add.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
 
@@ -63,7 +63,7 @@ if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-	  <!-- Todo : Changer le active en fonction de la page -->
+	    <!-- Todo : Changer le active en fonction de la page -->
             <!-- <li class="active"><a href="index.php">Accueil</a></li> -->
             <li><a href="index.php?action=">Accueil</a></li>
             <li><a href="index.php?action=consultation">Consultation</a></li>
@@ -74,17 +74,17 @@ if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
             <li><a href="index.php?action=statistiques">Statistiques</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.php?action=about">&Agrave; propos...</a></li>
+            <li><a href="index.php?action=about">&Agrave; propos...</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
- <!-- Insertion de la partie variable de la page -->
+    <!-- Insertion de la partie variable de la page -->
 
- <?php require($page); ?>
+    <?php require($page); ?>
 
- <!-- Pied de page -->
+    <!-- Pied de page -->
     <div id="footer">
       <div class="container text-center">
         <p class="text-muted credit">Projet SGBD - dotgame</p>
