@@ -19,7 +19,7 @@ $category = secure_string($_GET["idCategorie"]);
 $platform = secure_string($_GET["idPlateforme"]);
 
 //Selection dans la base
-if(!add_player($login, $last_name, $first_name, $mail, $platform, $category)){
+if(!add_player($login, $last_name, $first_name, $mail, $category, $platform)){
   echo "Une erreur est survenue lors de l'ajout joueur";
   exit;
 }

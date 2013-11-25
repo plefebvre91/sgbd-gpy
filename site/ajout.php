@@ -53,8 +53,19 @@
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="idCategorie">Catégorie de jeu préférée (numéro de la catégorie)</label>
-	    <input type="text" name="idCategorie" id="idCategorie" class="form-control" placeholder="Saisissez le numéro de la catégorie préférée du joueur à ajouter ici..">
+	    <label>Catégorie de jeu préférée</label>
+	    <!-- Liste déroulante des catégories de jeu -->
+	    <select name="idCategorie" class="form-control">
+	      <?php
+	      $category = select_all("categorie");  
+	      while ($options = mysql_fetch_array($category)) {
+  		$name = $options["nomCategorie"];
+		$id = $options["idCategorie"];
+		echo "<option value=\"$id\">$name</option>";
+	      }
+	      ;?>
+	    </select>
+	    <!-- Fin de : Liste déroulante des catégories de jeu -->   
 	  </div>
 	  <div class="form-group">
 	    <label for="idPlateforme">Plateforme de jeu préférée (numéro de la plateforme)</label>
@@ -254,7 +265,7 @@
 
 	  
 	  <div class="form-group">
-	    <label for="idPlateforme">Jeu</label>
+	    <label for="idPlateforme">Plateforme</label>
 	    <input type="text" name="idPlateforme" id="idPlateforme" class="form-control" placeholder="Saisissez la plateforme concerné (ID)...">
 	  </div>
 
