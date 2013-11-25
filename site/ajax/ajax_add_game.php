@@ -12,16 +12,16 @@ if(!$err){
 
 //Protection des chaîne de caracteres
 $name = secure_string($_GET["nomJeu"]);
-$id_editor = secure_string($_GET["nomEditeur"]);
+$editor = secure_string($_GET["nomEditeur"]);
 $platforms = $_GET["idPlateforme"];
-//$categories = $_GET["idCategorie"];
+$categories = $_GET["idCategorie"];
 
 
-/* //Selection dans la base */
-/* if(!add_game($name, $categories, $platforms, $editor)){ */
-/*   echo "Une erreur est survenue lors de l'ajout jeu"; */
-/*   exit; */
-/* } */
+//Selection dans la base
+if(!add_game($name, $categories, $platforms, $editor)) {
+  echo "Une erreur est survenue lors de l'ajout jeu";
+  exit;
+}
 
 echo "Le jeu a bien été ajouté";
 

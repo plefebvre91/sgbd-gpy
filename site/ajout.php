@@ -66,7 +66,8 @@
 	</form>
       </div> 
     </div>
-    
+
+    <!--- AJOUT JEU -->    
     <div class="tab-pane" id="ajout2">
       <div class="container">
      	<p class="lead">Ajouter un jeu</p>
@@ -106,13 +107,28 @@
 	    while ($boxes = mysql_fetch_array($platforms)) {
   	      $name = $boxes["nomPlateForme"];
 	      $id = $boxes["idPlateforme"];
-	      echo "<div class=\"checkbox\">
-	      	   <label><input type=\"checkbox\" name=\"idPlateforme[]\" value=\"$id\">$name</label>
-	      </div>\n";
+	      echo "<div class=\"checkbox\">";
+	      echo "  <label><input type=\"checkbox\" name=\"idPlateforme[]\" value=\"$id\">$name</label>";
+	      echo "</div>\n";
 	    }
 	    ;?>
-	    
 	    <!-- Fin de : Façon avec cases à chocher des noms de plateformes -->   
+	  </div>
+	  <div class="form-group">
+	    <!-- Cases à chocher des noms de catégories -->
+	    <label>Catégorie</label>
+	    <p class="help-block">Cochez la (les) case(s) correspondant aux catégories à laquelle le jeu appartient.</p>
+	    <?php
+	    $categories = select_all("categorie");  
+	    while ($boxes = mysql_fetch_array($categories)) {
+  	      $name = $boxes["nomCategorie"];
+	      $id = $boxes["idCategorie"];
+	      echo "<div class=\"checkbox\">";
+	      echo "  <label><input type=\"checkbox\" name=\"idCategorie[]\" value=\"$id\">$name</label>";
+	      echo "</div>\n";
+	    }
+	    ;?>
+	    <!-- Fin de : Cases à chocher des noms de catégories -->   
 	  </div>
  	  
 	  <div class="form-group text-center">
