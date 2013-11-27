@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{geometry}
 %\geometry{top=80, bottom=80, left=80, right=80}
+\usepackage[normalem]{ulem}
 
 %%%%%%%%%%%%%%%% Lengths %%%%%%%%%%%%%%%%
 \setlength{\textwidth}{15.5cm}
@@ -83,17 +84,50 @@
 \end{figure}
 \maketitle
 
+\newenvironment{mld}
+{\par\begin{minipage}{\linewidth}\begin{tabular}{rp{\linewidth}}}
+{\end{tabular}\end{minipage}\par}
+\newcommand{\relat}[1]{\textsc{#1}}
+\newcommand{\attr}[1]{\emph{#1}}
+\newcommand{\prim}[1]{\uline{#1}}
+\newcommand{\foreign}[1]{\#\textsl{#1}}
+
 \newpage
 \tableofcontents
 \newpage
 
 \section*{Introduction}
 \indent L'objectif de ce projet est de compléter le cours de SGBD dispensé à l'ENSEIRB-Matmeca par une mise en pratique. Réalisé par un trinôme, ce projet a pour objectif de se confronter au développement d'une base de données. Ce document présente les différentes étapes relatives à ce projet, de la présentation du sujet à la réalisation d'une interface utilisateur. Il sera notamment explicité les problèmes relatifs à la modélisation et la réalisation des requêtes importantes.
+\\
+
+\indent Au niveau de l'implémentation, le choix MySQL + PHP a été fait.
 
 \section{Présentation du sujet}
 
-
 \section{Modélisation}
+
+\subsection{Modèle conceptuel}
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{MCD.png}
+\end{center}
+\end{figure}
+
+
+\subsection{Modèle relationnel}
+\begin{mld}
+  \relat{Joueur} & (\prim{pseudo}, \attr{nom}, \attr{prenom}, \attr{mail}, \foreign{idCategorie}, \foreign{idPlateforme})\\
+  \relat{Pouce} & (\prim{idPouce}, \attr{valeur}, \foreign{pseudo}, \foreign{idCommentaire})\\
+  \relat{Commentaire} & (\prim{idCommentaire}, \attr{note}, \attr{commentaire}, \attr{date}, \foreign{pseudo}, \foreign{idJeu}, \foreign{idPlateforme})\\
+  \relat{Categorie} & (\prim{idCategorie}, \attr{nomCategorie})\\
+  \relat{Jeu} & (\prim{idJeu}, \attr{nomJeu}, \foreign{idEditeur})\\
+  \relat{Plateforme} & (\prim{idPlateforme}, \attr{nomPlateforme})\\
+  \relat{Editeur} & (\prim{idEditeur}, \attr{nomEditeur})\\
+  \relat{Appartient} & (\prim{\foreign{idCategorie}, \foreign{idJeu}})\\
+  \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}})\\
+\end{mld}
+
+
 
 \section{Zoom sur les requêtes importantes}
 
