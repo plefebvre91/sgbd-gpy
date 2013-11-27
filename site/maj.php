@@ -77,7 +77,7 @@ db_connect();
 	  echo "<select name=\"nomPlateforme\" class=\"form-control\">";
 	  $platforms = select_all("plateforme");  
 	  while($options = mysql_fetch_array($platforms)) {
-  	    $name = $options["nomPlateForme"];
+  	    $name = $options["nomPlateforme"];
 	    if ($options["idPlateforme"] == $idPlateforme) {
 	      echo "<option value=\"$name\" selected>$name</option>";
 	    }
