@@ -17,16 +17,13 @@ function update_player($login, $last_name, $first_name, $mail, $category, $platf
 
 /* Pour le changement d'editeur */
 /* idEditeur = selection avec (1) */
-<<<<<<< HEAD
+
 function update_game($id, $name, $id_editor, $categories, $platforms){
   $result = true;
   
   $query = "DELETE FROM appatient, estDisponible WHERE idJeu='$id'";
   $result = $result && mysql_query($query) or die(mysql_error());
-  
-=======
-function update_game($id, $name, $id_editor){
->>>>>>> 875238fd37a7f7a2e97f86c86183a06bab25eda6
+ 
   $query = "UPDATE jeu SET nomJeu='$name', idEditeur='$id_editor' WHERE idJeu='$id'";
   $result = $result && mysql_query($query) or die(mysql_error());
   
