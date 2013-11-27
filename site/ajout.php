@@ -65,7 +65,7 @@
 	      <?php
 	      $platform = select_all("plateforme");  
 	      while ($options = mysql_fetch_array($platform)) {
-  		$name = $options["nomPlateForme"];
+  		$name = $options["nomPlateforme"];
 		$id = $options["idPlateforme"];
 		echo "<option value=\"$id\">$name</option>";
 	      }
@@ -118,7 +118,7 @@
 	    <?php
 	    $platforms = select_all("plateforme");  
 	    while ($boxes = mysql_fetch_array($platforms)) {
-  	      $name = $boxes["nomPlateForme"];
+  	      $name = $boxes["nomPlateforme"];
 	      $id = $boxes["idPlateforme"];
 	      echo "<div class=\"checkbox\">";
 	      echo "  <label><input type=\"checkbox\" name=\"idPlateforme[]\" value=\"$id\">$name</label>";

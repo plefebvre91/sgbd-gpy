@@ -31,7 +31,7 @@ commit;
 
 
 -- TABLE plateforme
--- insert into plateforme values (idPlateforme, nomPlateForme);
+-- insert into plateforme values (idPlateforme, nomPlateforme);
 
 insert into plateforme values (1 , 'PC Windows');
 insert into plateforme values (2 , 'Xbox');
