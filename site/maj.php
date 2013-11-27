@@ -150,14 +150,14 @@ db_connect();
 
 	  echo "<div class=\"form-group\">";
 	  echo "<label>Nom</label>";
-	  echo "<input type=\"text\" name=\"nom\" id=\"nom\" class=\"form-control\" placeholder=\"Saisissez le nom du jeu à ajouter ici..\" value=\"$nomJeu\">";
+	  echo "<input type=\"text\" name=\"nomJeu\" id=\"nom\" class=\"form-control\" placeholder=\"Saisissez le nom du jeu à ajouter ici..\" value=\"$nomJeu\">";
 	  echo "</div><!--form-group Nom-->";
 
 	  echo "<div class=\"form-group\">";
 
 	  echo "<!-- Liste déroulante des noms d'éditeurs -->";
 	  echo "<label>&Eacute;diteur du jeu</label>";
-	  echo "<select name=\"nomEditeur\" class=\"form-control\">";
+	  echo "<select name=\"idEditeur\" class=\"form-control\">";
 	  $editors = select_all("editeur");  
 	  while ($options = mysql_fetch_array($editors)) {
 	    $idEditeur = $options["idEditeur"];
