@@ -22,6 +22,8 @@
     <li><a href="#consultation3" data-toggle="tab">Requête 3</a></li>
     <li><a href="#consultation-jeu" data-toggle="tab">Jeux</a></li>
     <li><a href="#consultation-joueur" data-toggle="tab">Joueurs</a></li>
+    <li><a href="#consultation-plateforme" data-toggle="tab">Plateformes</a></li>
+    <li><a href="#consultation-editeur" data-toggle="tab">Editeurs</a></li>		
     <li><a href="#consultation-commentaire" data-toggle="tab">Commentaires</a></li>
     <li><a href="#consultation-pouce" data-toggle="tab">Appréciations de commentaires</a></li>
   </ul>
@@ -169,6 +171,67 @@
 
       </div> 
     </div><!--consultation-commentaire-->
+
+
+
+   <div class="tab-pane" id="consultation-plateforme">
+      <div class="container">
+	<?php
+	$platforms = select_all("plateforme");
+
+	echo "<table class=\"table table-striped\">";
+	echo "<tr>
+	<th>ID</th>
+     	<th>Plateforme</th>
+      </tr>\n";
+
+	while($att = mysql_fetch_array($platforms)){
+	  $id = $att["idPlateforme"];
+	  $name = $att["nomPlateforme"];
+	  
+	  echo "<tr>
+	  <td>$id</td>
+  	  <td>$name</td>
+       </tr>";
+	}
+
+	echo "</table>";
+	?>
+
+      </div> 
+    </div><!--consultation-plateforme-->
+
+
+
+   <div class="tab-pane" id="consultation-editeur">
+      <div class="container">
+	<?php
+	$editors = select_all("editeur");
+
+	echo "<table class=\"table table-striped\">";
+	echo "<tr>
+	<th>ID</th>
+     	<th>Editeur</th>
+      </tr>\n";
+
+	while($att = mysql_fetch_array($editors)){
+	  $id = $att["idEditeur"];
+	  $name = $att["nomEditeur"];
+	  
+	  echo "<tr>
+	  <td>$id</td>
+  	  <td>$name</td>
+       </tr>";
+	}
+
+	echo "</table>";
+	?>
+
+      </div> 
+    </div><!--consultation-editeur-->
+
+
+
 
     <div class="tab-pane" id="consultation-pouce">
       <div class="container">
