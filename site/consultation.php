@@ -85,11 +85,11 @@
 	  $id = $att["idJeu"];
 	  $name = $att["nomJeu"];
 	  $categories = get_game_categories($id);
-	  $platforms = get_game_platforms($id);
+//	  $platforms = get_game_platforms($id);
 	  echo "<tr>
         <td>$id</td>
         <td>$name</td>
-        <td>$platforms</td>
+  
         <td>$categories</td>
 	</tr>\n";
 	}
