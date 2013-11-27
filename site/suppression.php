@@ -55,18 +55,19 @@
       <div class="container">
 
 	<?php
-	$games = select_all("jeu");
-
+	//$games = select_all("jeu");
+	$games = mysql_query("SELECT * FROM jeu INNER JOINN plateforme");
 	echo "<table class=\"table table-striped\">";
 	echo "<tr><th>Jeu</th><th>Suppression</th></tr>";
 
 	while($att = mysql_fetch_array($games)){
-	  $id = $att["idJeu"];
+	  $id_game = $att["idJeu"];
 	  $name= $att["nomJeu"];
+	  $platform = $att["nomPlateforme"];
+	  $id_platform = $att["idPlateforme"];
 	  
-	  echo "<tr id=\"game$id\">
-        <td>$name</td>
-        <td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_game($id);\">Supprimer</button></td></tr>\n";
+	  echo "<tr id=\"game$id\">        <td>$name</td>        <td>$platform</td>
+        <td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_game($id_game, $id_platform);\">Supprimer</button></td></tr>\n";
 	}
 
 	echo "</table>"; ?>
