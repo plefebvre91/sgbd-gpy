@@ -88,6 +88,7 @@ CREATE TABLE appartient (
 CREATE TABLE estDisponible (
   idPlateforme int,
   idJeu        int,
+  dateSortie   date,
   CONSTRAINT pk_estDisponible  PRIMARY KEY(idPlateforme, idJeu)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
