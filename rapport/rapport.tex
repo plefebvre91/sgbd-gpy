@@ -149,6 +149,10 @@
 \indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un éditeur, auquel cas l'ensemble des jeux édités par cet éditeur seront également supprimés. Plus réalistement, un joueur pourra être supprimé de la table (l'exemple de la bannition d'un forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donné seront supprimés.
 
 \subsection{Modèle relationnel}
+\indent En considérant l'ensemble des associations, le passage au modèle relationnel ``naïf'' a seulement consisté a ajouter deux tables pour les deux ralations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mise dans les tables du côté unique. \\
+
+\indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (idJeu, idPlateforme) pour la table commentaire. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un idCommentaire a été ajouté. Par ailleurs, le choix initial de mettre un idJoueur a posé problème vis-à-vis d'une des contraintes explicitée auparavant. Avec un pseudo unique, il y avait rédondance de l'information. Le pseudo du joueur a alors constitué sa clé primaire. Au final voici le modèle relationnel retenu. \\
+
 \begin{mld}
   \relat{Joueur} & (\prim{pseudo}, \attr{nom}, \attr{prenom}, \attr{mail}, \foreign{idCategorie}, \foreign{idPlateforme})\\
   \relat{Pouce} & (\prim{idPouce}, \attr{valeur}, \foreign{pseudo}, \foreign{idCommentaire})\\
@@ -158,18 +162,24 @@
   \relat{Plateforme} & (\prim{idPlateforme}, \attr{nomPlateforme})\\
   \relat{Editeur} & (\prim{idEditeur}, \attr{nomEditeur})\\
   \relat{Appartient} & (\prim{\foreign{idCategorie}, \foreign{idJeu}})\\
-  \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}}, \attr{dateSortie})\\
+  \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}}, \attr{dateSortie})\\ \\
 \end{mld}
 
+\indent A noter que le modèle ci-dessus n'est pas en troisième forme normale. En effet, il est possible de connaître le nom et le prénom d'un joueur à partir de son adresse mail, qui n'est pas une clé primaire. Pour éviter ce problème, il aurait fallut créer une table informations en association avec la table joueur et contenant son nom et son prénom. Cependant, après discussion avec notre encadrant de projet, cette solution n'a pas été retenue pour plus de clarté quand à l'entité joueur.
 
 \newpage
 \section{Zoom sur les requêtes importantes}
-
+\subsection{Requêtes de consultation}
+\subsection{Requêtes de statistiques}
 \newpage
 \section{Interface: réalisation et utilisation}
+\subsection{Présentation générale de l'interface et de son environnement}
+\subsection{Problèmes - limites aux contraintes initialement fixées}
 
 \newpage
 \section*{Conclusion}
-\indent Ce projet a permis de mettre en oeuvre différentes techniques vues dans le module SGBD. Il a notamment permis de comprendre les différentes étapes nécessaires à la bonne création d'une base de données. Si le modèle conceptuel peut initialement sembler suffisant, la mise sous forme normale permet de déceler certains problèmes relatifs à l'intégrité de la base. 
+\indent Ce projet a permis de mettre en oeuvre différentes techniques vues dans le module SGBD. Il a notamment permis de comprendre les différentes étapes nécessaires à la bonne création d'une base de données. Si le modèle conceptuel peut initialement sembler suffisant, la mise sous forme normale permet de déceler certains problèmes relatifs à l'intégrité de la base. \\
+
+\indent Par ailleurs, ce projet permet de mettre en avant les difficultés que pose la modélisation d'une base de données. Si certaines données ont clairement leur place quel que soit la modélisation choisie, d'autres sont sujettes à discussion. Il s'agit alors de bien définir les contraintes pour permettre une des principales attentes d'une base de donnée: la cohérence.
 
 \end{document}
