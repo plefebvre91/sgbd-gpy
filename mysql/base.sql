@@ -105,3 +105,9 @@ ALTER TABLE jeu         ADD CONSTRAINT fk1_jeu         FOREIGN KEY (idEditeur)  
 										  					                     
 ALTER TABLE pouce       ADD CONSTRAINT fk1_pouce       FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo)	  ON DELETE CASCADE; 
 ALTER TABLE pouce       ADD CONSTRAINT fk2_pouce       FOREIGN KEY (idCommentaire) REFERENCES commentaire (idCommentaire) ON DELETE CASCADE; 
+
+
+CREATE OR REPLACE VIEW info_joueur AS
+       (SELECT nomJoueur, nom, prenom, mail, pseudo, nomCategorie, nomPlateforme 
+       FROM ((joueur INNER JOIN categorie ON joueur.idCategorie = categorie.idCategorie)
+       	    	     INNER JOIN plateforme ON joueur.idPlateforme = plateforme.idPlateforme));

@@ -104,7 +104,7 @@
       <div class="container">
 
 	<?php
-	$players = select_all("joueur");
+	$players = select_all("info_joueur");
 
 	echo "<table class=\"table table-striped\">";
 	echo "<tr><th>Pseudo</th><th>Nom</th><th>Prénom</th><th>Adresse mail</th><th>Plateforme préférée</th><th>Catégorie préférée</th></tr>";
@@ -114,12 +114,16 @@
 	  $last_name = $att["nom"];
 	  $first_name = $att["prenom"];
 	  $mail = $att["mail"];
-	  
+	  $category = $att["nomCategorie"];
+	  $platform = $att["nomPlateforme"];
 	  echo "<tr>
         <td>$id</td>
         <td>$last_name</td>
 	<td>$first_name</td>
         <td>$mail</td>
+        <td>$platform</td>
+        <td>$category</td>
+
 	</tr>\n";
 	}
 
