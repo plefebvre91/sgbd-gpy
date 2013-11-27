@@ -3,12 +3,9 @@
 \usepackage[french]{babel}
 \usepackage[latin1]{inputenc}
 \usepackage{amsmath,amssymb}
-%\usepackage[french]{algorithm2e}
 \usepackage{float}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
-\usepackage{geometry}
-%\geometry{top=80, bottom=80, left=80, right=80}
 \usepackage[normalem]{ulem}
 
 %%%%%%%%%%%%%%%% Lengths %%%%%%%%%%%%%%%%
@@ -97,22 +94,46 @@
 \newpage
 
 \section*{Introduction}
-\indent L'objectif de ce projet est de compléter le cours de SGBD dispensé à l'ENSEIRB-Matmeca par une mise en pratique. Réalisé par un trinôme, ce projet a pour objectif de se confronter au développement d'une base de données. Ce document présente les différentes étapes relatives à ce projet, de la présentation du sujet à la réalisation d'une interface utilisateur. Il sera notamment explicité les problèmes relatifs à la modélisation et la réalisation des requêtes importantes.
+\indent L'objectif de ce projet est de compléter le cours de SGBD dispensé à l'ENSEIRB-Matmeca par une mise en pratique. Réalisé par un trinôme, ce projet a pour objectif de se confronter au développement d'une base de donnéesrelationnelle. Ce document présente les différentes étapes relatives à ce projet, de la présentation du sujet à la réalisation d'une interface utilisateur. Il sera notamment explicité les problèmes relatifs à la modélisation et la réalisation des requêtes importantes.
 \\
 
-\indent Au niveau de l'implémentation, le choix MySQL + PHP a été fait.
+\indent Le choix pour l'environnement de travail a été des plus classiques: MySQL et PHP. Le site ainsi crée met en avant les différentes opérations réalisables sur la base de données.
 
 \section{Présentation du sujet}
+\indent La base de données à réaliser doit permettre de gérer une communauté de joueurs de jeux vidéos. Il est donc nécessaire de pouvoir gérer un ensemble de joueurs, un ensemble de jeux relatifs à certaines plateformes (type de console ou d'ordinateur) et à certaines catégories (Tir, Action \dots). Par ailleurs, un joueur doit pouvoir noter les différents jeux, par le biais de commentaires, et les autres joueurs doit pouvoir évaluer la pertinence du commentaire en question. Pour finir, un joueur doit pouvoir renseigner ses préférences: sa catégorie de jeu préférée et la plateforme sur laquelle il aime jouer.\\
+
+\indent D'un point de vue implémentation, il est demandé de réaliser des requêtes basiques de consultation, de mise à jour, d'ajout ou encore de suppression. Par ailleurs, certaines requêtes plus avancées sont requises, elles seront explicités plus tard dans ce document. \\
+
+\indent Le choix fait a été de réaliser l'ensemble des requêtes. Nous commencerons par étudier plus en détails les termes du sujet afin de fournir un modèle entité-association. Par la suite, nous présenterons le modèle relationnel avant de détailler l'implémentation avec MySQL et de présenter brièvement l'utilisation de notre interface graphique.
+\newpage
 
 \section{Modélisation}
+\indent Cette partie entend préciser les étapes nécessaires à l'implémentation de la base de données. Le modèle conceptuel retenu sera présenté, ainsi que le modèle relationnel en troisième forme normale et les différentes étapes ayant permis cette mise en forme.
 
 \subsection{Modèle conceptuel}
-\begin{figure}[!ht]
+\indent Réaliser le modèle conceptuel demande de préciser quelques demandes du sujet, mais aussi de faire de choix. Nous verrons ces différents choix avant de présenter les entités et de détailler les opérations autorisées sur chaque entité.
+
+\subsubsection{Contexte précis}
+\begin{itemize}
+\item Pour un joueur, le pseudonyme sera unique. Par ailleurs, la catégorie et la plateforme préférées devront obligatoirement être renseignées.
+\item Un jeu étant disponible sur plusieurs plateformes, sa date de parution sera relative à une plateforme donnée.
+\item Les joueurs doivent pouvoir noter les jeux, d'une note de 0 à 20 accompagnée d'un commentaire. Cependant, uun joueur ne pourra noter qu'une seule fois un jeu, et préciser alors la plateforme sur laquelle il y a joué.
+\item Les joueurs peuvent indiquer s'ils trouvent un commentaire pertinent ou non. On s'assurera qu'un joueur ne peut pas évaluer un commentaire qu'il a lui même émis.
+\end{itemize}
+
+
+\subsubsection{Entités}
+
+\subsubsection{Opérations autorisées}
+
+\newpage
+\begin{figure}[!h]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{MCD.png}
 \end{center}
+\caption{Modèle conceptuel}
 \end{figure}
-
+\newpage
 
 \subsection{Modèle relationnel}
 \begin{mld}
@@ -128,11 +149,13 @@
 \end{mld}
 
 
-
+\newpage
 \section{Zoom sur les requêtes importantes}
 
+\newpage
 \section{Interface: réalisation et utilisation}
 
+\newpage
 \section*{Conclusion}
 \indent Ce projet a permis de mettre en oeuvre différentes techniques vues dans le module SGBD. Il a notamment permis de comprendre les différentes étapes nécessaires à la bonne création d'une base de données. Si le modèle conceptuel peut initialement sembler suffisant, la mise sous forme normale permet de déceler certains problèmes relatifs à l'intégrité de la base. 
 
