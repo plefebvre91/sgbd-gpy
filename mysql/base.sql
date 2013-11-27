@@ -66,7 +66,7 @@ CREATE TABLE jeu (
 
 CREATE TABLE plateforme (
   idPlateforme  int NOT NULL AUTO_INCREMENT,
-  nomPlateForme VARCHAR(128),	
+  nomPlateforme VARCHAR(128),	
   CONSTRAINT pk_plateforme PRIMARY KEY(idPlateforme)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

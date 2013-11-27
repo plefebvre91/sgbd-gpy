@@ -31,7 +31,7 @@ function get_editor_by_name($name) {
 
 //Recupere l'id de la plateforme correspondant au nom (2)
 function get_platform_by_name($name) {
-	 $query = "SELECT idPlateforme FROM plateforme WHERE nomPlateForme='$name'";
+	 $query = "SELECT idPlateforme FROM plateforme WHERE nomPlateforme='$name'";
 	 $result = mysql_query($query)  or die(mysql_error());
 	 
 	 $t  = mysql_fetch_array($result);

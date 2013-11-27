@@ -5,7 +5,7 @@ $platforms = select_platforms();
 echo "<select name=\"nomPlateforme\" class=\"form-control\">";
 
 while($att = mysql_fetch_array($platforms)){
-  $name = $att["nomPlateForme"];
+  $name = $att["nomPlateforme"];
   echo "<option value=\"$name\">$name</option>";
 
 }
