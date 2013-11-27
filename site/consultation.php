@@ -80,14 +80,17 @@
 
 	echo "<table class=\"table table-striped\">";
 	echo "<tr><th>Nom</th><th>&Eacute;diteur</th><th>Plateforme</th><th>Catégorie</th></tr>";
-
+	
 	while($att = mysql_fetch_array($games)){
 	  $id = $att["idJeu"];
 	  $name = $att["nomJeu"];
-	  
+	  $categories = get_game_categories($id);
+	  $platforms = get_game_platforms($id);
 	  echo "<tr>
         <td>$id</td>
         <td>$name</td>
+        <td>$platforms</td>
+        <td>$categories</td>
 	</tr>\n";
 	}
 
