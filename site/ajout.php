@@ -259,17 +259,37 @@
 	    <input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo...">
 	  </div>
 
-	  
 	  <div class="form-group">
-	    <label for="idJeu">Jeu</label>
-	    <input type="text" name="idJeu" id="idJeu" class="form-control" placeholder="Saisissez le jeu concerné (ID)...">
+	  
+	    <!-- Liste déroulante des noms de jeux -->
+	    <label>Nom du jeu à commenter</label>
+	    <select name="idJeu" class="form-control">
+	      <?php
+	      $games = select_all("jeu");  
+	      while ($options = mysql_fetch_array($games)) {
+  		$name = $options["nomJeu"];
+		$id = $options["idJeu"];
+		echo "<option value=\"$id\">$name</option>";
+	      }
+	      ?>
+	    </select>
+	    <!-- Fin de : Liste déroulante des noms de jeux -->   
 	  </div>
+	  
 
-	  
 	  <div class="form-group">
-	    <label for="idPlateforme">Plateforme</label>
-	    <input type="text" name="idPlateforme" id="idPlateforme" class="form-control" placeholder="Saisissez la plateforme concernée (ID)...">
-	  </div>
+	    <label>Plateforme du jeu</label>
+	    <select name="idPlateforme" class="form-control">
+	      <?php
+	      $platforms = select_all("plateforme");
+	      while($options = mysql_fetch_array($platforms)) {
+  		$name = $options["nomPlateforme"];
+		$id = $options["idPlateforme"];
+		echo "<option value=\"$id\">$name</option>";
+	      }
+	      ?>
+	    </select>
+	  </div><!--form-group idPlateforme-->
 
 	  <div class="form-group text-center">
 	    <input type="submit" class="btn btn-warning btn-lg" id="btn-ajout6" value="Envoyer la requête">

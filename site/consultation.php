@@ -10,6 +10,7 @@
     <li><a href="#consultation3" data-toggle="tab">Requête 3</a></li>
     <li><a href="#consultation-jeu" data-toggle="tab">Jeux</a></li>
     <li><a href="#consultation-joueur" data-toggle="tab">Joueurs</a></li>
+    <li><a href="#consultation-categorie" data-toggle="tab">Catégories</a></li>
     <li><a href="#consultation-plateforme" data-toggle="tab">Plateformes</a></li>
     <li><a href="#consultation-editeur" data-toggle="tab">Editeurs</a></li>		
     <li><a href="#consultation-commentaire" data-toggle="tab">Commentaires</a></li>
@@ -160,6 +161,32 @@
       </div> 
     </div><!--consultation-commentaire-->
 
+   <div class="tab-pane" id="consultation-categorie">
+      <div class="container">
+	<?php
+	$categories = select_all("categorie");
+
+	echo "<table class=\"table table-striped\">";
+	echo "<tr>
+	<th>ID</th>
+     	<th>Catégorie</th>
+      </tr>\n";
+
+	while($att = mysql_fetch_array($categories)){
+	  $id = $att["idCategorie"];
+	  $name = $att["nomCategorie"];
+	  
+	  echo "<tr>
+	  <td>$id</td>
+  	  <td>$name</td>
+       </tr>";
+	}
+
+	echo "</table>";
+	?>
+
+      </div> 
+    </div><!--consultation-categorie-->
 
 
    <div class="tab-pane" id="consultation-plateforme">
