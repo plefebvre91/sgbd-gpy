@@ -118,13 +118,20 @@
 \item Pour un joueur, le pseudonyme sera unique. Par ailleurs, la catégorie et la plateforme préférées devront obligatoirement être renseignées.
 \item Un jeu étant disponible sur plusieurs plateformes, sa date de parution sera relative à une plateforme donnée.
 \item Les joueurs doivent pouvoir noter les jeux, d'une note de 0 à 20 accompagnée d'un commentaire. Cependant, uun joueur ne pourra noter qu'une seule fois un jeu, et préciser alors la plateforme sur laquelle il y a joué.
-\item Les joueurs peuvent indiquer s'ils trouvent un commentaire pertinent ou non. On s'assurera qu'un joueur ne peut pas évaluer un commentaire qu'il a lui même émis.
+\item Les joueurs peuvent indiquer s'ils trouvent un commentaire pertinent ou non. On s'assurera qu'un joueur ne peut pas évaluer un commentaire qu'il a lui même émis. De plus, un joueur ne pourra indiquer son avis qu'une fois par commentaire.
+\item Les dates devront être cohérentes. Elles le seront toutes par rapport à la date actuelle. De plus, les dates des commentaires relatifs à une plateforme donnée pour un jeu devront être plus récentes que la date de sortie du jeu sur la plateforme en question. 
 \end{itemize}
 
-
 \subsubsection{Entités}
-
-\subsubsection{Opérations autorisées}
+\indent A partir de l'ensemble des demandes initiales du sujet et des choix effectués, il est relativement aisé de décrire les différentes entités. Elles sont visibles dans le modèle conceptuel \ref{fig:mcd}. Les choix suivants ont été fait pour les associations: 
+\begin{itemize}
+\item Un joueur préfère une et une seule catégorie. Il en va de même pour la plateforme
+\item Une catégorie peut n'être préférée par personne, mais correspond au minimum à un jeu. Idem pour une plateforme.
+\item Un jeu peut poster plusieurs commentaires et en juger plusieurs.
+\item Un pouce se réfère à un unique commentaire et provient d'un joueur précis.
+\item Un commentaire concerne une plateforme et un jeu.
+\item Un éditeur peut éditer plusieurs jeux, mais doit au minimum en éditer un.
+\end{itemize}
 
 \newpage
 \begin{figure}[!h]
@@ -132,8 +139,14 @@
 \includegraphics[width=0.8\textwidth]{MCD.png}
 \end{center}
 \caption{Modèle conceptuel}
+\label{fig:mcd}
 \end{figure}
 \newpage
+
+\subsubsection{Opérations autorisées}
+\indent Il doit être possible d'ajouter l'ensemble des entités dans la base de données. Cependant, les requêtes d'ajout, de même que les requêtes de mise à jour, doivent être en respect avec certains choix présentés antérieurement, notamment quand aux cardinalités des associations. \\
+
+\indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un éditeur, auquel cas l'ensemble des jeux édités par cet éditeur seront également supprimés. Plus réalistement, un joueur pourra être supprimé de la table (l'exemple de la bannition d'un forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donné seront supprimés.
 
 \subsection{Modèle relationnel}
 \begin{mld}
@@ -145,7 +158,7 @@
   \relat{Plateforme} & (\prim{idPlateforme}, \attr{nomPlateforme})\\
   \relat{Editeur} & (\prim{idEditeur}, \attr{nomEditeur})\\
   \relat{Appartient} & (\prim{\foreign{idCategorie}, \foreign{idJeu}})\\
-  \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}})\\
+  \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}}, \attr{dateSortie})\\
 \end{mld}
 
 
