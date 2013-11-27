@@ -30,16 +30,13 @@ function delete_platform(id_platform){
 }
 
 function delete_game(id_game, id_platform){
-    var url = "ajax/ajax_delete_game.php";
-    var str_id = "#game"+id_game;
-
+    var str_id = "#g"+id_game+"-p"+id_platform;
     $("#result").html("Chargement...");
-
-    var request = $.get(url, {id_game: id_game, id_platform: id_platform});
+    var request = $.get("ajax/ajax_delete_game.php", {game: id_game, platform: id_platform});
     request.fail(failure);
     request.done(
 	function(msg){
-	    success(str_id, msg); 
+	    $("#result").html(msg); 
 	    $(str_id).fadeOut('slow');
 	    });
 
