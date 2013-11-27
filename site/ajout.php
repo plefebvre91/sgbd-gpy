@@ -124,7 +124,7 @@
 	      echo "  <label><input type=\"checkbox\" name=\"idPlateforme[]\" value=\"$id\">$name</label>";
 	      echo "</div>\n";
 	    }
-	    ;?>
+	    ?>
 	    <!-- Fin de : Façon avec cases à chocher des noms de plateformes -->   
 	  </div>
 	  <div class="form-group">
@@ -211,7 +211,7 @@
 	echo "<th>Auteur</th>";
 	echo "<th>Date</th>";
 	echo "<th>Note</th>";
-	echo "<th align=\"center\">Appreciation</th></tr>";
+	echo "<th align=\"center\">Appréciation</th></tr>";
 
 	while($att = mysql_fetch_array($comments)){
 	  $id = $att["idCommentaire"];
