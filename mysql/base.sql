@@ -94,14 +94,14 @@ CREATE TABLE estDisponible (
 
 -- Définitions des clés étrangères
 
-ALTER TABLE joueur      ADD CONSTRAINT fk1_joueur      FOREIGN KEY (idCategorie)   REFERENCES categorie   (idCategorie)   ON DELETE CASCADE; 
-ALTER TABLE joueur      ADD CONSTRAINT fk2_joueur      FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme)  ON DELETE CASCADE; 
+ALTER TABLE joueur      ADD CONSTRAINT fk1_joueur      FOREIGN KEY (idCategorie)   REFERENCES categorie   (idCategorie); 
+ALTER TABLE joueur      ADD CONSTRAINT fk2_joueur      FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme); 
 										  					                     
 ALTER TABLE commentaire ADD CONSTRAINT fk1_commentaire FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo)	  ON DELETE CASCADE; 
 ALTER TABLE commentaire ADD CONSTRAINT fk2_commentaire FOREIGN KEY (idJeu)         REFERENCES jeu         (idJeu)	  ON DELETE CASCADE; 
 ALTER TABLE commentaire ADD CONSTRAINT fk3_commentaire FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme)  ON DELETE CASCADE; 
 										  					                     
-ALTER TABLE jeu         ADD CONSTRAINT fk1_jeu         FOREIGN KEY (idEditeur)     REFERENCES editeur     (idEditeur)     ON DELETE CASCADE; 
+ALTER TABLE jeu         ADD CONSTRAINT fk1_jeu         FOREIGN KEY (idEditeur)     REFERENCES editeur     (idEditeur); 
 										  					                     
 ALTER TABLE pouce       ADD CONSTRAINT fk1_pouce       FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo)	  ON DELETE CASCADE; 
 ALTER TABLE pouce       ADD CONSTRAINT fk2_pouce       FOREIGN KEY (idCommentaire) REFERENCES commentaire (idCommentaire) ON DELETE CASCADE; 
