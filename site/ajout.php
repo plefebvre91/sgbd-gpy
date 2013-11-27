@@ -1,15 +1,6 @@
 <div class="container">
   <div class="well top-message">
     <p>Cliquez sur les différents onglets pour accéder aux requêtes d'ajout.</p>
-    <ul>
-      <li>Ajout d'un joueur,</li>
-      <li>Ajout d'un jeu,</li>
-      <li>Ajout d'un éditeur,</li>
-      <li>Ajout d'une plateforme,</li>
-      <li>Ajout d'une catégorie,</li>
-      <li>Ajout d'une appréciation de commentaire,</li>
-      <li>Ajout d'un commentaire.</li>
-    </ul>
   </div>
 
   <!-- Nav tabs -->
@@ -277,7 +268,7 @@
 	  
 	  <div class="form-group">
 	    <label for="idPlateforme">Plateforme</label>
-	    <input type="text" name="idPlateforme" id="idPlateforme" class="form-control" placeholder="Saisissez la plateforme concerné (ID)...">
+	    <input type="text" name="idPlateforme" id="idPlateforme" class="form-control" placeholder="Saisissez la plateforme concernée (ID)...">
 	  </div>
 
 	  <div class="form-group text-center">

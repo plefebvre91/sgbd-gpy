@@ -1,18 +1,6 @@
 <div class="container">
   <div class="well top-message">
     <p>Cliquez sur les différents onglets pour accéder aux requêtes de consultation.</p>
-
-    <ul>
-      <li>L'ensemble des jeux critiqués disponibles sur une plateforme donnée, classés par catégorie,</li>
-      <li>Pour un joueur donné, la liste des commentaires se référant à un jeu dans sa catégorie préférée, disponible sur sa plateforme préférée,</li>
-      <li>Pour un commentaire, la liste des joueurs qui l'ont apprécié.</li>
-    </ul>
-    <ul>
-      <li>La liste de tous les jeux,</li>
-      <li>La liste de tous les joueurs,</li>
-      <li>La liste de tous les commentaires,</li>
-      <li>La liste de toutes les appréciations de commentaires.</li>
-    </ul>
   </div>
 
   <!-- Nav tabs -->
