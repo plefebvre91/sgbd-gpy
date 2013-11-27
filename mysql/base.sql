@@ -67,6 +67,7 @@ CREATE TABLE jeu (
 CREATE TABLE plateforme (
   idPlateforme  int NOT NULL AUTO_INCREMENT,
   nomPlateforme VARCHAR(128),	
+--  dateSortie date,
   CONSTRAINT pk_plateforme PRIMARY KEY(idPlateforme)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -108,6 +109,6 @@ ALTER TABLE pouce       ADD CONSTRAINT fk2_pouce       FOREIGN KEY (idCommentair
 
 
 CREATE OR REPLACE VIEW info_joueur AS
-       (SELECT nomJoueur, nom, prenom, mail, pseudo, nomCategorie, nomPlateforme 
+       (SELECT nom, prenom, mail, pseudo, nomCategorie, nomPlateforme 
        FROM ((joueur INNER JOIN categorie ON joueur.idCategorie = categorie.idCategorie)
        	    	     INNER JOIN plateforme ON joueur.idPlateforme = plateforme.idPlateforme));

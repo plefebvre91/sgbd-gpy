@@ -80,11 +80,11 @@ function get_game_categories($id){
 
 
 function get_game_platforms($id){
-  $query = "SELECT nomPlateforme FROM ((jeu INNER JOIN estDisponible ON jeu.idJeu = estDisponible.idJeu) INNER JOIN plateforme  ON plateforme.idPlateforme = estDisponible.idPlateforme) WHERE jeu.idJeu = '$id'";
+  $query = "SELECT nomPlateforme, dateSortie FROM ((jeu INNER JOIN estDisponible ON jeu.idJeu = estDisponible.idJeu) INNER JOIN plateforme  ON plateforme.idPlateforme = estDisponible.idPlateforme) WHERE jeu.idJeu = '$id'";
   $result = mysql_query($query)  or die(mysql_error());
   $categories = "";
   while($att  = mysql_fetch_array($result)){
-    $categories .= $att["nomPlateforme"]."<br/>";
+    $categories .= $att["nomPlateforme"]."(".$att["dateSortie"].")<br/>";
   }
   
   return $categories;
