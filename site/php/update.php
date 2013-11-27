@@ -17,8 +17,7 @@ function update_player($login, $last_name, $first_name, $mail, $category, $platf
 
 /* Pour le changement d'editeur */
 /* idEditeur = selection avec (1) */
-function update_game($id, $name, $editor){
-  $id_editor = get_editor_by_name($editor);
+function update_game($id, $name, $id_editor){
   $query = "UPDATE jeu SET nomJeu='$name', idEditeur='$id_editor' WHERE idJeu='$id'";
 
   $result = mysql_query($query) or die(mysql_error());
