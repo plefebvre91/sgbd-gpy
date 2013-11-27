@@ -151,7 +151,7 @@
 \subsection{Modèle relationnel}
 \indent En considérant l'ensemble des associations, le passage au modèle relationnel ``naïf'' a seulement consisté a ajouter deux tables pour les deux ralations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mise dans les tables du côté unique. \\
 
-\indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (idJeu, idPlateforme) pour la table commentaire. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un idCommentaire a été ajouté. Par ailleurs, le choix initial de mettre un idJoueur a posé problème vis-à-vis d'une des contraintes explicitée auparavant. Avec un pseudo unique, il y avait rédondance de l'information. Le pseudo du joueur a alors constitué sa clé primaire. Au final voici le modèle relationnel retenu. \\
+\indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (idJeu, idPlateforme) pour la table commentaire. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un idCommentaire a été ajouté. Par ailleurs, le choix initial de mettre un idJoueur a posé problème vis-à-vis d'une des contraintes explicitée auparavant. Avec un pseudo unique, il y avait rédondance de l'information. Le pseudo du joueur a alors constitué sa clé primaire. Au final voici le modèle relationnel retenu: \\
 
 \begin{mld}
   \relat{Joueur} & (\prim{pseudo}, \attr{nom}, \attr{prenom}, \attr{mail}, \foreign{idCategorie}, \foreign{idPlateforme})\\
@@ -169,8 +169,58 @@
 
 \newpage
 \section{Zoom sur les requêtes importantes}
+\indent Plusieurs requêtes étaient explicitement demandées dans le sujet. Nous commencerons par détailler certaines requêtes de consultation avant de voir celles de statistiques puis étudier le cas de la mise à jour.
+
 \subsection{Requêtes de consultation}
+\subsubsection{Ensemble des jeux critiqués sur une plateforme donnée}
+  %% $query = " SELECT res.nomJeu, categorie.nomCategorie FROM categorie INNER JOIN
+  %%       (SELECT jeu.*, appartient.idCategorie FROM jeu LEFT OUTER JOIN appartient
+  %%       	       ON jeu.idJeu = appartient.idJeu
+  %%       	       WHERE jeu.idJeu IN
+  %%       	       	     (SELECT jeu.idJeu FROM jeu INNER JOIN estDisponible ON jeu.idJeu = estDisponible.idJeu
+  %%                    	     WHERE estDisponible.idPlateforme IN
+  %%            	             	   (SELECT plateforme.idPlateforme FROM plateforme INNER JOIN estDisponible
+  %%              	       			       ON plateforme.idPlateforme = estDisponible.idPlateforme
+  %%       				       WHERE plateforme.nomPlateforme = '$platform')
+  %%                 	     AND jeu.idJeu IN
+  %%                            	   (SELECT jeu.idJeu FROM commentaire INNER JOIN jeu
+  %%            	     	       	    	  ON jeu.idJeu = commentaire.idJeu))) as res
+  %%       ON categorie.idCategorie = res.idCategorie
+  %%        ORDER BY categorie.nomCategorie ASC";
+
+\subsubsection{Liste des commentaires pour une catégorie et une plateforme données}
+\indent Chaque joueur est obligé d'indiquer une catégorie préférée ainsi qu'une plateforme préférée. Il peut donc être intéressant pour lui de savoir rapidement ce que pensent les autres jours des jeux existants avec ces deux contraintes. \\
+
+\indent On commence par faire une jointure interne entre les tables commentaire et jeu avec la contrainte d'avoir le même idJeu. On ajoute la contrainte que cet idJeu soit également dans une sélection de jeux correspondant à la catégorie et la plateforme préférées du joueur. Pour cela, on fait une jointure interne avec la table appartient pour la catégorie, et pour la plateforme on vérifie la cohérence entre la table commentaire et la table joueur, qui contiennent toutes idPlateforme.
+
+\subsubsection{Liste des joueurs ayant apprécié un commentaire}
+\indent Il suffit ici de faire une double jointure interne entre les tables joueur, pouce et commentaire. Les pouce positifs pour un commentaire donné sont retenus et on peut alors accéder au joueur ayant émis cet avis.
+
 \subsection{Requêtes de statistiques}
+\subsubsection{Classement des joueurs selon leur nombre de commentaires}
+\indent Le nombre de commentaires par joueur est disponible avec une jointure interne entre les tables joueur et commentaire. En utilisant le schméma ``count (*) group by'', on peut compter ce nombre de commentaire et les classer avec un ``order by count(*) desc''.
+
+\subsubsection{n commentaires les plus récents}
+\indent Pour recenser les $n$ plus récents commentaires, on peut se baser sur leur date d'émission. Avec MySQL il est possible de limiter en nombre d'éléments un tri avec un ``order by * desc limit n''.
+
+\subsubsection{Commentaire laissant le moins indifférent}
+\indent Pour cette requête on renverra le ou les commentaire(s) laissant le moins indifférent. On commence par rechercher dans la table pouce le nombre maximal d'avis sur un commentaire. Il est ensuite possible de récupérer l'ensemble des identifiants de commentaire, dans la table pouce, ayant ce nombre maximal d'avis. Pour finir, avec une jointure interne avec la table commentaire, l'accès aux commentaires est possible.
+
+\subsubsection{Classement des commentaires selon leur indice de confiance}
+\indent Chaque commentaire possède un indice de confiance. Soit $c$ le nombre d'appréciations positives d'un commentaire et $d$ son nombre d'appréciations négatives. L'indice de confiance correspond alors au rapport:
+\begin{equation}
+  \frac{1+c}{1+d}
+\end{equation}
+  %% $query = "SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlateforme, (1 + res.c)/(1 + res.d) AS indiceConfiance FROM (
+  %%      SELECT commentaire.*, SUM(IF(pouce.valeur = '+', 1, 0)) AS c, SUM(IF(pouce.valeur = '-', 1, 0)) AS d
+  %%      FROM commentaire LEFT OUTER JOIN pouce ON commentaire.idCommentaire = pouce.idCommentaire
+  %%      GROUP BY commentaire.idCommentaire) AS res
+  %%      ORDER BY (1 + res.c)/(1 + res.d) DESC, res.dateCommentaire DESC";
+
+
+\subsection{Requêtes de mise à jour}
+
+
 \newpage
 \section{Interface: réalisation et utilisation}
 \subsection{Présentation générale de l'interface et de son environnement}
