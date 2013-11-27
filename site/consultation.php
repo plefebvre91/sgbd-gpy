@@ -1,18 +1,6 @@
 <div class="container">
   <div class="well top-message">
     <p>Cliquez sur les différents onglets pour accéder aux requêtes de consultation.</p>
-
-    <ul>
-      <li>L'ensemble des jeux critiqués disponibles sur une plateforme donnée, classés par catégorie,</li>
-      <li>Pour un joueur donné, la liste des commentaires se référant à un jeu dans sa catégorie préférée, disponible sur sa plateforme préférée,</li>
-      <li>Pour un commentaire, la liste des joueurs qui l'ont apprécié.</li>
-    </ul>
-    <ul>
-      <li>La liste de tous les jeux,</li>
-      <li>La liste de tous les joueurs,</li>
-      <li>La liste de tous les commentaires,</li>
-      <li>La liste de toutes les appréciations de commentaires.</li>
-    </ul>
   </div>
 
   <!-- Nav tabs -->
@@ -22,6 +10,9 @@
     <li><a href="#consultation3" data-toggle="tab">Requête 3</a></li>
     <li><a href="#consultation-jeu" data-toggle="tab">Jeux</a></li>
     <li><a href="#consultation-joueur" data-toggle="tab">Joueurs</a></li>
+    <li><a href="#consultation-categorie" data-toggle="tab">Catégories</a></li>
+    <li><a href="#consultation-plateforme" data-toggle="tab">Plateformes</a></li>
+    <li><a href="#consultation-editeur" data-toggle="tab">Editeurs</a></li>		
     <li><a href="#consultation-commentaire" data-toggle="tab">Commentaires</a></li>
     <li><a href="#consultation-pouce" data-toggle="tab">Appréciations de commentaires</a></li>
   </ul>
@@ -89,14 +80,17 @@
 
 	echo "<table class=\"table table-striped\">";
 	echo "<tr><th>Nom</th><th>&Eacute;diteur</th><th>Plateforme</th><th>Catégorie</th></tr>";
-
+	
 	while($att = mysql_fetch_array($games)){
 	  $id = $att["idJeu"];
 	  $name = $att["nomJeu"];
-	  
+	  $categories = get_game_categories($id);
+//	  $platforms = get_game_platforms($id);
 	  echo "<tr>
         <td>$id</td>
         <td>$name</td>
+  
+        <td>$categories</td>
 	</tr>\n";
 	}
 
@@ -110,7 +104,7 @@
       <div class="container">
 
 	<?php
-	$players = select_all("joueur");
+	$players = select_all("info_joueur");
 
 	echo "<table class=\"table table-striped\">";
 	echo "<tr><th>Pseudo</th><th>Nom</th><th>Prénom</th><th>Adresse mail</th><th>Plateforme préférée</th><th>Catégorie préférée</th></tr>";
@@ -120,12 +114,16 @@
 	  $last_name = $att["nom"];
 	  $first_name = $att["prenom"];
 	  $mail = $att["mail"];
-	  
+	  $category = $att["nomCategorie"];
+	  $platform = $att["nomPlateforme"];
 	  echo "<tr>
         <td>$id</td>
         <td>$last_name</td>
 	<td>$first_name</td>
         <td>$mail</td>
+        <td>$platform</td>
+        <td>$category</td>
+
 	</tr>\n";
 	}
 
@@ -169,6 +167,93 @@
 
       </div> 
     </div><!--consultation-commentaire-->
+
+   <div class="tab-pane" id="consultation-categorie">
+      <div class="container">
+	<?php
+	$categories = select_all("categorie");
+
+	echo "<table class=\"table table-striped\">";
+	echo "<tr>
+	<th>ID</th>
+     	<th>Catégorie</th>
+      </tr>\n";
+
+	while($att = mysql_fetch_array($categories)){
+	  $id = $att["idCategorie"];
+	  $name = $att["nomCategorie"];
+	  
+	  echo "<tr>
+	  <td>$id</td>
+  	  <td>$name</td>
+       </tr>";
+	}
+
+	echo "</table>";
+	?>
+
+      </div> 
+    </div><!--consultation-categorie-->
+
+
+   <div class="tab-pane" id="consultation-plateforme">
+      <div class="container">
+	<?php
+	$platforms = select_all("plateforme");
+
+	echo "<table class=\"table table-striped\">";
+	echo "<tr>
+	<th>ID</th>
+     	<th>Plateforme</th>
+      </tr>\n";
+
+	while($att = mysql_fetch_array($platforms)){
+	  $id = $att["idPlateforme"];
+	  $name = $att["nomPlateforme"];
+	  
+	  echo "<tr>
+	  <td>$id</td>
+  	  <td>$name</td>
+       </tr>";
+	}
+
+	echo "</table>";
+	?>
+
+      </div> 
+    </div><!--consultation-plateforme-->
+
+
+
+   <div class="tab-pane" id="consultation-editeur">
+      <div class="container">
+	<?php
+	$editors = select_all("editeur");
+
+	echo "<table class=\"table table-striped\">";
+	echo "<tr>
+	<th>ID</th>
+     	<th>Editeur</th>
+      </tr>\n";
+
+	while($att = mysql_fetch_array($editors)){
+	  $id = $att["idEditeur"];
+	  $name = $att["nomEditeur"];
+	  
+	  echo "<tr>
+	  <td>$id</td>
+  	  <td>$name</td>
+       </tr>";
+	}
+
+	echo "</table>";
+	?>
+
+      </div> 
+    </div><!--consultation-editeur-->
+
+
+
 
     <div class="tab-pane" id="consultation-pouce">
       <div class="container">

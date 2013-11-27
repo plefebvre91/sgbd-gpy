@@ -67,4 +67,29 @@ function get_login_from_id($id){
   return $t["pseudo"];
 }
 
+function get_game_categories($id){
+  $query = "SELECT nomCategorie FROM ((jeu INNER JOIN appartient ON jeu.idJeu = appartient.idJeu) INNER JOIN categorie ON categorie.idCategorie = appartient.idCategorie) WHERE jeu.idJeu = '$id'";
+  $result = mysql_query($query)  or die(mysql_error());
+  $categories = "";
+  while($att  = mysql_fetch_array($result)){
+    $categories .= $att["nomCategorie"]."<br/>";
+  }
+  
+  return $categories;
+}
+
+
+function get_game_platforms($id){
+  $query = "SELECT nomPlateforme, dateSortie FROM ((jeu INNER JOIN estDisponible ON jeu.idJeu = estDisponible.idJeu) INNER JOIN plateforme  ON plateforme.idPlateforme = estDisponible.idPlateforme) WHERE jeu.idJeu = '$id'";
+  $result = mysql_query($query)  or die(mysql_error());
+  $categories = "";
+  while($att  = mysql_fetch_array($result)){
+    $categories .= $att["nomPlateforme"]."(".$att["dateSortie"].")<br/>";
+  }
+  
+  return $categories;
+}
+
+
+
 ?>

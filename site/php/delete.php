@@ -8,8 +8,8 @@ function delete_comment($id){
 }
 
 //Supprime le jeu ayant l'id correspondant (et les champs des tables qui en dependent)
-function delete_game($id){
-  $query = "DELETE FROM jeu WHERE idJeu = '$id'";
+function delete_game($id_game, $id_platform){
+  $query = "DELETE FROM jeu WHERE idJeu = '$id_game'";
   $result = mysql_query($query) or die(mysql_error());
 
   return $result;

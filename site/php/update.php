@@ -17,11 +17,31 @@ function update_player($login, $last_name, $first_name, $mail, $category, $platf
 
 /* Pour le changement d'editeur */
 /* idEditeur = selection avec (1) */
-function update_game($id, $name, $editor){
-  $id_editor = get_editor_by_name($editor);
-  $query = "UPDATE jeu SET nomJeu='$name', idEditeur='$id_editor' WHERE idJeu='$id'";
 
-  $result = mysql_query($query) or die(mysql_error());
+function update_game($id, $name, $id_editor, $categories, $platforms){
+  $result = true;
+  
+  $query = "DELETE FROM appatient, estDisponible WHERE idJeu='$id'";
+  $result = $result && mysql_query($query) or die(mysql_error());
+ 
+  $query = "UPDATE jeu SET nomJeu='$name', idEditeur='$id_editor' WHERE idJeu='$id'";
+  $result = $result && mysql_query($query) or die(mysql_error());
+  
+  //Construction de la requete d'insertion pour les plateformes
+  $query = "INSERT INTO estDisponible VALUES";
+  foreach ($platforms as $id_platform){
+    $query .= " ('$id_platform', '$last_game_id'),";
+  }
+  $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
+  $result = $result && ( mysql_query($query) or die(mysql_error()) );
+
+  //Construction de la requete d'insertion pour les categories
+  $query = "INSERT INTO appartient VALUES"; 
+  foreach ($categories as $id_category){
+    $query .= " ('$id_category', '$last_game_id'),";
+  }
+  $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
+  $result = $result && ( mysql_query($query) or die(mysql_error()) );
   
   return $result;
 }
