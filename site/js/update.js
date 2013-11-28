@@ -23,7 +23,7 @@ function update_comment(idCommentaire){
     var resultId = "#result-commentaire-"+idCommentaire;
     $(resultId).html(idCommentaire + " - Chargement...");
     var formId = "#form-maj-commentaire-"+idCommentaire;
-    var request = $.get("ajax/ajax_update_comment.php", $(formId).serialize());
+    var request = $.get("ajax/ajax_update_comment.php", $(formId).serialize()+"&idCommentaire="+idCommentaire);
     request.done(function(msg){$(resultId).html("Commentaire "+ idCommentaire + " - " + msg);
 			       $(resultId).collapse("hide");});
     request.fail(failure);

@@ -50,9 +50,8 @@ function update_game($id, $name, $id_editor, $categories, $platforms){
 /* Mise a jour d'un commentaire */
 /* Pour le changement d'editeur */
 /* idPlateforme = selection avec (2) */
-function update_comment($id, $mark, $comment, $platform){
-  $id_platform = get_platform_by_name($platform);
-  $query = "UPDATE commentaire SET note='$mark', commentaire='$comment', idPlateforme='$id_platform' WHERE idCommentaire='$id'";
+function update_comment($id, $mark, $comment, $login, $id_game, $id_platform){
+  $query = "UPDATE commentaire SET note='$mark', commentaire='$comment', idPlateforme='$id_platform', idJeu='$id_game', pseudo='$login' WHERE idCommentaire='$id'";
 
   $result = mysql_query($query) or die(mysql_error());
   
