@@ -111,5 +111,11 @@ ALTER TABLE pouce       ADD CONSTRAINT fk2_pouce       FOREIGN KEY (idCommentair
 
 CREATE OR REPLACE VIEW info_joueur AS
        (SELECT nom, prenom, mail, pseudo, nomCategorie, nomPlateforme 
-       FROM ((joueur INNER JOIN categorie ON joueur.idCategorie = categorie.idCategorie)
-       	    	     INNER JOIN plateforme ON joueur.idPlateforme = plateforme.idPlateforme));
+       FROM ((joueur NATURAL JOIN categorie)
+       	    	     NATURAL JOIN plateforme));
+
+CREATE OR REPLACE VIEW info_commentaires AS
+       (SELECT idCommentaire, idJeu, idPlateforme, commentaire, note, dateCommentaire, pseudo, nomJeu, nomPlateforme
+       FROM ((commentaire NATURAL JOIN plateforme) 
+       	    		  NATURAL JOIN jeu));
+

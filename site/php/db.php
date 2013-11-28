@@ -4,7 +4,7 @@ include("config.php");
 
 function db_connect(){
   global $_DB_HOST, $_DB_USER, $_DB_PASSWORD, $_DB_NAME;
-  $connection = mysql_connect($_DB_HOST, $_DB_USER, $_DB_PASSWORD);
+  $connection = mysql_pconnect($_DB_HOST, $_DB_USER, $_DB_PASSWORD);
   if(!$connection){
     die("Connexion impossible :".mysql_error());
   }

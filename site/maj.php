@@ -25,11 +25,11 @@ db_connect();
       <div class="container">
 
 	<p class="lead">Mise à jour d'un joueur.</p>
-
+	<div class="panel-group" id="accordion">
 	<?php
 	$players = select_all("joueur");
 
-	echo "<div class=\"panel-group\" id=\"accordion\">";
+
 
 	while ($att = mysql_fetch_array($players)) {
 	  $id = $att["pseudo"];
@@ -38,6 +38,7 @@ db_connect();
 	  $mail = $att["mail"];
 	  $idPlateforme = $att["idPlateforme"];
 	  $idCategorie = $att["idCategorie"];
+	  
 	  
 	  echo "<div class=\"panel panel-default\">";
 	  echo "<div class=\"panel-heading\">";
@@ -194,7 +195,7 @@ db_connect();
 	<p class="lead">Mise à jour d'un commentaire.</p>
 
 	<?php
-	$comments = select_all("commentaire");
+	$comments = select_all("info_commentaires");
 
 	echo "<div class=\"panel-group\" id=\"accordion\">";
 
