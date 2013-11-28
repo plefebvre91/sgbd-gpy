@@ -18,6 +18,7 @@
   <div id="result" class="alert alert-warning"></div>
   <div class="tab-content">
 
+    <!--- AJOUT JOUEUR -->    
     <div class="tab-pane active" id="ajout1">
       <div class="container">
 
@@ -124,11 +125,11 @@
 	      echo "</div>";
 	      echo "</div>";
 	      echo "<div class=\"col-xs-3\">";
-	      echo "<input type=\"text\" class=\"form-control\" maxlength=\"10\" placeholder=\"Date de sortie au format AAAA-MM-JJ\">";
+	      echo "<input type=\"text\" name=\"dateSortie[]\"class=\"form-control\" maxlength=\"10\" placeholder=\"Date de sortie au format AAAA-MM-JJ\">";
 	      echo "</div>";
 	      echo "<div class=\"col-xs-7\">";
 	      echo "</div>";
-	      echo "</div>";	      
+	      echo "</div><!-- row -->";	      
 	      echo"</div><!-- /form-group -->\n";
 	    }
 	    ?>

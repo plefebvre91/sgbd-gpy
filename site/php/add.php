@@ -4,7 +4,7 @@
 // idPlateforme = selection avec (2)
 // idCategorie = selection avec (3)
 
-function add_game($name, $categories, $platforms, $editor){
+function add_game($name, $categories, $platforms, $editor, $dates){
   // $id_category = get_category_by_name($categories);
   // $id_platform = get_platform_by_name($platforms);
 
@@ -15,20 +15,23 @@ function add_game($name, $categories, $platforms, $editor){
   $result = $result && ( mysql_query($query) or die(mysql_error()) );
 
   // Recuperation de l'id de jeu insere
-  $last_game_id = mysql_fetch_array( mysql_query("SELECT idJeu FROM jeu WHERE nomJeu = '$name'") )["idJeu"];
+  $game_id = mysql_fetch_array( mysql_query("SELECT idJeu FROM jeu WHERE nomJeu = '$name'") )["idJeu"];
   
-  //Construction de la requete d'insertion pour les plateformes
+  // Construction de la requete d'insertion pour les plateformes
   $query = "INSERT INTO estDisponible VALUES";
-  foreach ($platforms as $id_platform){
-    $query .= " ('$id_platform', '$last_game_id'),";
+  
+  for ($i = 0; $i < count($platforms); ++$i) { // Parcours des plateformes à ajouter
+    $date = $dates[$platforms[$i] - 1]; // Récupération de la date de sortie correspondante
+    $query .= " ('$platforms[$i]', '$game_id', '$date'),";
   }
-  $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
+  
+  $query = substr($query, 0, -1); // Suppression de la virgule en trop en fin de ligne
   $result = $result && ( mysql_query($query) or die(mysql_error()) );
 
-  //Construction de la requete d'insertion pour les categories
+  // Construction de la requete d'insertion pour les categories
   $query = "INSERT INTO appartient VALUES"; 
   foreach ($categories as $id_category){
-    $query .= " ('$id_category', '$last_game_id'),";
+    $query .= " ('$id_category', '$game_id'),";
   }
   $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
   $result = $result && ( mysql_query($query) or die(mysql_error()) );
@@ -36,12 +39,11 @@ function add_game($name, $categories, $platforms, $editor){
   return $result;
 }
 
-
  /* Ajout d'un joueur */
  /* idPlateforme preferee = selection avec (2) */
  /* idCategorie preferee = selection avec (3) */
 function add_player($login, $last_name, $first_name, $mail, $id_category, $id_platform){
-  //  $id_platform = get_platform_by_name($platform);
+  //$id_platform = get_platform_by_name($platform);
   //$id_category = get_category_by_name($category);
 
   $query = "INSERT INTO joueur VALUES ('$login', '$last_name', '$first_name', '$mail', '$id_category', '$id_platform')";

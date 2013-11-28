@@ -15,10 +15,10 @@ $name = secure_string($_GET["nomJeu"]);
 $editor = secure_string($_GET["nomEditeur"]);
 $platforms = $_GET["idPlateforme"];
 $categories = $_GET["idCategorie"];
-
+$dates = $_GET["dateSortie"];
 
 //Selection dans la base
-if(!add_game($name, $categories, $platforms, $editor)) {
+if(!add_game($name, $categories, $platforms, $editor, $dates)) {
   echo "Une erreur est survenue lors de l'ajout jeu";
   exit;
 }
