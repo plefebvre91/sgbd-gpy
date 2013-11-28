@@ -11,8 +11,8 @@ if(!$err){
 }
 
 //Protection des de la chaine de caractere
-$id_game = secure_string($_GET["id_game"]);
-$id_platform = secure_string($_GET["id_plateform"]);
+$id_game = secure_string($_GET["game"]);
+$id_platform = secure_string($_GET["platform"]);
 //Selection dans la base
 if(!delete_game($id_game, $id_platform)){
   echo "Une erreur est survenue lors de la suppression";

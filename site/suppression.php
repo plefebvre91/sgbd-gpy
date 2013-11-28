@@ -1,11 +1,12 @@
-<script src="js/delete.js"></script>
-<div class="alert alert-info" id="result"></div>
+
 
 <div class="container">
   <div class="well top-message">
     <p>Cliquez sur les différents onglets pour accéder aux trois requêtes de supression.</p>
 
   </div>
+
+  <div class="alert alert-info" id="result"></div>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTab">
@@ -56,7 +57,7 @@
 
 	<?php
 	//$games = select_all("jeu");
-	$games = mysql_query("SELECT * FROM jeu INNER JOINN plateforme");
+	$games = mysql_query("SELECT * FROM ((jeu INNER JOIN estDisponible ON jeu.idJeu = estDisponible.idJeu) INNER JOIN plateforme ON plateforme.idPlateforme = estDisponible.idPlateforme) order by nomJeu");
 	echo "<table class=\"table table-striped\">";
 	echo "<tr><th>Jeu</th><th>Suppression</th></tr>";
 
@@ -66,8 +67,7 @@
 	  $platform = $att["nomPlateforme"];
 	  $id_platform = $att["idPlateforme"];
 	  
-	  echo "<tr id=\"game$id\">        <td>$name</td>        <td>$platform</td>
-        <td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_game($id_game, $id_platform);\">Supprimer</button></td></tr>\n";
+	  echo "<tr id=\"g$id_game-p$id_platform\">\n\t<td>$name</td>\n\t<td>$platform</td>\n\t<td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_game($id_game, $id_platform);\">Supprimer</button></td></tr>\n";
 	}
 
 	echo "</table>"; ?>

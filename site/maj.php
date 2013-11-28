@@ -164,6 +164,11 @@ db_connect();
 	  echo "<!-- Fin de : Liste déroulante des noms d'éditeurs -->";
 	  echo "</div><!--form-group Editeur-->";
 
+
+	  
+
+
+
 	  echo "<div class=\"form-group text-center\">";
 	  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_game('$idJeu');\">";
 	  echo "</div><!--form-group Bouton-->";

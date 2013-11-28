@@ -38,6 +38,7 @@ if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
     <script src="js/base.js"></script>
     <script src="js/select.js"></script>
     <script src="js/add.js"></script>
+    <script src="js/delete.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
