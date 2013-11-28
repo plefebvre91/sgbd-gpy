@@ -100,7 +100,7 @@
 \indent Le choix pour l'environnement de travail a été des plus classiques: MySQL et PHP. Le site ainsi crée met en avant les différentes opérations réalisables sur la base de données.
 
 \section{Présentation du sujet}
-\indent La base de données à réaliser doit permettre de gérer une communauté de joueurs de jeux vidéos. Il est donc nécessaire de pouvoir gérer un ensemble de joueurs, un ensemble de jeux relatifs à certaines plateformes (type de console ou d'ordinateur) et à certaines catégories (Tir, Action \dots). Par ailleurs, un joueur doit pouvoir noter les différents jeux, par le biais de commentaires, et les autres joueurs doit pouvoir évaluer la pertinence du commentaire en question. Pour finir, un joueur doit pouvoir renseigner ses préférences: sa catégorie de jeu préférée et la plateforme sur laquelle il aime jouer.\\
+\indent La base de données à réaliser doit permettre de gérer une communauté de joueurs de jeux vidéos. Il est donc nécessaire de pouvoir gérer un ensemble de joueurs, un ensemble de jeux relatifs à certaines plateformes (type de console ou d'ordinateur) et à certaines catégories (Tir, Action \dots). Par ailleurs, un joueur doit pouvoir noter les différents jeux, par le biais de commentaires, et les autres joueurs doit pouvoir évaluer la pertinence du commentaire en question en donnant un avis positif ou négatif (pouce). Pour finir, un joueur doit pouvoir renseigner ses préférences: sa catégorie de jeu préférée et la plateforme sur laquelle il aime jouer.\\
 
 \indent D'un point de vue implémentation, il est demandé de réaliser des requêtes basiques de consultation, de mise à jour, d'ajout ou encore de suppression. Par ailleurs, certaines requêtes plus avancées sont requises, elles seront explicités plus tard dans ce document. \\
 
@@ -108,7 +108,7 @@
 \newpage
 
 \section{Modélisation}
-\indent Cette partie entend préciser les étapes nécessaires à l'implémentation de la base de données. Le modèle conceptuel retenu sera présenté, ainsi que le modèle relationnel en troisième forme normale et les différentes étapes ayant permis cette mise en forme.
+\indent Cette partie entend préciser les étapes nécessaires à l'implémentation de la base de données. Le modèle conceptuel retenu sera présenté, ainsi que le modèle relationnel et les différentes étapes ayant permis cette mise en forme.
 
 \subsection{Modèle conceptuel}
 \indent Réaliser le modèle conceptuel demande de préciser quelques demandes du sujet, mais aussi de faire de choix. Nous verrons ces différents choix avant de présenter les entités et de détailler les opérations autorisées sur chaque entité.
@@ -146,12 +146,12 @@
 \subsubsection{Opérations autorisées}
 \indent Il doit être possible d'ajouter l'ensemble des entités dans la base de données. Cependant, les requêtes d'ajout, de même que les requêtes de mise à jour, doivent être en respect avec certains choix présentés antérieurement, notamment quand aux cardinalités des associations. \\
 
-\indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un éditeur, auquel cas l'ensemble des jeux édités par cet éditeur seront également supprimés. Plus réalistement, un joueur pourra être supprimé de la table (l'exemple de la bannition d'un forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donné seront supprimés.
+\indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un éditeur, auquel cas l'ensemble des jeux édités par cet éditeur seront également supprimés. Dans la réalité, un joueur pourrait être supprimé de la base de donné (par exemple s'il est banni du forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donné seront supprimés.
 
 \subsection{Modèle relationnel}
 \indent En considérant l'ensemble des associations, le passage au modèle relationnel ``naïf'' a seulement consisté a ajouter deux tables pour les deux ralations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mise dans les tables du côté unique. \\
 
-\indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (idJeu, idPlateforme) pour la table commentaire. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un idCommentaire a été ajouté. Par ailleurs, le choix initial de mettre un idJoueur a posé problème vis-à-vis d'une des contraintes explicitée auparavant. Avec un pseudo unique, il y avait rédondance de l'information. Le pseudo du joueur a alors constitué sa clé primaire. Au final voici le modèle relationnel retenu: \\
+\indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (idJeu, idPlateforme) pour la table commentaire. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un idCommentaire a été ajouté. Par ailleurs, le choix initial de mettre un idJoueur a posé un problème de redondance avec le fait de définir un pseudo unique. Le pseudo du joueur a alors constitué sa clé primaire. Finalement, voici le modèle relationnel retenu: \\
 
 \begin{mld}
   \relat{Joueur} & (\prim{pseudo}, \attr{nom}, \attr{prenom}, \attr{mail}, \foreign{idCategorie}, \foreign{idPlateforme})\\
@@ -165,7 +165,7 @@
   \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}}, \attr{dateSortie})\\ \\
 \end{mld}
 
-\indent A noter que le modèle ci-dessus n'est pas en troisième forme normale. En effet, il est possible de connaître le nom et le prénom d'un joueur à partir de son adresse mail, qui n'est pas une clé primaire. Pour éviter ce problème, il aurait fallut créer une table informations en association avec la table joueur et contenant son nom et son prénom. Cependant, après discussion avec notre encadrant de projet, cette solution n'a pas été retenue pour plus de clarté quand à l'entité joueur.
+\indent A noter que le modèle ci-dessus n'est pas en troisième forme normale. En effet, il est possible de connaître le nom et le prénom d'un joueur à partir de son adresse mail, qui n'est pas une clé primaire. Pour éviter ce problème, il aurait fallut créer une table informations en association avec la table joueur et contenant son nom et son prénom. Cependant, après discussion, cette solution n'a pas été retenue pour plus de clarté quand à l'entité joueur.
 
 \newpage
 \section{Zoom sur les requêtes importantes}
