@@ -91,10 +91,7 @@
 	    <input type="text" name="nomJeu" id="nomJeu" class="form-control" placeholder="Saisissez le nom du jeu à ajouter ici..">
 	  </div>
 	  <div class="form-group">
-	    <!-- Façon en demandant de saisir l'idEditeur -->   
-	    <!--<label for="idEditeur">&Eacute;diteur du jeu</label>-->
-	    <!--<input type="text" name="idEditeur" id="idEditeur" class="form-control" placeholder="Saisissez le numéro de l'éditeur du jeu à ajouter ici..">-->
-	    <!-- Façon avec liste déroulante des noms d'éditeurs -->
+	    <!-- Liste déroulante des noms d'éditeurs -->
 	    <label>&Eacute;diteur du jeu</label>
 	    <select name="nomEditeur" class="form-control">
 	      <?php
@@ -105,27 +102,37 @@
 	      }
 	      ;?>
 	    </select>
-	    <!-- Fin de : Façon avec liste déroulante des noms d'éditeurs -->   
+	    <!-- Fin de : Liste déroulante des noms d'éditeurs -->   
 	  </div>
 
 	  <div class="form-group">
-   	    <!-- Façon en demandant de saisir un unique idPlateforme -->   
-	    <!--<label for="idPlateforme">Plateforme</label>-->
-	    <!--<input type="text" name="idPlateforme" id="idPlateforme" class="form-control" placeholder="Saisissez le numéro de la plateforme du jeu à ajouter ici..">-->
-	    <!-- Façon avec cases à chocher des noms de plateformes -->
+	    <!-- Cases à chocher des noms de plateformes + date de sortie correspondante -->
 	    <label>Plateforme</label>
-	    <p class="help-block">Cochez la (les) case(s) correspondant aux plateformes sur laquelle le jeu est disponible.</p>
+	    <p class="help-block">Cochez la (les) case(s) correspondant aux plateformes sur laquelle le jeu est disponible,<br/>
+	      saisissez la date de sortie en face de chaque plateforme cochée.</p>
 	    <?php
 	    $platforms = select_all("plateforme");  
 	    while ($boxes = mysql_fetch_array($platforms)) {
   	      $name = $boxes["nomPlateforme"];
 	      $id = $boxes["idPlateforme"];
+	      
+	      echo "<div class=\"form-group\"><!-- Groupe = case + textarea pour saisir la date -->";
+	      echo "<div class=\"row\">";
+	      echo "<div class=\"col-xs-2\">";
 	      echo "<div class=\"checkbox\">";
 	      echo "  <label><input type=\"checkbox\" name=\"idPlateforme[]\" value=\"$id\">$name</label>";
-	      echo "</div>\n";
+	      echo "</div>";
+	      echo "</div>";
+	      echo "<div class=\"col-xs-3\">";
+	      echo "<input type=\"text\" class=\"form-control\" maxlength=\"10\" placeholder=\"Date de sortie au format AAAA-MM-JJ\">";
+	      echo "</div>";
+	      echo "<div class=\"col-xs-7\">";
+	      echo "</div>";
+	      echo "</div>";	      
+	      echo"</div><!-- /form-group -->\n";
 	    }
 	    ?>
-	    <!-- Fin de : Façon avec cases à chocher des noms de plateformes -->   
+	    <!-- Fin de : Cases à chocher des noms de plateformes + date de sortie correspondante -->   
 	  </div>
 	  <div class="form-group">
 	    <!-- Cases à chocher des noms de catégories -->
