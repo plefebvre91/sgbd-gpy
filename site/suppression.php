@@ -1,6 +1,6 @@
 <div class="container">
   <div class="well top-message">
-    <p>Cliquez sur les différents onglets pour accéder aux requêtes de supression.</p>
+    <p>Cliquez sur les différents onglets pour accéder aux requêtes de suppression.</p>
 
   </div>
 
@@ -80,7 +80,7 @@
 	$players = select_all("joueur");
 
 	echo "<table class=\"table table-striped\">";
-	echo "<tr><th>Pseudo</th><th>Nom</th><th>Prenom</th><th>Adresse mail</th></tr>";
+	echo "<tr><th>Pseudo</th><th>Nom</th><th>Prenom</th><th>Adresse mail</th><th>Suppression</th></tr>";
 
 	while($att = mysql_fetch_array($players)){
 	  $id = $att["pseudo"];
