@@ -261,12 +261,21 @@
 	  </div>
 
 	  <div class="form-group">
-	    <label for="pseudo">Auteur</label>
-	    <input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo...">
+	  <!-- Liste déroulante des pseudos -->
+	  <label>Auteur</label>
+	  <select name="pseudo" class="form-control">
+	  <?php
+	  $players = select_all("joueur");  
+	  while ($options = mysql_fetch_array($players)) {
+  	    $pseudo = $options["pseudo"];
+	    echo "<option value=\"$pseudo\">$pseudo</option>";
+	  }
+	  ?>
+	  </select>
+	  <!-- Fin de : Liste déroulante des pseudos -->
 	  </div>
 
 	  <div class="form-group">
-	  
 	    <!-- Liste déroulante des noms de jeux -->
 	    <label>Nom du jeu à commenter</label>
 	    <select name="idJeu" class="form-control">
