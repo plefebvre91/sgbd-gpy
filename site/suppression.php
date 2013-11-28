@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="well top-message">
-    <p>Cliquez sur les différents onglets pour accéder aux trois requêtes de supression.</p>
+    <p>Cliquez sur les différents onglets pour accéder aux requêtes de supression.</p>
 
   </div>
 
@@ -117,7 +117,6 @@
 	}
 
 	echo "</table>";
-
 	
 	?>
 	
