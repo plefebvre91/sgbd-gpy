@@ -13,11 +13,7 @@ db_connect();
   <ul class="nav nav-tabs" id="myTab">
     <li><a href="#maj-joueur" data-toggle="tab">Joueur</a></li>
     <li><a href="#maj-jeu" data-toggle="tab">Jeu</a></li>
-    <!-- <li><a href="#ajout3" data-toggle="tab">Editeur</a></li> -->
-    <!-- <li><a href="#ajout4" data-toggle="tab">Plateforme</a></li> -->
-    <!-- <li><a href="#ajout5" data-toggle="tab">Catégorie</a></li> -->
-    <!-- <li><a href="#ajout6" data-toggle="tab">Appréciation</a></li> -->
-    <!-- <li><a href="#ajout7" data-toggle="tab">Commentaire</a></li> -->
+    <li><a href="#maj-commentaire" data-toggle="tab">Commentaire</a></li>
   </ul>
   
   <!-- Tab panes -->
@@ -119,7 +115,7 @@ db_connect();
 	;?>
 
       </div>
-    </div>
+    </div><!-- MAJ JOUEUR-->
 
     <!-- MAJ JEU-->
     <div class="tab-pane" id="maj-jeu">
@@ -183,11 +179,128 @@ db_connect();
 	;?>
 
       </div>
+    </div><!-- MAJ JEU-->
 
-    </div><!-- tab-content -->
+
+    <!-- MAJ COMMENTAIRE-->
+    <div class="tab-pane" id="maj-commentaire">
+      <div class="container">
+
+	<p class="lead">Mise à jour d'un commentaire.</p>
+
+	<?php
+	$comments = select_all("commentaire");
+
+	echo "<div class=\"panel-group\" id=\"accordion\">";
+
+	while ($att = mysql_fetch_array($comments)) {
+	  $idCommentaire = $att["idCommentaire"];
+	  $note = $att["note"];
+	  $commentaire = $att["commentaire"];
+	  $dateCommentaire = $att["dateCommentaire"];
+	  $pseudo = $att["pseudo"];
+	  $idJeu = $att["idJeu"];
+	  $idPlateforme = $att["idPlateforme"];
+	  
+	  echo "<div class=\"panel panel-default\">";
+	  echo "<div class=\"panel-heading\">";
+	  echo "<h4 class=\"panel-title\">";
+	  echo "<a id=\"result-commentaire-$idCommentaire\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-commentaire-$idCommentaire\">Commentaire $idCommentaire - $commentaire</a>";
+	  echo "</h4>";
+	  echo "</div><!--panel-heading-->"; 
+	  echo "<div id=\"collapse-commentaire-$idCommentaire\" class=\"panel-collapse collapse\">";
+	  echo "<div class=\"panel-body\">";
+	  
+	  echo "<form action=\"#\" id=\"form-maj-commentaire-$idCommentaire\">";
+	  echo "<div class=\"form-group\">";
+	  echo "<label for=\"note\">Note</label>";
+	  echo "<input name=\"note\" id=\"note\" type=\"number\" class=\"form-control\" step=\"1\" value=\"$note\" min=\"0\" max=\"20\">";
+	  echo "</div>";
+
+	  echo "<div class=\"form-group\">";
+	  echo "<label for=\"commentaire\">Commentaire</label>";
+	  echo "<input type=\"text\" name=\"commentaire\" id=\"commentaire\" class=\"form-control\" value=\"$commentaire\"placeholder=\"Saisissez le commentaire ici..\">";
+	  echo "</div>";
+
+	  echo "<div class=\"form-group\">";
+	  echo "<!-- Liste déroulante des pseudos -->";
+	  echo "<label>Auteur</label>";
+	  echo "<select name=\"pseudo\" class=\"form-control\">";
+	  $players = select_all("joueur");  
+	  while ($options = mysql_fetch_array($players)) {
+  	    $pseudoOption = $options["pseudo"];
+	    if ($pseudoOption == $pseudo) {
+	      echo "<option value=\"$pseudoOption\" selected>$pseudoOption</option>";
+	    }
+	    else {
+	      echo "<option value=\"$pseudoOption\">$pseudoOption</option>";
+	    }
+	  }
+	  echo "</select>";
+	  echo "<!-- Fin de : Liste déroulante des pseudos -->";
+	  echo "</div>";
+	  
+	  echo "<div class=\"form-group\">";
+	  echo "<!-- Liste déroulante des noms de jeux -->";
+	  echo "<label>Nom du jeu à commenter</label>";
+	  echo "<select name=\"idJeu\" class=\"form-control\">";
+	  $games = select_all("jeu");  
+	  while ($options = mysql_fetch_array($games)) {
+  	    $name = $options["nomJeu"];
+	    $id = $options["idJeu"];
+
+	    if ($id == $idJeu) {
+	      echo "<option value=\"$id\" selected>$name</option>";
+	    }
+	    else {
+	      echo "<option value=\"$id\">$name</option>";
+	    }
+	  }
+	  echo "</select>";
+	  echo "<!-- Fin de : Liste déroulante des noms de jeux -->";
+	  echo "</div>";
+
+	  echo "<div class=\"form-group\">";
+	  echo "<!-- Liste déroulante des plateformes -->";
+	  echo "<label>Plateforme du jeu</label>";
+	  echo "<select name=\"idPlateforme\" class=\"form-control\">";
+	  $platforms = select_all("plateforme");  
+	  while ($options = mysql_fetch_array($platforms)) {
+  	    $name = $options["nomPlateforme"];
+	    $id = $options["idPlateforme"];
+
+	    if ($id == $idPlateforme) {
+	      echo "<option value=\"$id\" selected>$name</option>";
+	    }
+	    else {
+	      echo "<option value=\"$id\">$name</option>";
+	    }
+	  }
+	  echo "</select>";
+	  echo "<!-- Fin de : Liste déroulante des plateformes-->";
+	  echo "</div>";
+
+	  echo "<div class=\"form-group text-center\">";
+	  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_comment('$idCommentaire');\">";
+	  echo "</div><!--form-group Bouton-->";
+
+	  echo "</form><!--form-maj-commentaire-$idCommentaire-->";
+	  echo "</div><!--panel-body-->";
+
+	  echo "</div><!--collapse-commentaire-$idCommentaire-->";
+	  echo "</div><!--panel panel-default-->";
+	}
+
+	echo "</div><!--panel-group-->";
+	;?>
+
+      </div>
+    </div><!-- MAJ COMMENTAIRE-->
     
-  </div> <!-- container -->
+  </div><!-- tab-content -->
+  
+</div> <!-- container -->
 
-  <script>
-   $("form").submit(function(event){event.preventDefault();});
-  </script>
+<script>
+ $("form").submit(function(event){event.preventDefault();});
+</script>

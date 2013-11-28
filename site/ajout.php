@@ -252,8 +252,6 @@
 	    <input type="text" name="commentaire" id="commentaire" class="form-control" placeholder="Saisissez le commentaire du joueur à ajouter ici..">
 	  </div>
 
-
-
 	  <div class="form-group">
 	    <label for="pseudo">Auteur</label>
 	    <input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo...">

@@ -20,11 +20,11 @@ function update_game(game_id){
 
 
 function update_comment(idCommentaire){
-    var resultId = "#result-"+idCommentaire;
+    var resultId = "#result-commentaire-"+idCommentaire;
     $(resultId).html(idCommentaire + " - Chargement...");
-    var formId = "#form-maj-"+idCommentaire;
+    var formId = "#form-maj-commentaire-"+idCommentaire;
     var request = $.get("ajax/ajax_update_comment.php", $(formId).serialize());
-    request.done(function(msg){$(resultId).html("Commentaire"+ idCommentaire + " - " + msg);
+    request.done(function(msg){$(resultId).html("Commentaire "+ idCommentaire + " - " + msg);
 			       $(resultId).collapse("hide");});
     request.fail(failure);
 }
