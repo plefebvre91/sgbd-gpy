@@ -1,5 +1,3 @@
-
-
 <div class="container">
   <div class="well top-message">
     <p>Cliquez sur les différents onglets pour accéder aux requêtes de supression.</p>
@@ -57,9 +55,9 @@
 
 	<?php
 	//$games = select_all("jeu");
-	$games = mysql_query("SELECT * FROM ((jeu INNER JOIN estDisponible ON jeu.idJeu = estDisponible.idJeu) INNER JOIN plateforme ON plateforme.idPlateforme = estDisponible.idPlateforme) order by nomJeu");
+	$games = mysql_query("SELECT * FROM ((jeu INNER JOIN estDisponible ON jeu.idJeu = estDisponible.idJeu) INNER JOIN plateforme ON plateforme.idPlateforme = estDisponible.idPlateforme) order by nomJeu, nomPlateforme");
 	echo "<table class=\"table table-striped\">";
-	echo "<tr><th>Jeu</th><th>Suppression</th></tr>";
+	echo "<tr><th>Jeu</th><th>Plateforme</th><th>Suppression</th></tr>";
 
 	while($att = mysql_fetch_array($games)){
 	  $id_game = $att["idJeu"];
