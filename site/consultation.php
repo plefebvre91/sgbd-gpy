@@ -60,9 +60,20 @@
 	<p class="lead">Pour un commentaire, la liste des joueurs qui l'ont apprécié.</p>
    	<form action="#" id="form-consultation3">
    	  <div class="form-group">
-	    <label for="idCommentaire">Numéro du commentaire</label>
+	    <label>Sélectionnez un commentaire</label>
 	    <div class="input-group">
-	      <input type="text" name="idCommentaire" id="idCommentaire" class="form-control" placeholder="Saisissez le numéro du commentaire ici.."/>
+	      <!-- Liste déroulante des commentaires -->
+	      <select name="idCommentaire" class="form-control">
+		<?php
+		$comments = select_all("commentaire");  
+		while ($options = mysql_fetch_array($comments)) {
+  		  $idCommentaire = $options["idCommentaire"];
+		  $commentaire = $options["commentaire"];
+		  echo "<option value=\"$idCommentaire\">Commentaire $idCommentaire - $commentaire</option>";
+		}
+		;?>
+	      </select>
+	      <!-- Fin de : Liste déroulante des commentaires -->   
 	      <span class="input-group-btn">
 	     	<input type="submit" class="btn btn-warning" id="btn-consultation3" value="Envoyer la requête">
       	      </span>
