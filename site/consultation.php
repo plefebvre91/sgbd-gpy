@@ -43,9 +43,19 @@
 	  disponible sur sa plateforme préférée.</p>
 	<form action="#" id="form-consultation2">
 	  <div class="form-group">
-	    <label for="pseudo">Pseudo du joueur</label>
+	    <label>Sélectionnez un joueur</label>
 	    <div class="input-group">
-	      <input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo ici..">
+	      <!-- Liste déroulante des pseudos -->
+	      <select name="pseudo" class="form-control">
+		<?php
+		$players = select_all("joueur");  
+		while ($options = mysql_fetch_array($players)) {
+  		  $pseudo = $options["pseudo"];
+		  echo "<option value=\"$pseudo\">$pseudo</option>";
+		}
+		?>
+	      </select>
+	  <!-- Fin de : Liste déroulante des pseudos -->
       	      <span class="input-group-btn">
 	     	<input type="submit" class="btn btn-warning" id="btn-consultation2" value="Envoyer la requête">
       	      </span>
