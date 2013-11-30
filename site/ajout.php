@@ -89,7 +89,7 @@
 	<form action="#" id="form-ajout2">
 	  <div class="form-group">
 	    <label for="nomJeu">Nom du jeu</label>
-	    <input type="text" name="nomJeu" id="nomJeu" class="form-control" placeholder="Saisissez le nom du jeu à ajouter ici..">
+	    <input required type="text" name="nomJeu" id="nomJeu" class="form-control" placeholder="Saisissez le nom du jeu à ajouter ici..">
 	  </div>
 	  <div class="form-group">
 	    <!-- Liste déroulante des noms d'éditeurs -->
