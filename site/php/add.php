@@ -108,13 +108,4 @@ function add_inch($value, $pseudo, $id_comment) {
   return $result;
 }
 
-/* function add_game($game_name, $id_editor){ */
-/*   //$id_editor = get_editor_by_name($editor); */
-
-/*   $query = "INSERT INTO jeu VALUES ('', '$game_name', '$id_editor')"; */
-/*   $result = mysql_query($query) or die(mysql_error()); */
-
-/*   return $result; */
-/* } */
-
 ?>
