@@ -25,9 +25,19 @@
 	<p class="lead">L'ensemble des jeux critiqués disponibles sur une plateforme donnée, classés par catégorie.</p>
 	<form action="#" id="form-consultation1">
  	  <div class="form-group">
-	    <label for="nomPlateforme">Plateforme</label>
+	    <label>Sélectionnez une plateforme</label>
 	    <div class="input-group">
-	      <input type="text" name="nomPlateforme" id="nomPlateforme" class="form-control" placeholder="Saisissez la plateforme ici..">
+	      <!-- Liste déroulante des plateformes -->
+	      <select name="nomPlateforme" class="form-control">
+		<?php
+		$platforms = select_all("plateforme");  
+		while ($options = mysql_fetch_array($platforms)) {
+  		  $nomPlateforme = $options["nomPlateforme"];
+		  echo "<option value=\"$nomPlateforme\">$nomPlateforme</option>";
+		}
+		?>
+	      </select>
+	      <!-- Fin de : Liste déroulante des plateformes -->
       	      <span class="input-group-btn">
      	     	<input type="submit" class="btn btn-warning" id="btn-consultation1" value="Envoyer la requête">
       	      </span>
