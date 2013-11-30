@@ -4,9 +4,7 @@
 // idPlateforme = selection avec (2)
 // idCategorie = selection avec (3)
 
-function add_game($name, $categories, $platforms, $editor, $dates){
-  // $id_category = get_category_by_name($categories);
-  // $id_platform = get_platform_by_name($platforms);
+function add_game($name, $categories, $platforms, $editor, $dates) {
 
   $result = true;
   $id_editor = get_editor_by_name($editor);
@@ -20,8 +18,26 @@ function add_game($name, $categories, $platforms, $editor, $dates){
   // Construction de la requete d'insertion pour les plateformes
   $query = "INSERT INTO estDisponible VALUES";
   
-  for ($i = 0; $i < count($platforms); ++$i) { // Parcours des plateformes à ajouter
-    $date = $dates[$platforms[$i] - 1]; // Récupération de la date de sortie correspondante
+  // Parcours des plateformes à ajouter
+  for ($i = 0; $i < count($platforms); ++$i) {
+    // Recuperation de la date de sortie correspondante
+    $date = $dates[$platforms[$i] - 1];
+
+    $pattern = "/^[0-9]{4}-[0-9]{2}-[0-9]{2}/"; // Regexp du format date : AAAA-MM-JJ (la taille est limitee a 10 par le formulaire)
+
+    // Si la date n'est pas fournie ou n'est pas au bon format, utiliser la date du jour
+    if ( $date == "" or ( ! preg_match($pattern, $date)) ) {
+      $date = date("Y-m-d");
+    }
+    // Sinon, si la date est au bon format mais est invalide, utiliser la date du jour
+    else {
+      $dateParsee = date_parse_from_format("Y-m-d", $date);
+      if ( ! checkdate($dateParsee['month'], $dateParsee['day'], $dateParsee['year']) ) {
+	$date = date("Y-m-d");
+      }
+    }
+    
+    // Construction de la requete
     $query .= " ('$platforms[$i]', '$game_id', '$date'),";
   }
   
@@ -85,9 +101,9 @@ function add_comment($note, $comment, $pseudo, $id_game, $id_platform){
   return $result;
 }
 
-function add_inch($value, $pseudo, $id_comment){
+function add_inch($value, $pseudo, $id_comment) {
   $query = "INSERT INTO pouce VALUES ('', '$value', '$pseudo', '$id_comment')";
-  $result = mysql_query($query) or die(mysql_error());
+  $result = mysql_query($query);
 
   return $result;
 }
