@@ -11,7 +11,6 @@
     <li><a href="#consultation1" data-toggle="tab">Commentaires</a></li>
     <li><a href="#consultation2" data-toggle="tab">Jeux</a></li>
     <li><a href="#consultation3" data-toggle="tab">Joueurs</a></li>
-    <li><a href="#consultation4" data-toggle="tab">Editeurs</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -34,7 +33,7 @@
 	  $comment = substr($att["commentaire"], 0, 137)."...";
 
 
-	  echo "<tr><td>$comment</td><td>$author</td><td>$date</td><td>$game</td><td>$platform</td><td>$mark</td>";
+	  echo "<tr id=\"comment$id\"><td>$comment</td><td>$author</td><td>$date</td><td>$game</td><td>$platform</td><td>$mark</td>";
 	  echo "<td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_comment($id);\">Supprimer</button></td></tr>\n";
 	}?>
 	</table>
@@ -83,23 +82,5 @@
       </div> 
     </div>
     
-    <div class="tab-pane" id="consultation4">
-      <div class="container">
-	<table class="table table-striped">
-	  <tr><th>ID</th><th>Editeur</th><th>Suppression</th></tr>
-
-	  <?php
-	  $editors = select_all("editeur");
-
-	  while($att = mysql_fetch_array($editors)){
-	    $id = $att["idEditeur"];
-	    $editor = $att["nomEditeur"];
-	    
-	    echo "<tr id=\"editor$id\">
-        <td>$id</td><td>$editor</td><td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_editor($id);\">Supprimer</button></td></tr>\n";
-	  }?>  
-	</table>
-      </div> 
-    </div>
   </div> <!-- Tab panes -->
 </div> <!-- Container -->

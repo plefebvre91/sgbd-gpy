@@ -8,7 +8,7 @@ function delete_object(type, id){
     request.fail(failure);
     request.done(
 	function(msg){
-	    success(str_id, msg); 
+	    success(msg); 
 	    if(type == "player"){
 		var player_id = "#"+id;
 		$(player_id).fadeOut('slow');
