@@ -22,8 +22,8 @@ CREATE TABLE joueur (
   nom          VARCHAR(32),
   prenom       VARCHAR(32),
   mail         VARCHAR(64),
-  idCategorie  int,
-  idPlateforme int,
+  idCategorie  int NOT NULL,
+  idPlateforme int NOT NULL,
   CONSTRAINT pk_joueur PRIMARY KEY(pseudo)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
