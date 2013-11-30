@@ -29,18 +29,16 @@ function delete_platform(id_platform){
     delete_object("platform", id_platform);
 }
 
-function delete_game(id_game, id_platform){
-    var str_id = "#g"+id_game+"-p"+id_platform;
+function delete_game(id_game) {
+    var str_id = "#jeu" + id_game;
     $("#result").html("Chargement...");
-    var request = $.get("ajax/ajax_delete_game.php", {game: id_game, platform: id_platform});
+    var request = $.get("ajax/ajax_delete_game.php", {game: id_game});
     request.fail(failure);
     request.done(
 	function(msg){
 	    $("#result").html(msg); 
 	    $(str_id).fadeOut('slow');
 	    });
-
-
 }
 
 

@@ -44,18 +44,15 @@
       <div class="container">
 
 	<table class="table table-striped">
-	  <tr><th>Jeu</th><th>Plateforme</th><th>Suppression</th></tr>
+	  <tr><th>Jeu</th><th>Suppression</th></tr>
 	<?php
-	//$games = select_all("jeu");
-	$games = mysql_query("SELECT * FROM ((jeu INNER JOIN estDisponible ON jeu.idJeu = estDisponible.idJeu) INNER JOIN plateforme ON plateforme.idPlateforme = estDisponible.idPlateforme) order by nomJeu, nomPlateforme");
-
+	$games = select_all("jeu");
+	
 	while($att = mysql_fetch_array($games)){
-	  $id_game = $att["idJeu"];
-	  $name= $att["nomJeu"];
-	  $platform = $att["nomPlateforme"];
-	  $id_platform = $att["idPlateforme"];
+	  $idJeu = $att["idJeu"];
+	  $nomJeu= $att["nomJeu"];
 	  
-	  echo "\t<tr id=\"g$id_game-p$id_platform\"><td>$name</td><td>$platform</td><td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_game($id_game, $id_platform);\">Supprimer</button></td></tr>\n";
+	  echo "\t<tr id=\"jeu$idJeu\"><td>$nomJeu</td><td><button class=\"btn btn-danger btn-xs\" onclick=\"javascript:delete_game($idJeu);\">Supprimer</button></td></tr>\n";
 	}?>
 	</table>
       </div> 
