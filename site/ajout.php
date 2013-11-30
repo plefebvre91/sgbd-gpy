@@ -27,27 +27,27 @@
 	<form action="#" id="form-ajout1">
  	  <div class="form-group">
 	    <label for="pseudo">Pseudo</label>
-	    <input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo du joueur à ajouter ici..">
+	    <input required type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo du joueur à ajouter ici..">
 	  </div>
 	  <div class="form-group">
 	    <label for="nom">Nom</label>
-	    <input type="text" name="nom" id="nom" class="form-control" placeholder="Saisissez le nom du joueur à ajouter ici..">
+	    <input required type="text" name="nom" id="nom" class="form-control" placeholder="Saisissez le nom du joueur à ajouter ici..">
 	  </div>
 	  <div class="form-group">
 	    <label for="prenom">Prénom</label>
-	    <input type="text" name="prenom" id="prenom" class="form-control" placeholder="Saisissez le prénom du joueur à ajouter ici..">
+	    <input required type="text" name="prenom" id="prenom" class="form-control" placeholder="Saisissez le prénom du joueur à ajouter ici..">
 	  </div>
 	  <div class="form-group">
 	    <label for="mail">Mail</label>
   	    <div class="input-group">
 	      <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-	      <input type="email" name="mail" id="mail" class="form-control" placeholder="Saisissez le mail du joueur à ajouter ici..">
+	      <input required type="email" name="mail" id="mail" class="form-control" placeholder="Saisissez le mail du joueur à ajouter ici..">
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label>Catégorie de jeu préférée</label>
 	    <!-- Liste déroulante des catégories de jeu -->
-	    <select name="idCategorie" class="form-control">
+	    <select required name="idCategorie" class="form-control">
 	      <?php
 	      $category = select_all("categorie");  
 	      while ($options = mysql_fetch_array($category)) {
@@ -62,7 +62,7 @@
 	  <div class="form-group">
 	    <label>Plateforme de jeu préférée</label>
 	    <!-- Liste déroulante des plateformes -->
-	    <select name="idPlateforme" class="form-control">
+	    <select required name="idPlateforme" class="form-control">
 	      <?php
 	      $platform = select_all("plateforme");  
 	      while ($options = mysql_fetch_array($platform)) {
@@ -94,7 +94,7 @@
 	  <div class="form-group">
 	    <!-- Liste déroulante des noms d'éditeurs -->
 	    <label>&Eacute;diteur du jeu</label>
-	    <select name="nomEditeur" class="form-control">
+	    <select required name="nomEditeur" class="form-control">
 	      <?php
 	      $editors = select_all("editeur");  
 	      while ($options = mysql_fetch_array($editors)) {
@@ -165,7 +165,7 @@
 	<form action="#" id="form-ajout3">
  	  <div class="form-group">
 	    <label for="nomEditeur">Nom de l'éditeur</label>
-	    <input type="text" name="nomEditeur" id="nomEditeur" class="form-control" placeholder="Saisissez le nom de l'éditeur..">
+	    <input required type="text" name="nomEditeur" id="nomEditeur" class="form-control" placeholder="Saisissez le nom de l'éditeur..">
 	  </div>
 	  <div class="form-group text-center">
 	    <input type="submit" class="btn btn-warning btn-lg" id="btn-ajout3" value="Envoyer la requête">
@@ -181,7 +181,7 @@
 	<form action="#" id="form-ajout4">
  	  <div class="form-group">
 	    <label for="nomPlateforme">Nom de la plateforme</label>
-	    <input type="text" name="nomPlateforme" id="nomPlateforme" class="form-control" placeholder="Saisissez le nom de plateforme..">
+	    <input required type="text" name="nomPlateforme" id="nomPlateforme" class="form-control" placeholder="Saisissez le nom de plateforme..">
 	  </div>
 	  <div class="form-group text-center">
 	    <input type="submit" class="btn btn-warning btn-lg" id="btn-ajout4" value="Envoyer la requête">
@@ -196,7 +196,7 @@
 	<form action="#" id="form-ajout5">
  	  <div class="form-group">
 	    <label for="nomCategorie">Nom de la categorie</label>
-	    <input type="text" name="nomCategorie" id="nomCategorie" class="form-control" placeholder="Saisissez le nom de catégorie..">
+	    <input required type="text" name="nomCategorie" id="nomCategorie" class="form-control" placeholder="Saisissez le nom de catégorie..">
 	  </div>
 	  <div class="form-group text-center">
 	    <input type="submit" class="btn btn-warning btn-lg" id="btn-ajout5" value="Envoyer la requête">
@@ -267,13 +267,13 @@
 	<form action="#" id="form-ajout7">
     	  <div class="form-group">
 	    <label for="note">Note</label>
-	    <input name="note" id="note" type="number" class="form-control" step="1" value="10" min="0" max="20">
+	    <input name="note" id="note" required type="number" class="form-control" step="1" value="10" min="0" max="20">
 	  </div>
 
 
  	  <div class="form-group">
 	    <label for="commentaire">Commentaire</label>
-	    <input type="text" name="commentaire" id="commentaire" class="form-control" placeholder="Saisissez le commentaire du joueur à ajouter ici..">
+	    <input required type="text" name="commentaire" id="commentaire" class="form-control" placeholder="Saisissez le commentaire du joueur à ajouter ici..">
 	  </div>
 
 	  <div class="form-group">

@@ -50,19 +50,19 @@ db_connect();
 
 	  echo "<div class=\"form-group\">";
 	  echo "<label>Nom</label>";
-	  echo "<input type=\"text\" name=\"nom\" class=\"form-control\" placeholder=\"Saisissez le nom du joueur à ajouter ici..\" value=\"$last_name\">";
+	  echo "<input required type=\"text\" name=\"nom\" class=\"form-control\" placeholder=\"Saisissez le nom du joueur à ajouter ici..\" value=\"$last_name\">";
 	  echo "</div><!--form-group Nom-->";
 
 	  echo "<div class=\"form-group\">";
 	  echo "<label>Prénom</label>";
-	  echo "<input type=\"text\" name=\"prenom\" class=\"form-control\" placeholder=\"Saisissez le prénom du joueur à ajouter ici..\" value=\"$first_name\">";
+	  echo "<input required type=\"text\" name=\"prenom\" class=\"form-control\" placeholder=\"Saisissez le prénom du joueur à ajouter ici..\" value=\"$first_name\">";
 	  echo "</div><!--form-group Prénom-->";
 
 	  echo "<div class=\"form-group\">";
 	  echo "<label>Mail</label>";
 	  echo "<div class=\"input-group\">";
 	  echo "<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-envelope\"></span></span>";
-	  echo "<input type=\"email\" name=\"mail\" class=\"form-control\" placeholder=\"Saisissez le mail du joueur à ajouter ici..\" value=\"$mail\">";
+	  echo "<input required type=\"email\" name=\"mail\" class=\"form-control\" placeholder=\"Saisissez le mail du joueur à ajouter ici..\" value=\"$mail\">";
 	  echo "</div>";
 	  echo "</div><!--form-group Mail-->";  
 
@@ -144,7 +144,7 @@ db_connect();
 
 	  echo "<div class=\"form-group\">";
 	  echo "<label>Nom</label>";
-	  echo "<input type=\"text\" name=\"nomJeu\" id=\"nom\" class=\"form-control\" placeholder=\"Saisissez le nom du jeu à ajouter ici..\" value=\"$nomJeu\">";
+	  echo "<input required type=\"text\" name=\"nomJeu\" id=\"nom\" class=\"form-control\" placeholder=\"Saisissez le nom du jeu à ajouter ici..\" value=\"$nomJeu\">";
 	  echo "</div><!--form-group Nom-->";
 
 	  echo "<div class=\"form-group\">";
@@ -265,12 +265,12 @@ db_connect();
 	  echo "<form action=\"#\" id=\"form-maj-commentaire-$idCommentaire\">";
 	  echo "<div class=\"form-group\">";
 	  echo "<label for=\"note\">Note</label>";
-	  echo "<input name=\"note\" id=\"note\" type=\"number\" class=\"form-control\" step=\"1\" value=\"$note\" min=\"0\" max=\"20\">";
+	  echo "<input name=\"note\" id=\"note\" required type=\"number\" class=\"form-control\" step=\"1\" value=\"$note\" min=\"0\" max=\"20\">";
 	  echo "</div>";
 
 	  echo "<div class=\"form-group\">";
 	  echo "<label for=\"commentaire\">Commentaire</label>";
-	  echo "<input type=\"text\" name=\"commentaire\" id=\"commentaire\" class=\"form-control\" value=\"$commentaire\"placeholder=\"Saisissez le commentaire ici..\">";
+	  echo "<input required type=\"text\" name=\"commentaire\" id=\"commentaire\" class=\"form-control\" value=\"$commentaire\"placeholder=\"Saisissez le commentaire ici..\">";
 	  echo "</div>";
 
 	  echo "<div class=\"form-group\">";
