@@ -33,7 +33,8 @@ CREATE TABLE pouce (
   valeur        CHAR(1),
   pseudo        VARCHAR(32),
   idCommentaire int,
-  CONSTRAINT pk_pouce PRIMARY KEY(idPouce)
+  CONSTRAINT pk_pouce PRIMARY KEY(idPouce),
+  CONSTRAINT uc_pouce UNIQUE (pseudo, idCommentaire)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
