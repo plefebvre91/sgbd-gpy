@@ -47,7 +47,3 @@ function delete_game(id_game, id_platform){
 function delete_player(id_player){
     delete_object("player", id_player);
 }
-
-function delete_editor(id_editor){
-    delete_object("editor", id_editor);
-}

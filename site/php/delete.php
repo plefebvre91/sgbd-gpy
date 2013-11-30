@@ -22,15 +22,4 @@ function delete_player($pseudo){
 
   return $result;
 }
-
-
-//Supprime l'editeur ayant l'id correspondant (et les champs des tables qui en dependent)
-function delete_editor($id){
-  $query = "DELETE FROM editeur WHERE idEditeur = '$id'";
-  $result = mysql_query($query) or die(mysql_error());
-
-  return $result;
-}
-
-
 ?>

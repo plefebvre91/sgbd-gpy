@@ -18,7 +18,7 @@ $id_comment  = secure_string($_GET["idCommentaire"]);
 
 //Selection dans la base
 if(!add_inch($value, $pseudo, $id_comment)){
-  echo "Une erreur est survenue lors de l'ajout pouce";
+  echo "Une erreur est survenue lors de l'ajout pouce ou vous avez déjà voté pour ce commentaire";
   exit;
 }
 
