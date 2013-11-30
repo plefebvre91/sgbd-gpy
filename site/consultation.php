@@ -255,4 +255,5 @@
  $("#form-consultation1").submit(selection_games);
  $("#form-consultation2").submit(selection_comments);
  $("#form-consultation3").submit(selection_players);
+ $("a[data-toggle^='tab']").click(function(){$("#result").html("");});
 </script>

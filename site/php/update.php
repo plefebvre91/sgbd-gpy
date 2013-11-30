@@ -21,9 +21,6 @@ function update_player($login, $last_name, $first_name, $mail, $category, $platf
 function update_game($id, $name, $id_editor, $categories, $platforms){
   $result = true;
   
-  $query = "DELETE FROM appatient, estDisponible WHERE idJeu='$id'";
-  $result = $result && mysql_query($query) or die(mysql_error());
- 
   $query = "UPDATE jeu SET nomJeu='$name', idEditeur='$id_editor' WHERE idJeu='$id'";
   $result = $result && mysql_query($query) or die(mysql_error());
   

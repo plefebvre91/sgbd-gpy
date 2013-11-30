@@ -19,7 +19,6 @@ db_connect();
   <!-- Tab panes -->
 
   <div class="tab-content">
-    
     <!-- MAJ JOUEUR-->
     <div class="tab-pane active" id="maj-joueur">
       <div class="container">
@@ -28,9 +27,7 @@ db_connect();
 	<div class="panel-group" id="accordion">
 	<?php
 	$players = select_all("joueur");
-
-
-
+	
 	while ($att = mysql_fetch_array($players)) {
 	  $id = $att["pseudo"];
 	  $last_name = $att["nom"];
@@ -113,7 +110,7 @@ db_connect();
 	}
 
 	echo "</div><!--panel-group-->";
-	;?>
+	?>
 
       </div>
     </div><!-- MAJ JOUEUR-->
@@ -163,13 +160,61 @@ db_connect();
 	  }
 	  echo "</select>";
 	  echo "<!-- Fin de : Liste déroulante des noms d'éditeurs -->";
-	  echo "</div><!--form-group Editeur-->";
-
+	  echo "</div><!--form-group Editeur-->";?>
 
 	  
+	   <div class="form-group">
+	    <!-- Cases à chocher des noms de plateformes + date de sortie correspondante -->
+	    <label>Plateforme</label>
+	    <p class="help-block">Cochez la (les) case(s) correspondant aux plateformes sur laquelle le jeu est disponible,<br/>
+	      saisissez la date de sortie en face de chaque plateforme cochée.</p>
+	    <?php
+	    $platforms = mysql_query("SELECT * FROM plateforme WHERE idPlateforme NOT IN (SELECT idPlateforme FROM estDisponible WHERE idJeu ='".$idJeu."')"); 
+	    //$platforms = select_all("plateforme");  
+	    while ($boxes = mysql_fetch_array($platforms)) {
+  	      $name = $boxes["nomPlateforme"];
+	      $id = $boxes["idPlateforme"];
+	      
+	      echo "<div class=\"form-group\"><!-- Groupe = case + textarea pour saisir la date -->";
+	      echo "<div class=\"row\">";
+	      echo "<div class=\"col-xs-2\">";
+	      echo "<div class=\"checkbox\">";
+	      echo "  <label><input type=\"checkbox\" name=\"idPlateforme[]\" value=\"$id\">$name</label>";
+	      echo "</div>";
+	      echo "</div>";
+	      echo "<div class=\"col-xs-3\">";
+	      echo "<input type=\"text\" name=\"dateSortie[]\"class=\"form-control\" maxlength=\"10\" placeholder=\"Date de sortie au format AAAA-MM-JJ\">";
+	      echo "</div>";
+	      echo "<div class=\"col-xs-7\">";
+	      echo "</div>";
+	      echo "</div><!-- row -->";	      
+	      echo"</div><!-- /form-group -->\n";
+	    }
+
+	    ?>
+	    <!-- Fin de : Cases à chocher des noms de plateformes + date de sortie correspondante -->   
+	  </div>
+	  
+
+	  <div class="form-group">
+	    <!-- Cases à chocher des noms de catégories -->
+	    <label>Catégorie</label>
+	    <p class="help-block">Cochez la (les) case(s) correspondant aux catégories à laquelle le jeu appartient.</p>
+	    <?php
+	    $categories = mysql_query("SELECT * FROM categorie WHERE idCategorie NOT IN (SELECT idCategorie FROM appartient WHERE idJeu ='".$idJeu."')"); 
+	    while ($boxes = mysql_fetch_array($categories)) {
+  	      $name = $boxes["nomCategorie"];
+	      $id = $boxes["idCategorie"];
+	      echo "<div class=\"checkbox\">";
+	      echo "  <label><input type=\"checkbox\" name=\"idCategorie[]\" value=\"$id\">$name</label>";
+	      echo "</div>\n";
+	    }
+	    ;?>
+	    <!-- Fin de : Cases à chocher des noms de catégories -->   
+	  </div>
 
 
-
+	  <?php 
 	  echo "<div class=\"form-group text-center\">";
 	  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_game('$idJeu');\">";
 	  echo "</div><!--form-group Bouton-->";
@@ -284,7 +329,7 @@ db_connect();
 	  }
 	  echo "</select>";
 	  echo "<!-- Fin de : Liste déroulante des plateformes-->";
-	  echo "</div>";
+	  echo "</div> <!-- fin form group des plateformes";
 
 	  echo "<div class=\"form-group text-center\">";
 	  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_comment('$idCommentaire');\">";
