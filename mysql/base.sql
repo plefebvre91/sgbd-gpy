@@ -22,8 +22,8 @@ CREATE TABLE joueur (
   nom          VARCHAR(32),
   prenom       VARCHAR(32),
   mail         VARCHAR(64),
-  idCategorie  int,
-  idPlateforme int,
+  idCategorie  int NOT NULL,
+  idPlateforme int NOT NULL,
   CONSTRAINT pk_joueur PRIMARY KEY(pseudo)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -91,23 +91,26 @@ CREATE TABLE estDisponible (
   idPlateforme int,
   idJeu        int,
   dateSortie   date,
-  CONSTRAINT pk_estDisponible  PRIMARY KEY(idPlateforme, idJeu)
+  CONSTRAINT pk_estDisponible PRIMARY KEY(idPlateforme, idJeu)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 -- Définitions des clés étrangères
+ALTER TABLE estDisponible ADD CONSTRAINT fk1_estDisponible FOREIGN KEY (idJeu)         REFERENCES jeu   (idJeu)  ON DELETE CASCADE;
 
-ALTER TABLE joueur      ADD CONSTRAINT fk1_joueur      FOREIGN KEY (idCategorie)   REFERENCES categorie   (idCategorie); 
-ALTER TABLE joueur      ADD CONSTRAINT fk2_joueur      FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme); 
-										  					                     
-ALTER TABLE commentaire ADD CONSTRAINT fk1_commentaire FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo)	  ON DELETE CASCADE; 
-ALTER TABLE commentaire ADD CONSTRAINT fk2_commentaire FOREIGN KEY (idJeu)         REFERENCES jeu         (idJeu)	  ON DELETE CASCADE; 
-ALTER TABLE commentaire ADD CONSTRAINT fk3_commentaire FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme)  ON DELETE CASCADE; 
-										  					                     
-ALTER TABLE jeu         ADD CONSTRAINT fk1_jeu         FOREIGN KEY (idEditeur)     REFERENCES editeur     (idEditeur); 
-										  					                     
-ALTER TABLE pouce       ADD CONSTRAINT fk1_pouce       FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo)	  ON DELETE CASCADE; 
-ALTER TABLE pouce       ADD CONSTRAINT fk2_pouce       FOREIGN KEY (idCommentaire) REFERENCES commentaire (idCommentaire) ON DELETE CASCADE; 
+ALTER TABLE appartient    ADD CONSTRAINT fk1_appartient    FOREIGN KEY (idJeu)         REFERENCES jeu   (idJeu)  ON DELETE CASCADE; 
+
+ALTER TABLE joueur        ADD CONSTRAINT fk1_joueur        FOREIGN KEY (idCategorie)   REFERENCES categorie   (idCategorie); 
+ALTER TABLE joueur        ADD CONSTRAINT fk2_joueur        FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme); 
+		        								  					                     
+ALTER TABLE commentaire   ADD CONSTRAINT fk1_commentaire   FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo)	  ON DELETE CASCADE; 
+ALTER TABLE commentaire   ADD CONSTRAINT fk2_commentaire   FOREIGN KEY (idJeu)         REFERENCES jeu         (idJeu)	  ON DELETE CASCADE; 
+ALTER TABLE commentaire   ADD CONSTRAINT fk3_commentaire   FOREIGN KEY (idPlateforme)  REFERENCES plateforme  (idPlateforme)  ON DELETE CASCADE; 
+		        								  					                     
+ALTER TABLE jeu           ADD CONSTRAINT fk1_jeu           FOREIGN KEY (idEditeur)     REFERENCES editeur     (idEditeur); 
+		        								  					                     
+ALTER TABLE pouce         ADD CONSTRAINT fk1_pouce         FOREIGN KEY (pseudo)        REFERENCES joueur      (pseudo)	  ON DELETE CASCADE; 
+ALTER TABLE pouce         ADD CONSTRAINT fk2_pouce         FOREIGN KEY (idCommentaire) REFERENCES commentaire (idCommentaire) ON DELETE CASCADE; 
 
 
 CREATE OR REPLACE VIEW info_joueur AS
