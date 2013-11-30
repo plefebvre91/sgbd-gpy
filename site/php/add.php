@@ -102,6 +102,15 @@ function add_comment($note, $comment, $pseudo, $id_game, $id_platform){
 }
 
 function add_inch($value, $pseudo, $id_comment) {
+  $query = "SELECT pseudo FROM commentaire WHERE idCommentaire='$id_comment'";
+  $result = mysql_query($query);
+
+  while($att = mysql_fetch_array($result)){
+    if($pseudo == $att["pseudo"]){
+      die("Vous ne pouvez pas voter pour votre propre commentaire");
+    }
+  }
+
   $query = "INSERT INTO pouce VALUES ('', '$value', '$pseudo', '$id_comment')";
   $result = mysql_query($query);
 

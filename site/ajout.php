@@ -214,7 +214,7 @@
 
 	<div class="form-group">
 	  <!-- Liste déroulante des pseudos -->
-	  <label>Auteur</label>
+	  <label>Auteur de l'appréciation</label>
 	  <select id="liste_pseudo_pouce" name="pseudo" class="form-control">
 	    <?php
 	    $players = select_all("joueur");  
