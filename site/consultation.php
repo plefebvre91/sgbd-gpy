@@ -233,7 +233,7 @@
 	$thumbs = select_all("pouce");
 	?>
 	<table class="table table-striped">
-	<tr>Pseudo</th><th>Valeur</th><th>Commentaire (numéro)</th></tr>
+	<tr><th>Pseudo</th><th>Valeur</th><th>Commentaire (numéro)</th></tr>
 	<?php
 	while($att = mysql_fetch_array($thumbs)){
 	  $idPouce = $att["idPouce"];

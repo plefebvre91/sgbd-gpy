@@ -211,6 +211,22 @@
       <div class="container">
 
 	<p class="lead">Ajouter une appréciation de commentaire</p>
+
+	<div class="form-group">
+	  <!-- Liste déroulante des pseudos -->
+	  <label>Auteur</label>
+	  <select id="liste_pseudo_pouce" name="pseudo" class="form-control">
+	    <?php
+	    $players = select_all("joueur");  
+	    while ($options = mysql_fetch_array($players)) {
+  	      $pseudo = $options["pseudo"];
+	      echo "<option value=\"$pseudo\">$pseudo</option>";
+	    }
+	    ?>
+	  </select>
+	  <!-- Fin de : Liste déroulante des pseudos -->
+	</div>
+
 	<?php
 	$comments = select_all("commentaire");
 

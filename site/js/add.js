@@ -49,7 +49,8 @@ function add_category(){
 function add_inch(id, value){
     var comment_id = "#comment"+id;
     $("#result").html("Chargement...");
-    var request = $.get("ajax/ajax_add_inch.php", {idCommentaire: id, value: value, pseudo: "plefebvre"});
+    var login = $("#liste_pseudo_pouce").val();
+    var request = $.get("ajax/ajax_add_inch.php", {idCommentaire: id, value: value, pseudo: login});
     request.done(function(msg){$("#result").html(msg);});
     request.fail(failure);
     return false;
