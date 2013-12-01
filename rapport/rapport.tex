@@ -173,6 +173,8 @@
 
 \subsection{Requêtes de consultation}
 \subsubsection{Ensemble des jeux critiqués sur une plateforme donnée}
+\indent On cherche à avoir l'ensemble des jeux critiqués disponibles sur une plateforme donnée, et on les classera par catégorie. La requête englobante est donc celle de classement par catégorie, avec un ``order by nomCatégorie asc'' pour trier par catégorie. On fait une jointure interne avec la jointure externe jeu-appartient. A partir de cette jointure, on peut chercher, pour la plateforme passée en entrée, quels jeux sont à la foi disponibles sur cette platorme et commentés sur cette plateforme.
+
 \begin{verbatim}
 SELECT res.nomJeu, categorie.nomCategorie FROM categorie INNER JOIN
       (SELECT jeu.*, appartient.idCategorie FROM jeu LEFT OUTER JOIN appartient
@@ -184,7 +186,7 @@ SELECT res.nomJeu, categorie.nomCategorie FROM categorie INNER JOIN
              	          (SELECT plateforme.idPlateforme 
                           FROM plateforme INNER JOIN estDisponible
                	          ON plateforme.idPlateforme = estDisponible.idPlateforme
-        		       WHERE plateforme.nomPlateforme = '$platform')
+        		       WHERE plateforme.nomPlateforme = 'PLATEFORME CHERCHEE')
                   	       AND jeu.idJeu IN
                              	    (SELECT jeu.idJeu FROM commentaire INNER JOIN jeu
              	     	       	    	  ON jeu.idJeu = commentaire.idJeu))) as res
@@ -195,7 +197,7 @@ SELECT res.nomJeu, categorie.nomCategorie FROM categorie INNER JOIN
 \subsubsection{Liste des commentaires pour une catégorie et une plateforme données}
 \indent Chaque joueur est obligé d'indiquer une catégorie préférée ainsi qu'une plateforme préférée. Il peut donc être intéressant pour lui de savoir rapidement ce que pensent les autres jours des jeux existants avec ces deux contraintes. \\
 
-\indent On commence par faire une jointure interne entre les tables commentaire et jeu avec la contrainte d'avoir le même idJeu. On ajoute la contrainte que cet idJeu soit également dans une sélection de jeux correspondant à la catégorie et la plateforme préférées du joueur. Pour cela, on fait une jointure interne avec la table appartient pour la catégorie, et pour la plateforme on vérifie la cohérence entre la table commentaire et la table joueur, qui contiennent toutes idPlateforme.
+\indent On commence par faire une jointure interne entre les tables commentaire et jeu avec la contrainte d'avoir le même idJeu. On ajoute la contrainte que cet idJeu soit également dans une sélection de jeux correspondant à la catégorie et la plateforme préférées du joueur. Pour cela, on fait une jointure interne avec la table appartient pour la catégorie, et pour la plateforme on vérifie la cohérence entre la table commentaire et la table joueur, qui contiennent toutes idPlateforme. \\ \\
 
 \begin{verbatim}
 SELECT commentaire.* FROM commentaire INNER JOIN jeu ON commentaire.idJeu = jeu.idJeu
@@ -204,9 +206,9 @@ SELECT commentaire.* FROM commentaire INNER JOIN jeu ON commentaire.idJeu = jeu.
              (SELECT appartient.idJeu FROM appartient INNER JOIN jeu
                      ON jeu.idJeu = appartient.idJeu
                      WHERE appartient.idCategorie = 
-                         (SELECT idCategorie FROM joueur WHERE joueur.pseudo = '$login'))
+                         (SELECT idCategorie FROM joueur WHERE joueur.pseudo = 'PSEUDO'))
                      AND commentaire.idPlateforme IN
-                         (SELECT idPlateforme FROM joueur WHERE joueur.pseudo = '$login');
+                         (SELECT idPlateforme FROM joueur WHERE joueur.pseudo = 'PSEUDO');
 \end{verbatim}
 
 \subsubsection{Liste des joueurs ayant apprécié un commentaire}
@@ -220,7 +222,7 @@ SELECT commentaire.* FROM commentaire INNER JOIN jeu ON commentaire.idJeu = jeu.
 \indent Pour recenser les $n$ plus récents commentaires, on peut se baser sur leur date d'émission. Avec MySQL il est possible de limiter en nombre d'éléments un tri avec un ``order by * desc limit n''.
 
 \subsubsection{Commentaire laissant le moins indifférent}
-\indent Pour cette requête on renverra le ou les commentaire(s) laissant le moins indifférent. On commence par rechercher dans la table pouce le nombre maximal d'avis sur un commentaire. Il est ensuite possible de récupérer l'ensemble des identifiants de commentaire, dans la table pouce, ayant ce nombre maximal d'avis. Pour finir, avec une jointure interne avec la table commentaire, l'accès aux commentaires est possible.
+\indent Pour cette requête on renverra le ou les commentaire(s) laissant le moins indifférent. On commence par rechercher dans la table pouce le nombre maximal d'avis sur un commentaire. Il est ensuite possible de récupérer l'ensemble des identifiants de commentaire, dans la table pouce, ayant ce nombre maximal d'avis. Pour finir, avec une jointure interne avec la table commentaire, l'accès aux commentaires est possible. \\ \\ \\
 \begin{verbatim}
 SELECT distinct commentaire.* FROM pouce INNER JOIN commentaire 
        ON pouce.idCommentaire = commentaire.idCommentaire
