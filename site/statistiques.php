@@ -1,6 +1,6 @@
 <div class="container">
   <div class="well top-message">
-    <p>Cliquez sur les différents onglets pour accéder aux quatre requêtes de statistiques.</p>
+    <p>Cliquez sur les différents onglets pour accéder aux requêtes de statistiques.</p>
 
   </div>
 
@@ -133,23 +133,22 @@
 
       <div class="container">
 	<table class="table table-striped">
-	  <tr><th>Jeu</th><th>Moyenne</th></tr>
+	  <tr><th>Nom du jeu</th><th>Moyenne pondérée</th></tr>
 	  
 	  <?php
-	  //Joueurs ayant note le plus de commentaires
-	  $games = mysql_query("SELECT nomJeu, MP AS \"Moyenne\", TotalIC AS \"Total\" FROM jeu NATURAL JOIN (
+	  // Requête de classement des jeux
+
+	  $games = mysql_query("SELECT nomJeu AS \"Nom du jeu\", MP AS \"Moyenne pondérée\", TotalIC AS \"Total des Indices de Confiance des commentaires du jeu\" FROM jeu NATURAL JOIN (
 SELECT idJeu, ( SUM(note  * (1 + res.c)/(1 + res.d)) ) / ( SUM((1 + res.c)/(1 + res.d)) ) AS \"MP\", SUM((1 + res.c)/(1 + res.d)) AS \"TotalIC\" FROM (
        SELECT commentaire.*, SUM(IF(pouce.valeur = '+', 1, 0)) AS \"c\", SUM(IF(pouce.valeur = '-', 1, 0)) AS \"d\"
        FROM commentaire LEFT OUTER JOIN pouce ON commentaire.idCommentaire = pouce.idCommentaire
        GROUP BY commentaire.idCommentaire) AS res
        GROUP BY idJeu
-       ORDER BY ( sum(note  * (1 + res.c)/(1 + res.d)) ) / ( sum((1 + res.c)/(1 + res.d)) ) DESC, sum((1 + res.c)/(1 + res.d)) DESC) AS classement;
-");
+       ORDER BY ( SUM(note  * (1 + res.c)/(1 + res.d)) ) / ( SUM((1 + res.c)/(1 + res.d)) ) DESC, SUM((1 + res.c)/(1 + res.d)) DESC) AS classement;");
 	  
-	  
-	  while($att = mysql_fetch_array($players)){
-	    $game = $att["nomJeu"];
-	    $average = $att["Moyenne"];
+	  while($att = mysql_fetch_array($games)){
+	    $game = $att["Nom du jeu"];
+	    $average = $att["Moyenne pondérée"];
 	    
 	    echo "<tr><td>$game</td><td>$average</td></tr>\n";
 	  }?>
