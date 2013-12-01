@@ -94,43 +94,43 @@
 \newpage
 
 \section*{Introduction}
-\indent L'objectif de ce projet est de compléter le cours de SGBD dispensé à l'ENSEIRB-Matmeca par une mise en pratique. Réalisé par un trinôme, ce projet a pour objectif de se confronter au développement d'une base de données relationnelle. Ce document présente les différentes étapes relatives à ce projet, de la présentation du sujet à la réalisation d'une interface utilisateur. Il sera notamment explicité les problèmes relatifs à la modélisation et la réalisation des requêtes importantes.
+\indent L'objectif de ce projet est de compléter le cours de SGBD dispensé à l'ENSEIRB-Matmeca par une mise en pratique. Réalisé par un trinôme, ce projet a pour objectif de se confronter au développement d'une base de données relationnelle. Ce document présente les différentes étapes relatives à la réalisation de ce projet, de la présentation du sujet à la conception d'une interface utilisateur. Il sera notamment explicité les problèmes relatifs à la modélisation et la réalisation des requêtes importantes.
 \\
 
 \indent Le choix pour l'environnement de travail a été des plus classiques: MySQL et PHP. Le site ainsi crée met en avant les différentes opérations réalisables sur la base de données.
 
 \section{Présentation du sujet}
-\indent La base de données à réaliser doit permettre de gérer une communauté de joueurs de jeux vidéos. Il est donc nécessaire de pouvoir gérer un ensemble de joueurs, un ensemble de jeux relatifs à certaines plateformes (type de console ou d'ordinateur) et à certaines catégories (Tir, Action \dots). Par ailleurs, un joueur doit pouvoir noter les différents jeux, par le biais de commentaires, et les autres joueurs doit pouvoir évaluer la pertinence du commentaire en question en donnant un avis positif ou négatif (pouce). Pour finir, un joueur doit pouvoir renseigner ses préférences: sa catégorie de jeu préférée et la plateforme sur laquelle il aime jouer.\\
+\indent La base de données à réaliser doit permettre de gérer une communauté de joueurs de jeux vidéos. Il est donc nécessaire de pouvoir gérer un ensemble de joueurs, un ensemble de jeux relatifs à certaines plateformes (type de console ou d'ordinateur) et à certaines catégories (Tir, Action \dots). Par ailleurs, un joueur doit pouvoir noter les différents jeux, par le biais de commentaires, et les autres joueurs doivent pouvoir évaluer la pertinence du commentaire en question en donnant un avis positif ou négatif (pouce). Pour finir, un joueur doit pouvoir renseigner ses préférences: sa catégorie de jeu préférée et la plateforme sur laquelle il aime jouer.\\
 
-\indent D'un point de vue implémentation, il est demandé de réaliser des requêtes basiques de consultation, de mise à jour, d'ajout ou encore de suppression. Par ailleurs, certaines requêtes plus avancées sont requises, elles seront explicités plus tard dans ce document. \\
+\indent D'un point de vue implémentation, il est demandé de réaliser des requêtes classiques de consultation, de mise à jour, d'ajout ou encore de suppression. Par ailleurs, certaines requêtes plus avancées sont requises, elles seront explicités plus tard dans ce document. \\
 
 \indent Le choix fait a été de réaliser l'ensemble des requêtes demandées. Nous commencerons par étudier plus en détail les termes du sujet afin de fournir un modèle entité-association. Par la suite, nous présenterons le modèle relationnel avant de détailler l'implémentation avec MySQL et de présenter brièvement l'utilisation de notre interface graphique.
 \newpage
 
 \section{Modélisation}
-\indent Cette partie entend préciser les étapes nécessaires à l'implémentation de la base de données. Le modèle conceptuel retenu sera présenté, ainsi que le modèle relationnel et les différentes étapes ayant permis cette mise en forme.
+\indent Cette partie entend préciser les étapes nécessaires à la modélisation de la base de données. Le modèle conceptuel retenu sera présenté, ainsi que le modèle relationnel et les différentes étapes ayant permis cette mise en forme.
 
 \subsection{Modèle conceptuel}
-\indent Réaliser le modèle conceptuel demande de préciser la description du sujet, mais aussi de faire de choix. Nous verrons ces différents choix avant de présenter les entités et de détailler les opérations autorisées sur chaque entité.
+\indent Réaliser le modèle conceptuel demande de préciser la description du sujet, mais aussi de faire certains choix. Nous verrons ces différents choix avant de présenter les entités retenues et de détailler les opérations autorisées sur chaque entité.
 
 \subsubsection{Contexte précis}
 \begin{itemize}
 \item Pour un joueur, le pseudonyme sera unique. Par ailleurs, la catégorie et la plateforme préférées devront obligatoirement être renseignées.
 \item Un jeu étant disponible sur plusieurs plateformes, sa date de parution sera relative à une plateforme donnée.
-\item Les joueurs doivent pouvoir noter les jeux, d'une note de 0 à 20 accompagnée d'un commentaire. Cependant, uun joueur ne pourra noter qu'une seule fois un jeu, et préciser alors la plateforme sur laquelle il y a joué.
+\item Les joueurs doivent pouvoir noter les jeux, d'une note de 0 à 20 accompagnée d'un commentaire. Cependant, un joueur ne pourra noter qu'une seule fois un jeu, et préciser alors la plateforme sur laquelle il y a joué.
 \item Les joueurs peuvent indiquer s'ils trouvent un commentaire pertinent ou non. On s'assurera qu'un joueur ne peut pas évaluer un commentaire qu'il a lui même émis. De plus, un joueur ne pourra indiquer son avis qu'une fois par commentaire.
 \item Les dates devront être cohérentes. Elles le seront toutes par rapport à la date actuelle. De plus, les dates des commentaires relatifs à une plateforme donnée pour un jeu devront être plus récentes que la date de sortie du jeu sur la plateforme en question. 
 \end{itemize}
 
 \subsubsection{Entités}
-\indent A partir de l'ensemble des demandes initiales du sujet et des choix effectués, il est relativement aisé de décrire les différentes entités. Elles sont visibles dans le modèle conceptuel \ref{fig:mcd}. Les choix suivants ont été fait pour les associations: 
+\indent A partir de l'ensemble des demandes initiales du sujet et des choix effectués, il est relativement aisé de décrire les différentes entités. Elles sont visibles sur le schéma du modèle conceptuel: \ref{fig:mcd}. Les choix suivants ont été fait pour les associations: 
 \begin{itemize}
-\item Un joueur préfère une et une seule catégorie. Il en va de même pour la plateforme
-\item Une catégorie peut n'être préférée par personne, mais correspond au minimum à un jeu. Idem pour une plateforme.
-\item Un jeu peut poster plusieurs commentaires et en juger plusieurs.
+\item Un joueur préfère une et une seule catégorie. Il en va de même pour la plateforme.
+\item Une catégorie peut n'être préférée par personne, et il est possible qu'aucun jeu n'appartienne à cette catégorie. Idem pour une plateforme.
+\item Un joueur peut poster plusieurs commentaires et en juger plusieurs.
 \item Un pouce se réfère à un unique commentaire et provient d'un joueur précis.
-\item Un commentaire concerne une plateforme et un jeu.
-\item Un éditeur peut éditer plusieurs jeux, mais doit au minimum en éditer un.
+\item Un commentaire concerne une plateforme précise pour un jeu donné.
+\item Un éditeur peut éditer plusieurs jeux. Il est possible qu'il n'en édite aucun.
 \end{itemize}
 
 \newpage
@@ -146,10 +146,10 @@
 \subsubsection{Opérations autorisées}
 \indent Il doit être possible d'ajouter l'ensemble des entités dans la base de données. Cependant, les requêtes d'ajout, de même que les requêtes de mise à jour, doivent être en respect avec certains choix présentés antérieurement, notamment quand aux cardinalités des associations. \\
 
-\indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un éditeur, auquel cas l'ensemble des jeux édités par cet éditeur seront également supprimés. Dans la réalité, un joueur pourrait être supprimé de la base de donné (par exemple s'il est banni du forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donné seront supprimés.
+\indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un jeu, auquel cas l'ensemble des commentaires relatifs à ce jeu seront également supprimés. On peut aussi supprimer un commentaire, et donc l'ensemble des pouces relatifs à ce commentaire. Pour finir, un joueur pourra être supprimé de la base de donné (par exemple s'il est banni du forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donné seront supprimés.
 
 \subsection{Modèle relationnel}
-\indent En considérant l'ensemble des associations, le passage au modèle relationnel ``naïf'' a seulement consisté a ajouter deux tables pour les deux ralations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mise dans les tables du côté unique. \\
+\indent En considérant l'ensemble des associations, le passage au modèle relationnel ``naïf'' a seulement consisté a ajouter deux tables pour les deux ralations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mises dans les tables du côté unique. \\
 
 \indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (idJeu, idPlateforme) pour la table commentaire. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un idCommentaire a été ajouté. Par ailleurs, le choix initial de mettre un idJoueur a posé un problème de redondance avec le fait de définir un pseudo unique. Le pseudo du joueur a alors constitué sa clé primaire. Finalement, voici le modèle relationnel retenu: \\
 
