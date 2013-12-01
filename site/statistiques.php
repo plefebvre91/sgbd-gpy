@@ -10,6 +10,7 @@
     <li><a href="#consultation2" data-toggle="tab">Commentaires les plus appréciés</a></li>
     <li><a href="#consultation3" data-toggle="tab">Joueurs les plus actif</a></li>
     <li><a href="#consultation4" data-toggle="tab">Commentaire ayant laissé le moins indifférent</a></li>
+    <li><a href="#consultation5" data-toggle="tab">Classement des jeux</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -128,6 +129,34 @@
       </div> 
     </div>
 
+    <div class="tab-pane" id="consultation5">
+
+      <div class="container">
+	<table class="table table-striped">
+	  <tr><th>Jeu</th><th>Moyenne</th></tr>
+	  
+	  <?php
+	  //Joueurs ayant note le plus de commentaires
+	  $games = mysql_query("SELECT nomJeu, MP AS \"Moyenne\", TotalIC AS \"Total\" FROM jeu NATURAL JOIN (
+SELECT idJeu, ( SUM(note  * (1 + res.c)/(1 + res.d)) ) / ( SUM((1 + res.c)/(1 + res.d)) ) AS \"MP\", SUM((1 + res.c)/(1 + res.d)) AS \"TotalIC\" FROM (
+       SELECT commentaire.*, SUM(IF(pouce.valeur = '+', 1, 0)) AS \"c\", SUM(IF(pouce.valeur = '-', 1, 0)) AS \"d\"
+       FROM commentaire LEFT OUTER JOIN pouce ON commentaire.idCommentaire = pouce.idCommentaire
+       GROUP BY commentaire.idCommentaire) AS res
+       GROUP BY idJeu
+       ORDER BY ( sum(note  * (1 + res.c)/(1 + res.d)) ) / ( sum((1 + res.c)/(1 + res.d)) ) DESC, sum((1 + res.c)/(1 + res.d)) DESC) AS classement;
+");
+	  
+	  
+	  while($att = mysql_fetch_array($players)){
+	    $game = $att["nomJeu"];
+	    $average = $att["Moyenne"];
+	    
+	    echo "<tr><td>$game</td><td>$average</td></tr>\n";
+	  }?>
+	  
+	</table>
+      </div> 
+    </div>
     
   </div> <!-- Tab panes -->
   
