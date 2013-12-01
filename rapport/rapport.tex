@@ -169,7 +169,7 @@
 
 \newpage
 \section{Zoom sur les requêtes importantes}
-\indent Plusieurs requêtes étaient explicitement demandées dans le sujet. Nous commencerons par détailler certaines requêtes de consultation avant de voir celles de statistiques puis étudier le cas de la mise à jour.
+\indent Plusieurs requêtes étaient explicitement demandées dans le sujet. Nous commencerons par détailler certaines requêtes de consultation avant de voir des requêtes de statistiques puis d'étudier le cas de la mise à jour.
 
 \subsection{Requêtes de consultation}
 \subsubsection{Ensemble des jeux critiqués sur une plateforme donnée}
@@ -247,7 +247,14 @@ SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlate
 \end{verbatim}
 
 \subsection{Requêtes de mise à jour}
+\indent Garder la base de données cohérente avec des insertions et des suppressions d'éléments pose certains problèmes. Lorsqu'un élément est ajouté à la table, ou plus simplement mis à jour, il faut s'assurer que l'ensemble des champs de l'entité ont été complétés. Par ailleurs, dans le cas de certaines contraintes, il faut parcourir la table entière. Par exemple, lorsqu'un commentaire est ajouté, il faut s'assurer que le joueur qui émet ce commentaire n'a pas encore déposé de commentaire pour le jeu considéré. \\
 
+\indent En outre, il faut gérer correctement la suppression de données de la base. Par exemple, lorsqu'un jeu est supprimé de la base, il faut supprimer les associations jeu-catégorie et jeu-plateforme correspondantes. Cela est possible avec la syntaxe suivante en MySQL: \\
+
+\begin{verbatim}
+ALTER TABLE estDisponible ADD CONSTRAINT fk1_estDisponible FOREIGN KEY (idJeu) 
+            REFERENCES jeu (idJeu) ON DELETE CASCADE;
+\end{verbatim}
 
 \newpage
 \input{interface.tex}
@@ -256,6 +263,10 @@ SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlate
 \section*{Conclusion}
 \indent Ce projet a permis de mettre en oeuvre différentes techniques vues dans le module SGBD. Il a notamment permis de comprendre les différentes étapes nécessaires à la bonne création d'une base de données. Si le modèle conceptuel peut initialement sembler suffisant, la mise sous forme normale permet de déceler certains problèmes relatifs à l'intégrité de la base. \\
 
-\indent Par ailleurs, ce projet permet de mettre en avant les difficultés que pose la modélisation d'une base de données. Si certaines données ont clairement leur place quel que soit la modélisation choisie, d'autres sont sujettes à discussion. Il s'agit alors de bien définir les contraintes pour permettre une des principales attentes d'une base de donnée: la cohérence.
+\indent Par ailleurs, ce projet permet de mettre en avant les difficultés que pose la modélisation d'une base de données. Si certaines données ont clairement leur place quel que soit la modélisation choisie, d'autres sont sujettes à discussion. Il s'agit alors de bien définir les contraintes pour permettre une des principales attentes d'une base de donnée: la cohérence. \\
+
+\indent Afin de garder cette cohérence de la base de données, les opérations basiques doivent être correctement réalisées. L'insertion, la mise à jour ou la suppression peuvent en effet poser certains problèmes, notamment au niveau des cardinalités des associations. \\
+
+\indent Pour conclure, réaliser une base de données impose de faire certains choix. Une des choses fondamentales qui n'a pas été prise en compte dans ce travail est les cas d'utilisation. En effet, selon les opérations qui seront le plus effectuées sur la base de données, la modélisation peut changer pour optimiser ces opérations. C'est cependant délicat d'imaginer le comportement des utilisateurs de la base sans étude préalable.
 
 \end{document}
