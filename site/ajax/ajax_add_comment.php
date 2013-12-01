@@ -18,6 +18,12 @@ $pseudo      = secure_string($_GET["pseudo"]);
 $id_game     = secure_string($_GET["idJeu"]);
 $id_platform = secure_string($_GET["idPlateforme"]);
 
+
+if($note > 20 || $note < 0){
+  echo "La note doit être comprise entre 0 et 20";
+  exit;
+}
+
 //Selection dans la base
 if(!add_comment($note, $comment,  $pseudo, $id_game, $id_platform)){
   echo "Une erreur est survenue lors de l'ajout commentaire";
