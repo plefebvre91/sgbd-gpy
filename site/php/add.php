@@ -29,11 +29,19 @@ function add_game($name, $categories, $platforms, $editor, $dates) {
     if ( $date == "" or ( ! preg_match($pattern, $date)) ) {
       $date = date("Y-m-d");
     }
-    // Sinon, si la date est au bon format mais est invalide, utiliser la date du jour
+    // Sinon, si la date est au bon format mais est invalide ou postérieure à la date actuelle, utiliser la date du jour
     else {
       $dateParsee = date_parse_from_format("Y-m-d", $date);
       if ( ! checkdate($dateParsee['month'], $dateParsee['day'], $dateParsee['year']) ) {
 	$date = date("Y-m-d");
+      }
+      else {
+	$now = date_parse_from_format("Y-m-d", date("Y-m-d"));
+	if ( ($dateParsee['year'] > $now['year']) ||
+	    ( ($dateParsee['year'] == $now['year']) && ($dateParsee['month'] > $now['month']) ) ||
+	    ( ($dateParsee['year'] == $now['year']) && ($dateParsee['month'] == $now['month']) && ($dateParsee['day'] > $now['day']) ) ) {
+	  $date = date("Y-m-d");
+	}
       }
     }
     
