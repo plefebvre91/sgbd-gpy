@@ -44,6 +44,14 @@ function update_game($idJeu, $name, $id_editor, $categories, $platforms, $dates)
       if ( ! checkdate($dateParsee['month'], $dateParsee['day'], $dateParsee['year']) ) {
 	$date = date("Y-m-d");
       }
+      else {
+	$now = date_parse_from_format("Y-m-d", date("Y-m-d"));
+	if ( ($dateParsee['year'] > $now['year']) ||
+	    ( ($dateParsee['year'] == $now['year']) && ($dateParsee['month'] > $now['month']) ) ||
+	    ( ($dateParsee['year'] == $now['year']) && ($dateParsee['month'] == $now['month']) && ($dateParsee['day'] > $now['day']) ) ) {
+	  $date = date("Y-m-d");
+	}
+      }
     }
     
     // Construction de la requete
