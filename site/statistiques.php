@@ -133,12 +133,12 @@
 
       <div class="container">
 	<table class="table table-striped">
-	  <tr><th>Nom du jeu</th><th>Moyenne pondérée</th></tr>
+	  <tr><th>Nom du jeu</th><th>Moyenne pondérée</th><th>Total Indice de Confiance des commentaires sur le jeu</th></tr>
 	  
 	  <?php
 	  // Requête de classement des jeux
 
-	  $games = mysql_query("SELECT nomJeu AS \"Nom du jeu\", MP AS \"Moyenne pondérée\", TotalIC AS \"Total des Indices de Confiance des commentaires du jeu\" FROM jeu NATURAL JOIN (
+	  $games = mysql_query("SELECT nomJeu AS \"Nom du jeu\", MP AS \"Moyenne pondérée\", TotalIC AS \"Total IC des commentaires du jeu\" FROM jeu NATURAL JOIN (
 SELECT idJeu, ( SUM(note  * (1 + res.c)/(1 + res.d)) ) / ( SUM((1 + res.c)/(1 + res.d)) ) AS \"MP\", SUM((1 + res.c)/(1 + res.d)) AS \"TotalIC\" FROM (
        SELECT commentaire.*, SUM(IF(pouce.valeur = '+', 1, 0)) AS \"c\", SUM(IF(pouce.valeur = '-', 1, 0)) AS \"d\"
        FROM commentaire LEFT OUTER JOIN pouce ON commentaire.idCommentaire = pouce.idCommentaire
@@ -149,8 +149,9 @@ SELECT idJeu, ( SUM(note  * (1 + res.c)/(1 + res.d)) ) / ( SUM((1 + res.c)/(1 + 
 	  while($att = mysql_fetch_array($games)){
 	    $game = $att["Nom du jeu"];
 	    $average = $att["Moyenne pondérée"];
+	    $totalIC = $att["Total IC des commentaires du jeu"];
 	    
-	    echo "<tr><td>$game</td><td>$average</td></tr>\n";
+	    echo "<tr><td>$game</td><td>$average</td><td>$totalIC</td></tr>\n";
 	  }?>
 	  
 	</table>
