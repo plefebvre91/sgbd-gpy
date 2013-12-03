@@ -13,6 +13,15 @@ if(!$err){
 //Protection des chaîne de caracteres
 $name = secure_string($_GET["nomJeu"]);
 $editor = secure_string($_GET["nomEditeur"]);
+
+if ( ! isset($_GET["idPlateforme"]) ) { // Si aucune case plateforme n'est cochée
+  exit("Veuillez sélectionner au moins une plateforme pour pouvoir ajouter un jeu.\n");
+}
+
+if ( !isset($_GET["idCategorie"]) ) { // Si aucune case catégorie n'est cochée
+  exit("Veuillez sélectionner au moins une catégorie pour pouvoir ajouter un jeu.\n");
+}
+
 $platforms = $_GET["idPlateforme"];
 $categories = $_GET["idCategorie"];
 $dates = $_GET["dateSortie"];
