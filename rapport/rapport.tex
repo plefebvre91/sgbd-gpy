@@ -102,7 +102,7 @@
 \section{Présentation du sujet}
 \indent La base de données à réaliser doit permettre de gérer une communauté de joueurs de jeux vidéos. Il est donc nécessaire de pouvoir gérer un ensemble de joueurs, un ensemble de jeux relatifs à certaines plateformes (type de console ou d'ordinateur) et à certaines catégories (Tir, Action \dots). Par ailleurs, un joueur doit pouvoir noter les différents jeux, par le biais de commentaires, et les autres joueurs doivent pouvoir évaluer la pertinence du commentaire en question en donnant un avis positif ou négatif (pouce). Pour finir, un joueur doit pouvoir renseigner ses préférences: sa catégorie de jeu préférée et la plateforme sur laquelle il aime jouer.\\
 
-\indent D'un point de vue implémentation, il est demandé de réaliser des requêtes classiques de consultation, de mise à jour, d'ajout ou encore de suppression. Par ailleurs, certaines requêtes plus avancées sont requises, elles seront explicités plus tard dans ce document. \\
+\indent D'un point de vue implémentation, il est demandé de réaliser des requêtes classiques de consultation, de mise à jour, d'ajout ou encore de suppression. Par ailleurs, certaines requêtes plus avancées sont requises, elles seront explicitées plus tard dans ce document. \\
 
 \indent Le choix fait a été de réaliser l'ensemble des requêtes demandées. Nous commencerons par étudier plus en détail les termes du sujet afin de fournir un modèle entité-association. Par la suite, nous présenterons le modèle relationnel avant de détailler l'implémentation avec MySQL et de présenter brièvement l'utilisation de notre interface graphique.
 \newpage
@@ -117,8 +117,8 @@
 \begin{itemize}
 \item Pour un joueur, le pseudonyme sera unique. Par ailleurs, la catégorie et la plateforme préférées devront obligatoirement être renseignées.
 \item Un jeu étant disponible sur plusieurs plateformes, sa date de parution sera relative à une plateforme donnée.
-\item Les joueurs doivent pouvoir noter les jeux, d'une note de 0 à 20 accompagnée d'un commentaire. Cependant, un joueur ne pourra noter qu'une seule fois un jeu, et préciser alors la plateforme sur laquelle il y a joué.
-\item Les joueurs peuvent indiquer s'ils trouvent un commentaire pertinent ou non. On s'assurera qu'un joueur ne peut pas évaluer un commentaire qu'il a lui même émis. De plus, un joueur ne pourra indiquer son avis qu'une fois par commentaire.
+\item Les joueurs doivent pouvoir noter les jeux, d'une note de 0 à 20, accompagnée d'un commentaire. Cependant, un joueur ne pourra noter qu'une seule fois un jeu, et préciser alors la plateforme sur laquelle il y a joué.
+\item Les joueurs peuvent indiquer s'ils trouvent un commentaire pertinent ou non. On s'assurera qu'un joueur ne peut pas évaluer un commentaire qu'il a lui même émis. De plus, un joueur ne pourra indiquer son avis qu'une seule fois par commentaire.
 \item Les dates devront être cohérentes. Elles le seront toutes par rapport à la date actuelle. De plus, les dates des commentaires relatifs à une plateforme donnée pour un jeu devront être plus récentes que la date de sortie du jeu sur la plateforme en question. 
 \end{itemize}
 
@@ -144,12 +144,12 @@
 \newpage
 
 \subsubsection{Opérations autorisées}
-\indent Il doit être possible d'ajouter l'ensemble des entités dans la base de données. Cependant, les requêtes d'ajout, de même que les requêtes de mise à jour, doivent être en respect avec certains choix présentés antérieurement, notamment quand aux cardinalités des associations. \\
+\indent Il doit être possible d'ajouter l'ensemble des entités dans la base de données. Cependant, les requêtes d'ajout, de même que les requêtes de mise à jour, doivent être en respect avec certains choix présentés antérieurement, notamment quant aux cardinalités des associations. \\
 
 \indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un jeu, auquel cas l'ensemble des commentaires relatifs à ce jeu seront également supprimés. On peut aussi supprimer un commentaire, et donc l'ensemble des pouces relatifs à ce commentaire. Pour finir, un joueur pourra être supprimé de la base de donné (par exemple s'il est banni du forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donné seront supprimés.
 
 \subsection{Modèle relationnel}
-\indent En considérant l'ensemble des associations, le passage au modèle relationnel ``naïf'' a seulement consisté a ajouter deux tables pour les deux ralations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mises dans les tables du côté unique. \\
+\indent En considérant l'ensemble des associations, le passage au modèle relationnel ``naïf'' a seulement consisté a ajouter deux tables pour les deux relations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mises dans les tables du côté unique. \\
 
 \indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (idJeu, idPlateforme) pour la table commentaire. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un idCommentaire a été ajouté. Par ailleurs, le choix initial de mettre un idJoueur a posé un problème de redondance avec le fait de définir un pseudo unique. Le pseudo du joueur a alors constitué sa clé primaire. Finalement, voici le modèle relationnel retenu: \\
 
@@ -165,7 +165,7 @@
   \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}}, \attr{dateSortie})\\ \\
 \end{mld}
 
-\indent A noter que le modèle ci-dessus n'est pas en troisième forme normale. En effet, il est possible de connaître le nom et le prénom d'un joueur à partir de son adresse mail, qui n'est pas une clé primaire. Pour éviter ce problème, il aurait fallut créer une table informations en association avec la table joueur et contenant son nom et son prénom. Cependant, après discussion, cette solution n'a pas été retenue pour plus de clarté quand à l'entité joueur.
+\indent A noter que le modèle ci-dessus n'est pas en troisième forme normale. En effet, il est possible de connaître le nom et le prénom d'un joueur à partir de son adresse mail, qui n'est pas une clé primaire. Pour éviter ce problème, il aurait fallut créer une table informations en association avec la table joueur et contenant son nom et son prénom. Cependant, après discussion, cette solution n'a pas été retenue pour plus de clarté quant à l'entité joueur.
 
 \newpage
 \section{Zoom sur les requêtes importantes}
@@ -173,7 +173,7 @@
 
 \subsection{Requêtes de consultation}
 \subsubsection{Ensemble des jeux critiqués sur une plateforme donnée}
-\indent On cherche à avoir l'ensemble des jeux critiqués disponibles sur une plateforme donnée, et on les classera par catégorie. La requête englobante est donc celle de classement par catégorie, avec un ``order by nomCatégorie asc'' pour trier par catégorie. On fait une jointure interne avec la jointure externe jeu-appartient. A partir de cette jointure, on peut chercher, pour la plateforme passée en entrée, quels jeux sont à la foi disponibles sur cette platorme et commentés sur cette plateforme.
+\indent On cherche à avoir l'ensemble des jeux critiqués disponibles sur une plateforme donnée, et on les classera par catégorie. La requête englobante est donc celle de classement par catégorie, avec un ``order by nomCatégorie asc'' pour trier par catégorie. On fait une jointure interne avec la jointure externe jeu-appartient. A partir de cette jointure, on peut chercher, pour la plateforme passée en entrée, quels jeux sont à la fois disponibles sur cette platorme et commentés sur cette plateforme.
 
 \begin{verbatim}
 SELECT res.nomJeu, categorie.nomCategorie FROM categorie INNER JOIN
@@ -195,7 +195,7 @@ SELECT res.nomJeu, categorie.nomCategorie FROM categorie INNER JOIN
 \end{verbatim}
 
 \subsubsection{Liste des commentaires pour une catégorie et une plateforme données}
-\indent Chaque joueur est obligé d'indiquer une catégorie préférée ainsi qu'une plateforme préférée. Il peut donc être intéressant pour lui de savoir rapidement ce que pensent les autres jours des jeux existants avec ces deux contraintes. \\
+\indent Chaque joueur est obligé d'indiquer une catégorie préférée ainsi qu'une plateforme préférée. Il peut donc être intéressant pour lui de savoir rapidement ce que pensent les autres joueurs des jeux existants avec ces deux contraintes. \\
 
 \indent On commence par faire une jointure interne entre les tables commentaire et jeu avec la contrainte d'avoir le même idJeu. On ajoute la contrainte que cet idJeu soit également dans une sélection de jeux correspondant à la catégorie et la plateforme préférées du joueur. Pour cela, on fait une jointure interne avec la table appartient pour la catégorie, et pour la plateforme on vérifie la cohérence entre la table commentaire et la table joueur, qui contiennent toutes idPlateforme. \\ \\
 
