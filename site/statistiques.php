@@ -57,7 +57,7 @@
 	$comments = get_comments_by_appreciation();
 
 	echo "<table class=\"table table-striped\">";
-	echo "<tr><th>ID</th><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th><th>Appréciation</th></tr>";
+	echo "<tr><th>ID</th><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th><th>Indice de confiance</th></tr>";
 
 	while($att = mysql_fetch_array($comments)){
 	  $id = $att["idCommentaire"];
@@ -66,6 +66,10 @@
 	  $date = $att["dateCommentaire"];
 	  $comment = substr($att["commentaire"], 0, 100)."...";
 	  $index = $att["indiceConfiance"];
+
+	  // Conversion en flottant et arrondi
+	  $index = floatval($index);
+	  $index = round($index, 2);
 	  
 	  echo "<tr id=\"comment$id\">
         <td>$id</td><td>$comment</td><td>$author</td><td>$date</td><td>$mark</td>
