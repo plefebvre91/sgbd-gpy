@@ -18,12 +18,12 @@ drop table if exists editeur;
 -- Création des tables
 
 CREATE TABLE joueur (
-  pseudo       VARCHAR(32),
-  nom          VARCHAR(32),
-  prenom       VARCHAR(32),
-  mail         VARCHAR(64),
-  idCategorie  int NOT NULL,
-  idPlateforme int NOT NULL,
+  pseudo       VARCHAR(32) NOT NULL,
+  nom          VARCHAR(32) NOT NULL,
+  prenom       VARCHAR(32) NOT NULL,
+  mail         VARCHAR(64) NOT NULL,
+  idCategorie  int         NOT NULL,
+  idPlateforme int         NOT NULL,
   CONSTRAINT pk_joueur PRIMARY KEY(pseudo)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -40,10 +40,10 @@ CREATE TABLE pouce (
 
 CREATE TABLE commentaire (
   idCommentaire   int NOT NULL AUTO_INCREMENT,
-  note            int,
-  commentaire     VARCHAR(140),
+  note            int NOT NULL,
+  commentaire     VARCHAR(140) NOT NULL,
   dateCommentaire date,
-  pseudo          VARCHAR(32),
+  pseudo          VARCHAR(32)  NOT NULL,
   idJeu           int,
   idPlateforme    int,
   CONSTRAINT pk_commentaire PRIMARY KEY(idCommentaire)
@@ -52,14 +52,14 @@ CREATE TABLE commentaire (
 
 CREATE TABLE categorie (
   idCategorie  int NOT NULL AUTO_INCREMENT,
-  nomCategorie VARCHAR(128),	
+  nomCategorie VARCHAR(128) UNIQUE,	
   CONSTRAINT pk_categorie PRIMARY KEY(idCategorie)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE jeu (
   idJeu     int NOT NULL AUTO_INCREMENT,
-  nomJeu    VARCHAR(128),	
+  nomJeu    VARCHAR(128) NOT NULL,	
   idEditeur int,
   CONSTRAINT pk_jeu PRIMARY KEY(idJeu)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -67,7 +67,7 @@ CREATE TABLE jeu (
 
 CREATE TABLE plateforme (
   idPlateforme  int NOT NULL AUTO_INCREMENT,
-  nomPlateforme VARCHAR(128),	
+  nomPlateforme VARCHAR(128) UNIQUE,	
 --  dateSortie date,
   CONSTRAINT pk_plateforme PRIMARY KEY(idPlateforme)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -75,7 +75,7 @@ CREATE TABLE plateforme (
 
 CREATE TABLE editeur (
   idEditeur  int NOT NULL AUTO_INCREMENT,
-  nomEditeur VARCHAR(128),	
+  nomEditeur VARCHAR(128) NOT NULL,	
   PRIMARY KEY(idEditeur)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

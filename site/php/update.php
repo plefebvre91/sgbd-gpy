@@ -31,7 +31,7 @@ function update_game($idJeu, $name, $id_editor, $categories, $platforms, $dates)
     // Parcours des plateformes à ajouter
     for ($i = 0; $i < count($platforms); ++$i) {
       // Recuperation de la date de sortie correspondante
-      $date = $dates[$platforms[$i] - 1];
+      $date = $dates[$platforms[$i]];
 
       $pattern = "/^[0-9]{4}-[0-9]{2}-[0-9]{2}/"; // Regexp du format date : AAAA-MM-JJ (la taille est limitee a 10 par le formulaire)
 
