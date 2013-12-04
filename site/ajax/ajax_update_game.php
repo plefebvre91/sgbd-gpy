@@ -19,6 +19,7 @@ $game_id = secure_string($_GET["idJeu"]);
 // Si aucune case plateforme n'est cochée
 if ( ! isset($_GET["idPlateforme"]) ) {
   $platforms = NULL;
+  $dates = NULL;
 }
 else {
   $platforms = $_GET["idPlateforme"];
