@@ -6,7 +6,7 @@ function secure_string($str){
 }
 
 function tab_class($current_page, $link_page){
-  if(is_empty($current_page) || ($current_page == $link_page)){
+  if(empty($current_page) || ($current_page == $link_page)){
     return "class=\"active\"";
   }
 }
