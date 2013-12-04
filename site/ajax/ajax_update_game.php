@@ -22,7 +22,15 @@ if ( ! isset($_GET["idPlateforme"]) ) {
 }
 else {
   $platforms = $_GET["idPlateforme"];
+  // Construction du tableau des dates
+  for ($i = 0; $i < count($platforms); ++$i) {
+    $key = "$platforms[$i]";
+    $datePattern = "dateSortie-$platforms[$i]";
+    $date = $_GET[$datePattern];
+    $dates[$key] = $date;
+  }
 }
+
 // Si aucune case catégorie n'est cochée
 if ( !isset($_GET["idCategorie"]) ) {
   $categories = NULL;
@@ -30,8 +38,6 @@ if ( !isset($_GET["idCategorie"]) ) {
 else {
   $categories = $_GET["idCategorie"];
 }
-
-$dates = $_GET["dateSortie"]; // Ne cause pas d'erreur
 
 //Selection dans la base
 if(!update_game($game_id, $game_name, $id_editor, $categories, $platforms, $dates)) {

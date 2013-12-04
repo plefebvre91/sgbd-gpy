@@ -183,7 +183,7 @@ db_connect();
 	      echo "</div>";
 	      echo "</div>";
 	      echo "<div class=\"col-xs-4\">";
-	      echo "<input type=\"text\" name=\"dateSortie[]\"class=\"form-control\" maxlength=\"10\" placeholder=\"Date de sortie au format AAAA-MM-JJ\">";
+	      echo "<input type=\"text\" name=\"dateSortie-$id\"class=\"form-control\" maxlength=\"10\" placeholder=\"Date de sortie au format AAAA-MM-JJ\">";
 	      echo "</div>";
 	      echo "<div class=\"col-xs-6\">";
 	      echo "</div>";
