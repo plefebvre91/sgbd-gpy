@@ -150,6 +150,12 @@ SELECT idJeu, ( SUM(note  * (1 + res.c)/(1 + res.d)) ) / ( SUM((1 + res.c)/(1 + 
 	    $game = $att["Nom du jeu"];
 	    $average = $att["Moyenne pondérée"];
 	    $totalIC = $att["Total IC des commentaires du jeu"];
+
+	    // Conversion en flottant et arrondi
+	    $average = floatval($average);
+	    $average = round($average, 2);
+	    $totalIC = floatval($totalIC);
+	    $totalIC = round($totalIC, 2);
 	    
 	    echo "<tr><td>$game</td><td>$average</td><td>$totalIC</td></tr>\n";
 	  }?>
