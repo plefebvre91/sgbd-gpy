@@ -265,7 +265,7 @@ db_connect();
 	  echo "<form action=\"#\" id=\"form-maj-commentaire-$idCommentaire\">";
 	  echo "<div class=\"form-group\">";
 	  echo "<label for=\"note\">Note</label>";
-	  echo "<input name=\"note\" id=\"note\" required type=\"number\" class=\"form-control\" step=\"1\" value=\"$note\" min=\"0\" max=\"20\">";
+	  echo "<input name=\"note\" id=\"note\" required type=\"number\" maxlength=\"2\" class=\"form-control\" step=\"1\" value=\"$note\" min=\"0\" max=\"20\">";
 	  echo "</div>";
 
 	  echo "<div class=\"form-group\">";

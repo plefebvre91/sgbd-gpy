@@ -2,7 +2,12 @@ function update_player(pseudo){
     var resultId = "#result-"+pseudo;
     $(resultId).html(pseudo + " - Chargement...");
     var formId = "#form-maj-"+pseudo;
-    var request = $.get("ajax/ajax_update_player.php", $(formId).serialize()+"&pseudo="+pseudo);
+    var url = $(formId).serialize();
+    if (url.indexOf("=&") != -1) {
+	$(resultId).html(pseudo + " - Veuillez remplir tous les champs.");
+	return;
+    }
+    var request = $.get("ajax/ajax_update_player.php", url + "&pseudo="+pseudo);
     request.done(function(msg){$(resultId).html(pseudo + " - " + msg);
 			       $(resultId).collapse("hide");});
     request.fail(failure);
