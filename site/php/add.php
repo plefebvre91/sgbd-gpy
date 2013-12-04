@@ -54,10 +54,10 @@ function add_game($name, $categories, $platforms, $editor, $dates) {
 
   // Construction de la requete d'insertion pour les categories
   $query = "INSERT INTO appartient VALUES"; 
-  foreach ($categories as $id_category){
+  foreach ($categories as $id_category) {
     $query .= " ('$id_category', '$game_id'),";
   }
-  $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
+  $query = substr($query, 0, -1); // Suppression de la virgule en trop en fin de ligne
   $result = $result && ( mysql_query($query) or die(mysql_error()) );
   
   return $result;
@@ -66,7 +66,7 @@ function add_game($name, $categories, $platforms, $editor, $dates) {
  /* Ajout d'un joueur */
  /* idPlateforme preferee = selection avec (2) */
  /* idCategorie preferee = selection avec (3) */
-function add_player($login, $last_name, $first_name, $mail, $id_category, $id_platform){
+function add_player($login, $last_name, $first_name, $mail, $id_category, $id_platform) {
   //$id_platform = get_platform_by_name($platform);
   //$id_category = get_category_by_name($category);
 
@@ -76,7 +76,7 @@ function add_player($login, $last_name, $first_name, $mail, $id_category, $id_pl
   return $result;
 }
 
-function add_editor($name){
+function add_editor($name) {
 
   $query = "INSERT INTO  editeur VALUES ('', '$name')";
   $result = mysql_query($query) or die(mysql_error());
@@ -84,7 +84,7 @@ function add_editor($name){
   return $result;
 }
 
-function add_platform($platform){
+function add_platform($platform) {
 
   $query = "INSERT INTO  plateforme VALUES ('', '$platform')";
   $result = mysql_query($query) or die(mysql_error());
@@ -92,7 +92,7 @@ function add_platform($platform){
   return $result;
 }
 
-function add_category($category){
+function add_category($category) {
 
   $query = "INSERT INTO  categorie VALUES ('', '$category')";
   $result = mysql_query($query) or die(mysql_error());
@@ -100,7 +100,7 @@ function add_category($category){
   return $result;
 }
 
-function add_comment($note, $comment, $pseudo, $id_game, $id_platform){
+function add_comment($note, $comment, $pseudo, $id_game, $id_platform) {
   //$id_game = get_game_by_name($game);
 
   $query = "INSERT INTO commentaire VALUES ('', '$note', '$comment', (SELECT CURDATE()), '$pseudo', '$id_game', '$id_platform')";
@@ -124,5 +124,4 @@ function add_inch($value, $pseudo, $id_comment) {
 
   return $result;
 }
-
 ?>

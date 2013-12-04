@@ -46,15 +46,15 @@ function get_platform_by_name($name) {
 	 return $t["idPlateforme"];
 }
 
-////Recupere l'id de la categorie correspondant au nom (3)
-//function get_category_by_name($name) {
-//	 $query = "SELECT idCategorie FROM categorie WHERE nomCategorie='$name'";
-//	 $result = mysql_query($query)  or die(mysql_error());
-//	 $t  = mysql_fetch_array($result);
-//	 
-//	 return $t["idCategorie"];
-//}
-//
+//Recupere l'id de la categorie correspondant au nom (3)
+function get_category_by_name($name) {
+  $query = "SELECT idCategorie FROM categorie WHERE nomCategorie='$name'";
+  $result = mysql_query($query)  or die(mysql_error());
+  $t  = mysql_fetch_array($result);
+  
+  return $t["idCategorie"];
+}
+
 ////Recupere l'id du jeu correspondant au nom (4)
 //function get_game_by_name($name) {
 //	 $query = "SELECT idJeu FROM jeu WHERE nomJeu='$name'";

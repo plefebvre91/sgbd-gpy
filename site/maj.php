@@ -183,7 +183,7 @@ db_connect();
 	      echo "</div>";
 	      echo "</div>";
 	      echo "<div class=\"col-xs-4\">";
-	      echo "<input type=\"text\" name=\"dateSortie[]\"class=\"form-control\" maxlength=\"10\" placeholder=\"Date de sortie au format AAAA-MM-JJ\">";
+	      echo "<input type=\"text\" name=\"dateSortie-$id\"class=\"form-control\" maxlength=\"10\" placeholder=\"Date de sortie au format AAAA-MM-JJ\">";
 	      echo "</div>";
 	      echo "<div class=\"col-xs-6\">";
 	      echo "</div>";
@@ -329,7 +329,7 @@ db_connect();
 	  }
 	  echo "</select>";
 	  echo "<!-- Fin de : Liste déroulante des plateformes-->";
-	  echo "</div> <!-- fin form group des plateformes";
+	  echo "</div> <!-- fin form group des plateformes -->";
 
 	  echo "<div class=\"form-group text-center\">";
 	  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_comment('$idCommentaire');\">";

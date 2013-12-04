@@ -23,51 +23,56 @@ function update_game($idJeu, $name, $id_editor, $categories, $platforms, $dates)
   
   $query = "UPDATE jeu SET nomJeu='$name', idEditeur='$id_editor' WHERE idJeu='$idJeu'";
   $result = $result && mysql_query($query) or die(mysql_error());
-    
-  //Construction de la requete d'insertion pour les plateformes
-  $query = "INSERT INTO estDisponible VALUES";
 
-  // Parcours des plateformes à ajouter
-  for ($i = 0; $i < count($platforms); ++$i) {
-    // Recuperation de la date de sortie correspondante
-    $date = $dates[$platforms[$i] - 1];
+  // Construction de la requete d'insertion pour les plateformes SI NECESSAIRE
+  if ( isset($platforms) ) {
+    $query = "INSERT INTO estDisponible VALUES";
 
-    $pattern = "/^[0-9]{4}-[0-9]{2}-[0-9]{2}/"; // Regexp du format date : AAAA-MM-JJ (la taille est limitee a 10 par le formulaire)
+    // Parcours des plateformes à ajouter
+    for ($i = 0; $i < count($platforms); ++$i) {
+      // Recuperation de la date de sortie correspondante
+      $date = $dates[$platforms[$i]];
 
-    // Si la date n'est pas fournie ou n'est pas au bon format, utiliser la date du jour
-    if ( $date == "" or ( ! preg_match($pattern, $date)) ) {
-      $date = date("Y-m-d");
-    }
-    // Sinon, si la date est au bon format mais est invalide, utiliser la date du jour
-    else {
-      $dateParsee = date_parse_from_format("Y-m-d", $date);
-      if ( ! checkdate($dateParsee['month'], $dateParsee['day'], $dateParsee['year']) ) {
+      $pattern = "/^[0-9]{4}-[0-9]{2}-[0-9]{2}/"; // Regexp du format date : AAAA-MM-JJ (la taille est limitee a 10 par le formulaire)
+
+      // Si la date n'est pas fournie ou n'est pas au bon format, utiliser la date du jour
+      if ( $date == "" or ( ! preg_match($pattern, $date)) ) {
 	$date = date("Y-m-d");
       }
+      // Sinon, si la date est au bon format mais est invalide, utiliser la date du jour
       else {
-	$now = date_parse_from_format("Y-m-d", date("Y-m-d"));
-	if ( ($dateParsee['year'] > $now['year']) ||
-	    ( ($dateParsee['year'] == $now['year']) && ($dateParsee['month'] > $now['month']) ) ||
-	    ( ($dateParsee['year'] == $now['year']) && ($dateParsee['month'] == $now['month']) && ($dateParsee['day'] > $now['day']) ) ) {
+	$dateParsee = date_parse_from_format("Y-m-d", $date);
+	if ( ! checkdate($dateParsee['month'], $dateParsee['day'], $dateParsee['year']) ) {
 	  $date = date("Y-m-d");
 	}
+	else {
+	  $now = date_parse_from_format("Y-m-d", date("Y-m-d"));
+	  if ( ($dateParsee['year'] > $now['year']) ||
+	      ( ($dateParsee['year'] == $now['year']) && ($dateParsee['month'] > $now['month']) ) ||
+	      ( ($dateParsee['year'] == $now['year']) && ($dateParsee['month'] == $now['month']) && ($dateParsee['day'] > $now['day']) ) ) {
+	    $date = date("Y-m-d");
+	  }
+	}
       }
+      
+      // Construction de la requete
+      $query .= " ('$platforms[$i]', '$idJeu', '$date'),";
     }
-    
-    // Construction de la requete
-    $query .= " ('$platforms[$i]', '$idJeu', '$date'),";
+
+    $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
+    $result = $result && ( mysql_query($query) or die(mysql_error()) );
   }
 
-  $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
-  $result = $result && ( mysql_query($query) or die(mysql_error()) );
-
-  //Construction de la requete d'insertion pour les categories
-  $query = "INSERT INTO appartient VALUES"; 
-  foreach ($categories as $id_category){
-    $query .= " ('$id_category', '$idJeu'),";
+  // Construction de la requete d'insertion pour les categories SI NECESSAIRE
+  if ( isset($categories) ) {
+    $query = "INSERT INTO appartient VALUES";
+    // Parcours des catégories à ajouter
+    foreach ($categories as $id_category){
+      $query .= " ('$id_category', '$idJeu'),";
+    }
+    $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
+    $result = $result && ( mysql_query($query) or die(mysql_error()) );
   }
-  $query = substr($query, 0, -1);   //Suppression de la virgule en trop en fin de ligne
-  $result = $result && ( mysql_query($query) or die(mysql_error()) );
   
   return $result;
 }
