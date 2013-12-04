@@ -1,7 +1,7 @@
 <?php
 require_once("php/include.php");
 db_connect();
-$pages = array("accueil", "consultation", "maj", "suppression", "statistiques");
+$pages = array("accueil", "ajout", "consultation", "maj", "suppression", "statistiques");
 
 if(isset($_GET["action"])){
   if(!in_array($_GET["action"], $pages))
