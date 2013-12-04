@@ -5,6 +5,13 @@ function secure_string($str){
   return mysql_escape_string(htmlentities($str));
 }
 
+function tab_class($current_page, $link_page){
+  if($current_page == $link_page){
+    return "class=\"active\"";
+  }
+}
+
+
 
 function exec_query($filename){
   $query = get_file_content($filename);

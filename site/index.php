@@ -1,18 +1,24 @@
 <?php
 require_once("php/include.php");
 db_connect();
+
+
 if(isset($_GET["action"])){
   $page = $_GET["action"];
-  if(empty($page)){
+  $current_page = $page;
+
+  if(empty($page))
     $page = "accueil";
-  }
+  
   $page = $page.".php";
 }
 else{
+  $current_page = "accueil";
   $page = "accueil.php";
 }
 
 $nb_comments = 10;
+
 if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
   $nb_comments = secure_string($_POST["nbCommentaires"]);
 }
@@ -40,12 +46,6 @@ if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
     <script src="js/add.js"></script>
     <script src="js/delete.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -66,22 +66,16 @@ if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
           <ul class="nav navbar-nav">
 	    <!-- Todo : Changer le active en fonction de la page -->
             <!-- <li class="active"><a href="index.php">Accueil</a></li> -->
-            <li><a href="index.php?action=">Accueil</a></li>
-            <li><a href="index.php?action=consultation">Consultation</a></li>
-            <li><a href="index.php?action=ajout">Ajout</a></li>
-            <li><a href="index.php?action=maj">Mise à jour</a></li>
-
-            <li><a href="index.php?action=suppression">Suppression</a></li>
-            <li><a href="index.php?action=statistiques">Statistiques</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.php?action=about">&Agrave; propos...</a></li>
+            <li <?php echo tab_class($current_page, "accueil");?> > <a href="index.php?action=">Accueil</a></li>
+            <li <?php echo tab_class($current_page, "consultation");?> > <a href="index.php?action=consultation">Consultation</a></li>
+            <li <?php echo tab_class($current_page, "ajout");?> > <a href="index.php?action=ajout">Ajout</a></li>
+            <li <?php echo tab_class($current_page, "maj");?> > <a href="index.php?action=maj">Mise à jour</a></li>
+	    <li <?php echo tab_class($current_page, "suppression");?> > <a href="index.php?action=suppression">Suppression</a></li>
+            <li <?php echo tab_class($current_page, "statistiques");?> > <a href="index.php?action=statistiques">Statistiques</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
-    <!-- Insertion de la partie variable de la page -->
 
     <?php require($page); ?>
 
@@ -92,9 +86,5 @@ if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
         <p class="credit">Grégoire PICHON - Pierre LEFEBVRE - Yvon GARBAGE</p>
       </div>
     </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
   </body>
 </html>
