@@ -329,7 +329,7 @@ db_connect();
 	  }
 	  echo "</select>";
 	  echo "<!-- Fin de : Liste déroulante des plateformes-->";
-	  echo "</div> <!-- fin form group des plateformes";
+	  echo "</div> <!-- fin form group des plateformes -->";
 
 	  echo "<div class=\"form-group text-center\">";
 	  echo "<input type=\"submit\" class=\"btn btn-warning btn-lg\" value=\"Envoyer la requête\" onclick=\"javascript:update_comment('$idCommentaire');\">";
