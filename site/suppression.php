@@ -4,7 +4,7 @@
 
   </div>
 
-  <div class="alert alert-info" id="result"></div>
+  <div class="alert alert-warning" id="result"></div>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTab">
