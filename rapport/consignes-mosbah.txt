@@ -1,0 +1,19 @@
+-- RAPPORT --
+
+Au format pdf
+
+I Introduction
+
+II Modèle Entité-Association
+   - commenté avec du texte
+   - hypothèses
+
+III Implémentation
+    - création (requête de)
+    - requêtes
+
+IV Interface
+   - description
+   - utilisation
+
+V Conclusion
