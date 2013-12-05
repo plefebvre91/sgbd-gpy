@@ -65,7 +65,7 @@
 		}
 		?>
 	      </select>
-	  <!-- Fin de : Liste déroulante des pseudos -->
+	      <!-- Fin de : Liste déroulante des pseudos -->
       	      <span class="input-group-btn">
 	     	<input type="submit" class="btn btn-warning" id="btn-consultation2" value="Envoyer la requête">
       	      </span>
@@ -91,7 +91,7 @@
 		  $commentaire = $options["commentaire"];
 		  echo "<option value=\"$idCommentaire\">Commentaire $idCommentaire - $commentaire</option>";
 		}
-		;?>
+		?>
 	      </select>
 	      <!-- Fin de : Liste déroulante des commentaires -->   
 	      <span class="input-group-btn">
@@ -105,34 +105,33 @@
 
     <div class="tab-pane" id="consultation-jeu">
       <div class="container">
-	<table class="table table-striped">
-	  <tr><th>Nom</th><th>&Eacute;diteur</th><th>Plateforme</th><th>Catégorie</th></tr>
-
+	<?php
+	$games = select_all("jeu");
+	?>
+	<table class="table table-hover">
+	  <tr class="active"><th>Nom</th><th>&Eacute;diteur</th><th>Plateforme</th><th>Catégorie</th></tr>
 	  <?php
-	  $games = select_all("jeu");
-	  
-	  while($att = mysql_fetch_array($games)){
+	  while($att = mysql_fetch_array($games)) {
 	    $id = $att["idJeu"];
 	    $name = $att["nomJeu"];
 	    $categories = get_game_categories($id);
 	    $platforms = get_game_platforms($id);
 	    echo "<tr><td>$id</td><td>$name</td><td>$platforms</td><td>$categories</td></tr>\n";
-	  }?>
-
+	  }
+	  ?>
 	</table>
-
       </div> 
     </div><!--consultation-jeu-->
 
     <div class="tab-pane" id="consultation-joueur">
       <div class="container">
-	<table class="table table-striped">
-	  <tr><th>Pseudo</th><th>Nom</th><th>Prénom</th><th>Adresse mail</th><th>Plateforme préférée</th><th>Catégorie préférée</th></tr>
-
+	<?php
+	$players = select_all("info_joueur");
+	?>
+	<table class="table table-hover">
+	  <tr class="active"><th>Pseudo</th><th>Nom</th><th>Prénom</th><th>Adresse mail</th><th>Plateforme préférée</th><th>Catégorie préférée</th></tr>
 	  <?php
-	  $players = select_all("info_joueur");
-	  
-	  while($att = mysql_fetch_array($players)){
+	  while($att = mysql_fetch_array($players)) {
 	    $id = $att["pseudo"];
 	    $last_name = $att["nom"];
 	    $first_name = $att["prenom"];
@@ -140,68 +139,67 @@
 	    $category = $att["nomCategorie"];
 	    $platform = $att["nomPlateforme"];
 	    echo "<tr><td>$id</td><td>$last_name</td><td>$first_name</td><td>$mail</td><td>$platform</td><td>$category</td></tr>\n";
-	  }?>
+	  }
+	  ?>
 	</table>
       </div> 
     </div><!--consultation-joueur-->
 
     <div class="tab-pane" id="consultation-commentaire">
       <div class="container">
-
-	<table class="table table-striped">
-	<tr><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Jeu</th><th>Plateforme</th><th>Note</th></tr>
 	<?php
 	$comments = select_all("info_commentaires");
-
-	while($att = mysql_fetch_array($comments)){
-	  $id = $att["idCommentaire"];
-	  $mark = $att["note"];
-	  $author = $att["pseudo"];
-	  $date = $att["dateCommentaire"];
-	  $game = $att["nomJeu"];
-	  $platform = $att["nomPlateforme"];
-	  $comment = $att["commentaire"];
-	  echo "<tr><td>$comment</td><td>$author</td><td>$date</td><td>$game</td><td>$platform</td><td>$mark</td></tr>\n";
-	}?>
-
+	?>
+	<table class="table table-hover">
+	  <tr class="active"><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Jeu</th><th>Plateforme</th><th>Note</th></tr>
+	  <?php
+	  while($att = mysql_fetch_array($comments)) {
+	    $id = $att["idCommentaire"];
+	    $mark = $att["note"];
+	    $author = $att["pseudo"];
+	    $date = $att["dateCommentaire"];
+	    $game = $att["nomJeu"];
+	    $platform = $att["nomPlateforme"];
+	    $comment = $att["commentaire"];
+	    echo "<tr><td>$comment</td><td>$author</td><td>$date</td><td>$game</td><td>$platform</td><td>$mark</td></tr>\n";
+	  }
+	  ?>
 	</table>
-
-
       </div> 
     </div><!--consultation-commentaire-->
     
-   <div class="tab-pane" id="consultation-categorie">
+    <div class="tab-pane" id="consultation-categorie">
       <div class="container">
-	<table class="table table-striped">
-	  <tr><th>ID</th><th>Catégorie</th></tr>
+	<?php
+	$categories = select_all("categorie");
+	?>
+	<table class="table table-hover">
+	  <tr class="active"><th>ID</th><th>Catégorie</th></tr>
 	  <?php
-	  $categories = select_all("categorie");
-	  while($att = mysql_fetch_array($categories)){
+	  while($att = mysql_fetch_array($categories)) {
 	    $id = $att["idCategorie"];
 	    $name = $att["nomCategorie"];
-	    
 	    echo "<tr><td>$id</td><td>$name</td></tr>\n";
-	  }?>
+	  }
+	  ?>
 	</table>
       </div> 
     </div><!--consultation-categorie-->
 
-
-   <div class="tab-pane" id="consultation-plateforme">
+    <div class="tab-pane" id="consultation-plateforme">
       <div class="container">
 	<?php
 	$platforms = select_all("plateforme");
 	?>
-	<table class="table table-striped">
-	  <tr><th>ID</th><th>Plateforme</th></tr>
-
+	<table class="table table-hover">
+	  <tr class="active"><th>ID</th><th>Plateforme</th></tr>
 	  <?php
-	  while($att = mysql_fetch_array($platforms)){
+	  while($att = mysql_fetch_array($platforms)) {
 	    $id = $att["idPlateforme"];
 	    $name = $att["nomPlateforme"];
-	  
 	    echo "<tr><td>$id</td><td>$name</td></tr>\n";
-	  }?>
+	  }
+	  ?>
 	</table>
       </div> 
     </div><!--consultation-plateforme-->
@@ -211,45 +209,42 @@
 	<?php
 	$editors = select_all("editeur");
 	?>
-	
-	<table class="table table-striped">
-	  <tr><th>ID</th><th>Editeur</th></tr>
+	<table class="table table-hover">
+	  <tr class="active"><th>ID</th><th>Editeur</th></tr>
 	  <?php
-	  while($att = mysql_fetch_array($editors)){
+	  while($att = mysql_fetch_array($editors)) {
 	    $id = $att["idEditeur"];
 	    $name = $att["nomEditeur"];
-	    
 	    echo "<tr><td>$id</td><td>$name</td></tr>\n";
-	  }?>
-	  
+	  }
+	  ?>
 	</table>
       </div> 
     </div><!--consultation-editeur-->
 
     <div class="tab-pane" id="consultation-pouce">
       <div class="container">
-
 	<?php
 	$thumbs = select_all("pouce");
 	?>
-	<table class="table table-striped">
-	<tr><th>Pseudo</th><th>Valeur</th><th>Commentaire</th><th>Jeu</th><th>Plateforme</th><th>Note</th></tr>
-	<?php
-	while($att = mysql_fetch_array($thumbs)){
-	  $idPouce = $att["idPouce"];
-	  $value= $att["valeur"];
-	  $author = $att["pseudo"];
-	  $idCommentaire = $att["idCommentaire"];
-	  // Utilisation de la vue info_commentaires pour récupérer les informations du commentaire
-	  $commentInfos = select_all("info_commentaires where idCommentaire = '$idCommentaire'");
-	  $commentInfos = mysql_fetch_array($commentInfos);
-	  $commentaire = $commentInfos["commentaire"];
-	  $nomJeu = $commentInfos["nomJeu"];
-	  $nomPlateforme = $commentInfos["nomPlateforme"];
-	  $note = $commentInfos["note"];
-	  
-	  echo "<tr><td>$author</td><td>$value</td><td>$commentaire</td><td>$nomJeu</td><td>$nomPlateforme</td><td>$note</td></tr>\n";
-	}?>
+	<table class="table table-hover">
+	  <tr class="active"><th>Pseudo</th><th>Valeur</th><th>Commentaire</th><th>Jeu</th><th>Plateforme</th><th>Note</th></tr>
+	  <?php
+	  while($att = mysql_fetch_array($thumbs)) {
+	    $idPouce = $att["idPouce"];
+	    $value= $att["valeur"];
+	    $author = $att["pseudo"];
+	    $idCommentaire = $att["idCommentaire"];
+	    // Utilisation de la vue info_commentaires pour récupérer les informations du commentaire
+	    $commentInfos = select_all("info_commentaires where idCommentaire = '$idCommentaire'");
+	    $commentInfos = mysql_fetch_array($commentInfos);
+	    $commentaire = $commentInfos["commentaire"];
+	    $nomJeu = $commentInfos["nomJeu"];
+	    $nomPlateforme = $commentInfos["nomPlateforme"];
+	    $note = $commentInfos["note"];
+	    echo "<tr><td>$author</td><td>$value</td><td>$commentaire</td><td>$nomJeu</td><td>$nomPlateforme</td><td>$note</td></tr>\n";
+	  }
+	  ?>
 	</table>
       </div> 
     </div><!--consultation-pouce-->
@@ -257,7 +252,7 @@
   </div> <!-- Tab panes -->
 
   <div id="result"></div>
-  </div> <!-- Container -->
+</div> <!-- Container -->
 <script>
  $("#form-consultation1").submit(selection_games);
  $("#form-consultation2").submit(selection_comments);
