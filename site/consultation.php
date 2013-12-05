@@ -233,15 +233,22 @@
 	$thumbs = select_all("pouce");
 	?>
 	<table class="table table-striped">
-	<tr><th>Pseudo</th><th>Valeur</th><th>Commentaire (numéro)</th></tr>
+	<tr><th>Pseudo</th><th>Valeur</th><th>Commentaire</th><th>Jeu</th><th>Plateforme</th><th>Note</th></tr>
 	<?php
 	while($att = mysql_fetch_array($thumbs)){
 	  $idPouce = $att["idPouce"];
 	  $value= $att["valeur"];
 	  $author = $att["pseudo"];
-	  $idComment = $att["idCommentaire"];
+	  $idCommentaire = $att["idCommentaire"];
+	  // Utilisation de la vue info_commentaires pour récupérer les informations du commentaire
+	  $commentInfos = select_all("info_commentaires where idCommentaire = '$idCommentaire'");
+	  $commentInfos = mysql_fetch_array($commentInfos);
+	  $commentaire = $commentInfos["commentaire"];
+	  $nomJeu = $commentInfos["nomJeu"];
+	  $nomPlateforme = $commentInfos["nomPlateforme"];
+	  $note = $commentInfos["note"];
 	  
-	  echo "<tr><td>$author</td><td>$value</td><td>$idComment</td></tr>\n";
+	  echo "<tr><td>$author</td><td>$value</td><td>$commentaire</td><td>$nomJeu</td><td>$nomPlateforme</td><td>$note</td></tr>\n";
 	}?>
 	</table>
       </div> 

@@ -99,5 +99,4 @@ function select_categories(){
   return $result;
 }
 
-
 ?>
