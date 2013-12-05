@@ -3,6 +3,8 @@
     <p>Cliquez sur les différents onglets pour accéder aux requêtes d'ajout.</p>
   </div>
 
+  <div id="result" class="alert alert-warning"></div>
+
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTab">
     <li><a href="#ajout1" data-toggle="tab">Joueur</a></li>
@@ -15,7 +17,6 @@
   </ul>
 
   <!-- Tab panes -->
-  <div id="result" class="alert alert-warning"></div>
   <div class="tab-content">
 
     <!--- AJOUT JOUEUR -->    
@@ -227,9 +228,9 @@
 	  <!-- Fin de : Liste déroulante des pseudos -->
 	</div>
 	
-	<table class="table table-striped">
+	<table class="table table-hover">
 	  
-	  <tr><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Jeu</th><th>Plateforme</th><th>Note</th><th>Supression</th></tr>
+	  <tr class="active"><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Jeu</th><th>Plateforme</th><th>Note</th><th>Supression</th></tr>
 	<?php
 	// Utilisation de la vue info_commentaires pour récupérer les informations de chaque commentaire
 	$comments = select_all("info_commentaires");
