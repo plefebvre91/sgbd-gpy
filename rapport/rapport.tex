@@ -261,6 +261,8 @@ ALTER TABLE estDisponible ADD CONSTRAINT fk1_estDisponible FOREIGN KEY (idJeu)
             REFERENCES jeu (idJeu) ON DELETE CASCADE;
 \end{verbatim}
 
+\indent Au delà des requêtes de mise à jour, il faut prendre certaines précautions lors de l'insertion ou de la suppression de données de la base. Lors de l'ajout d'un joueur par exemple, on doit s'assurer qu'il a bien une plateforme et une catégorie préférée valides. Par ailleurs, lors de la suppresion d'un jeu les <<on delete cascade>> dans les tables appartient et estDisponible assurent que les associations seront correctement supprimées de manière à garantir l'intégrité de la base.
+
 \newpage
 \input{interface.tex}
 
