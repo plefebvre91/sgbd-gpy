@@ -1,5 +1,3 @@
--- ESSAI qui fonctionne le 08/11/2013
-
 -- Supression des tables qui existent déjà
 -- Rq : Il semble que l'ordre soit important.
 --      On ne peut pas supprimer JOUEUR avant POUCE,
