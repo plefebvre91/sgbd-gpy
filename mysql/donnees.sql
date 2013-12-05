@@ -120,7 +120,7 @@ insert into commentaire values ( 3, 12, 'moyen'                                 
 insert into commentaire values ( 4,  6, 'pourri'                                 , '2012-01-01', 'jcatala'     , 11, 1);
 insert into commentaire values ( 5, 18, 'fantastique'                            , '2012-01-14', 'achoblet'    , 11, 7);
 insert into commentaire values ( 6, 20, 'ne peux plus dormir...'                 , '2012-04-01', 'ldauphin'    , 12, 1);
-insert into commentaire values ( 7,  4, 'lol la roulade'                         , '2012-04-05', 'ygarbage'    , 12, 7);
+insert into commentaire values ( 7,  4, 'vraiment pas terrible'                  , '2012-04-05', 'ygarbage'    , 12, 7);
 insert into commentaire values ( 8, 14, 'pas mal'                                , '2013-01-01', 'sguitouni'   , 12, 3);
 insert into commentaire values ( 9,  6, 'pourquoi tant de haine?'                , '2013-11-01', 'ldauphin'    , 12, 5);
 insert into commentaire values (10, 17, 'parfait'                                , '2013-02-01', 'mherbreteau' , 13, 4);
@@ -130,7 +130,7 @@ insert into commentaire values (13, 20, 'occupe ma vie'                         
 insert into commentaire values (14, 18, 'trop bien'                              , '2012-04-05', 'ymentagui'   , 14, 5);
 insert into commentaire values (15, 18, 'j adore'                                , '2013-01-01', 'rmillet'     , 15, 1);
 insert into commentaire values (16,  5, 'euh..'                                  , '2013-11-01', 'gpichon'     , 15, 7);
-insert into commentaire values (17, 10, 'non'                                    , '2013-02-01', 'grollin'     , 16, 1);
+insert into commentaire values (17, 10, 'pas d accord'                           , '2013-02-01', 'grollin'     , 16, 1);
 insert into commentaire values (18,  8, 'pas top, vraiment pas top'              , '2012-01-01', 'wandujar'    , 16, 3);
 insert into commentaire values (19,  9, 'non'                                    , '2012-01-14', 'wandujar'    , 16, 5);
 insert into commentaire values (20, 13, 'passe le temps mais pas trop longtemps' , '2012-04-01', 'ldauphin'    , 16, 7);
@@ -141,11 +141,19 @@ commit;
 -- TABLE pouce
 -- insert into pouce values (idPouce, valeur, pseudo, idCommentaire);
 
-insert into pouce values (1, '+', 'ygarbage' , 1);
-insert into pouce values (2, '-', 'plefebvre', 1);
-insert into pouce values (3, '+', 'ygarbage' , 6);
-insert into pouce values (4, '+', 'gpichon'  , 5);
-insert into pouce values (5, '+', 'plefebvre', 6);
+insert into pouce values (1 , '+', 'ygarbage' , 1);
+insert into pouce values (2 , '-', 'plefebvre', 1);
+insert into pouce values (3 , '+', 'ygarbage' , 6);
+insert into pouce values (4 , '+', 'gpichon'  , 5);
+insert into pouce values (5 , '+', 'plefebvre', 6);
+insert into pouce values (6 , '+', 'grollin'  , 18);
+insert into pouce values (7 , '-', 'hbrunie'  , 19);
+insert into pouce values (8 , '+', 'nbelin'   , 11);
+insert into pouce values (9 , '+', 'ldauphin' , 12);
+insert into pouce values (10, '+', 'rmillet'  , 12);
+insert into pouce values (11, '+', 'jcatala'  , 12);
+insert into pouce values (12, '-', 'achoblet' , 12);
+insert into pouce values (13, '-', 'wandujar' , 20);
 
 commit;
 
