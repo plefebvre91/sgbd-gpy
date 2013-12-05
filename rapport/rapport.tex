@@ -115,11 +115,11 @@
 
 \subsubsection{Contexte précis}
 \begin{itemize}
-\item Pour un joueur, le pseudonyme sera unique. Par ailleurs, la catégorie et la plateforme préférées devront obligatoirement être renseignées.
+\item Pour un joueur, le pseudonyme sera unique. Par ailleurs, la catégorie et la plateforme préférée devront obligatoirement être renseignées.
 \item Un jeu étant disponible sur plusieurs plateformes, sa date de parution sera relative à une plateforme donnée.
 \item Les joueurs doivent pouvoir noter les jeux, d'une note de 0 à 20, accompagnée d'un commentaire. Cependant, un joueur ne pourra noter qu'une seule fois un jeu, et préciser alors la plateforme sur laquelle il y a joué.
-\item Les joueurs peuvent indiquer s'ils trouvent un commentaire pertinent ou non. On s'assurera qu'un joueur ne peut pas évaluer un commentaire qu'il a lui même émis. De plus, un joueur ne pourra indiquer son avis qu'une seule fois par commentaire.
-\item Les dates devront être cohérentes. Elles le seront toutes par rapport à la date actuelle. De plus, les dates des commentaires relatifs à une plateforme donnée pour un jeu devront être plus récentes que la date de sortie du jeu sur la plateforme en question. 
+\item Les joueurs peuvent indiquer s'ils trouvent un commentaire pertinent ou non. On s'assurera qu'un joueur ne peut pas évaluer un commentaire qu'il a lui-même émis. De plus, un joueur ne pourra indiquer son avis qu'une seule fois par commentaire.
+\item Les dates des sorties de jeux et les dates des commentaires devront être cohérentes. Les dates de sortie seront toutes antérieures à la date actuelle. De plus, les dates des commentaires relatifs à une plateforme donnée pour un jeu devront être plus récentes que la date de sortie du jeu sur la plateforme en question. 
 \end{itemize}
 
 \subsubsection{Entités}
@@ -131,6 +131,7 @@
 \item Un pouce se réfère à un unique commentaire et provient d'un joueur précis.
 \item Un commentaire concerne une plateforme précise pour un jeu donné.
 \item Un éditeur peut éditer plusieurs jeux. Il est possible qu'il n'en édite aucun.
+\item Un jeu est édité par un unique éditeur.
 \end{itemize}
 
 \newpage
@@ -146,10 +147,10 @@
 \subsubsection{Opérations autorisées}
 \indent Il doit être possible d'ajouter l'ensemble des entités dans la base de données. Cependant, les requêtes d'ajout, de même que les requêtes de mise à jour, doivent être en respect avec certains choix présentés antérieurement, notamment quant aux cardinalités des associations. \\
 
-\indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un jeu, auquel cas l'ensemble des commentaires relatifs à ce jeu seront également supprimés. On peut aussi supprimer un commentaire, et donc l'ensemble des pouces relatifs à ce commentaire. Pour finir, un joueur pourra être supprimé de la base de donné (par exemple s'il est banni du forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donné seront supprimés.
+\indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un jeu, auquel cas l'ensemble des commentaires relatifs à ce jeu seront également supprimés. On peut aussi supprimer un commentaire, et donc l'ensemble des pouces relatifs à ce commentaire. Pour finir, un joueur pourra être supprimé de la base de donné (par exemple s'il est banni du forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donner seront supprimés.
 
 \subsection{Modèle relationnel}
-\indent En considérant l'ensemble des associations, le passage au modèle relationnel ``naïf'' a seulement consisté a ajouter deux tables pour les deux relations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mises dans les tables du côté unique. \\
+\indent En considérant l'ensemble des associations, le passage au modèle relationnel <<naïf>> a seulement consisté à ajouter deux tables pour les deux relations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mises dans les tables du côté unique. \\
 
 \indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (idJeu, idPlateforme) pour la table commentaire. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un idCommentaire a été ajouté. Par ailleurs, le choix initial de mettre un idJoueur a posé un problème de redondance avec le fait de définir un pseudo unique. Le pseudo du joueur a alors constitué sa clé primaire. Finalement, voici le modèle relationnel retenu: \\
 
@@ -165,15 +166,15 @@
   \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}}, \attr{dateSortie})\\ \\
 \end{mld}
 
-\indent A noter que le modèle ci-dessus n'est pas en troisième forme normale. En effet, il est possible de connaître le nom et le prénom d'un joueur à partir de son adresse mail, qui n'est pas une clé primaire. Pour éviter ce problème, il aurait fallut créer une table informations en association avec la table joueur et contenant son nom et son prénom. Cependant, après discussion, cette solution n'a pas été retenue pour plus de clarté quant à l'entité joueur.
+\indent \`{A} noter que le modèle ci-dessus n'est pas en troisième forme normale. En effet, il est possible de connaître le nom et le prénom d'un joueur à partir de son adresse mail, qui n'est pas une clé primaire. Pour éviter ce problème, il aurait fallut créer une table informations en association avec la table joueur et contenant son nom et son prénom. Cependant, après discussion, cette solution n'a pas été retenue pour plus de clarté quant à l'entité joueur.
 
 \newpage
 \section{Zoom sur les requêtes importantes}
-\indent Plusieurs requêtes étaient explicitement demandées dans le sujet. Nous commencerons par détailler certaines requêtes de consultation avant de voir des requêtes de statistiques puis d'étudier le cas de la mise à jour.
+\indent Plusieurs requêtes étaient explicitement demandées dans le sujet. Nous commencerons par détailler certaines requêtes de consultation avant de voir des requêtes de statistique puis d'étudier le cas de la mise à jour.
 
 \subsection{Requêtes de consultation}
 \subsubsection{Ensemble des jeux critiqués sur une plateforme donnée}
-\indent On cherche à avoir l'ensemble des jeux critiqués disponibles sur une plateforme donnée, et on les classera par catégorie. La requête englobante est donc celle de classement par catégorie, avec un ``order by nomCatégorie asc'' pour trier par catégorie. On fait une jointure interne avec la jointure externe jeu-appartient. A partir de cette jointure, on peut chercher, pour la plateforme passée en entrée, quels jeux sont à la fois disponibles sur cette platorme et commentés sur cette plateforme.
+\indent On cherche à avoir l'ensemble des jeux critiqués disponibles sur une plateforme donnée, et on les classera par catégorie. La requête englobante est donc celle de classement par catégorie, avec un \emph{order by nomCatégorie asc} pour trier par catégorie. On fait une jointure interne avec la jointure externe jeu-appartient. A partir de cette jointure, on peut chercher, pour la plateforme passée en entrée, quels jeux sont à la fois disponibles sur cette platorme et commentés sur cette plateforme.
 
 \begin{verbatim}
 SELECT res.nomJeu, categorie.nomCategorie FROM categorie INNER JOIN
@@ -212,14 +213,14 @@ SELECT commentaire.* FROM commentaire INNER JOIN jeu ON commentaire.idJeu = jeu.
 \end{verbatim}
 
 \subsubsection{Liste des joueurs ayant apprécié un commentaire}
-\indent Il suffit ici de faire une double jointure interne entre les tables joueur, pouce et commentaire. Les pouce positifs pour un commentaire donné sont retenus et on peut alors accéder au joueur ayant émis cet avis.
+\indent Il suffit ici de faire une double jointure interne entre les tables joueur, pouce et commentaire. Les pouces positifs pour un commentaire donné sont retenus et on peut alors accéder au joueur ayant émis cet avis.
 
 \subsection{Requêtes de statistiques}
 \subsubsection{Classement des joueurs selon leur nombre de commentaires}
-\indent Le nombre de commentaires par joueur est disponible avec une jointure interne entre les tables joueur et commentaire. En utilisant le schméma ``count (*) group by'', on peut compter ce nombre de commentaire et les classer avec un ``order by count(*) desc''.
+\indent Le nombre de commentaires par joueur est disponible avec une jointure interne entre les tables joueur et commentaire. En utilisant le schéma \emph{count (*) group by}, on peut compter ce nombre de commentaire et les classer avec un \emph{order by count(*) desc}.
 
-\subsubsection{n commentaires les plus récents}
-\indent Pour recenser les $n$ plus récents commentaires, on peut se baser sur leur date d'émission. Avec MySQL il est possible de limiter en nombre d'éléments un tri avec un ``order by * desc limit n''.
+\subsubsection{Sélection des $n$ commentaires les plus récents}
+\indent Pour recenser les $n$ plus récents commentaires, on peut se baser sur leur date d'émission. Avec MySQL il est possible de limiter en nombre d'éléments un tri avec un \emph{order by * desc limit n}.
 
 \subsubsection{Commentaire laissant le moins indifférent}
 \indent Pour cette requête on renverra le ou les commentaire(s) laissant le moins indifférent. On commence par rechercher dans la table pouce le nombre maximal d'avis sur un commentaire. Il est ensuite possible de récupérer l'ensemble des identifiants de commentaire, dans la table pouce, ayant ce nombre maximal d'avis. Pour finir, avec une jointure interne avec la table commentaire, l'accès aux commentaires est possible. \\ \\ \\
@@ -248,10 +249,12 @@ SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlate
        ORDER BY (1 + res.c)/(1 + res.d) DESC, res.dateCommentaire DESC;
 \end{verbatim}
 
+\subsubsection{Classement des jeux}
+
 \subsection{Requêtes de mise à jour}
 \indent Garder la base de données cohérente avec des insertions et des suppressions d'éléments pose certains problèmes. Lorsqu'un élément est ajouté à la table, ou plus simplement mis à jour, il faut s'assurer que l'ensemble des champs de l'entité ont été complétés. Par ailleurs, dans le cas de certaines contraintes, il faut parcourir la table entière. Par exemple, lorsqu'un commentaire est ajouté, il faut s'assurer que le joueur qui émet ce commentaire n'a pas encore déposé de commentaire pour le jeu considéré. \\
 
-\indent En outre, il faut gérer correctement la suppression de données de la base. Par exemple, lorsqu'un jeu est supprimé de la base, il faut supprimer les associations jeu-catégorie et jeu-plateforme correspondantes. Cela est possible avec la syntaxe suivante en MySQL: \\
+\indent En outre, il faut gérer correctement la suppression de données de la base. Par exemple, lorsqu'un jeu est supprimé de la base, il faut supprimer les associations jeu-catégorie et jeu-plateforme cor\-res\-pondantes. Cela est possible avec la syntaxe suivante en MySQL: \\
 
 \begin{verbatim}
 ALTER TABLE estDisponible ADD CONSTRAINT fk1_estDisponible FOREIGN KEY (idJeu) 
@@ -263,12 +266,12 @@ ALTER TABLE estDisponible ADD CONSTRAINT fk1_estDisponible FOREIGN KEY (idJeu)
 
 \newpage
 \section*{Conclusion}
-\indent Ce projet a permis de mettre en oeuvre différentes techniques vues dans le module SGBD. Il a notamment permis de comprendre les différentes étapes nécessaires à la bonne création d'une base de données. Si le modèle conceptuel peut initialement sembler suffisant, la mise sous forme normale permet de déceler certains problèmes relatifs à l'intégrité de la base. \\
+\indent Ce projet a permis de mettre en \oe{}uvre différentes techniques vues dans le module SGBD. Il a notamment permis de comprendre les différentes étapes nécessaires à la bonne création d'une base de données. Si le modèle conceptuel peut initialement sembler suffisant, l'étape de normalisation permet de déceler certains problèmes relatifs à l'intégrité de la base. \\
 
-\indent Par ailleurs, ce projet permet de mettre en avant les difficultés que pose la modélisation d'une base de données. Si certaines données ont clairement leur place quel que soit la modélisation choisie, d'autres sont sujettes à discussion. Il s'agit alors de bien définir les contraintes pour permettre une des principales attentes d'une base de donnée: la cohérence. \\
+\indent Par ailleurs, ce projet permet de mettre en avant les difficultés que pose la modélisation d'une base de données. Si certaines données ont clairement leur place quelle que soit la modélisation choisie, d'autres sont sujettes à discussion. Il s'agit alors de bien définir les contraintes pour permettre une des principales attentes d'une base de donnée: la cohérence. \\
 
 \indent Afin de garder cette cohérence de la base de données, les opérations basiques doivent être correctement réalisées. L'insertion, la mise à jour ou la suppression peuvent en effet poser certains problèmes, notamment au niveau des cardinalités des associations. \\
 
-\indent Pour conclure, réaliser une base de données impose de faire certains choix. Une des choses fondamentales qui n'a pas été prise en compte dans ce travail est les cas d'utilisation. En effet, selon les opérations qui seront le plus effectuées sur la base de données, la modélisation peut changer pour optimiser ces opérations. C'est cependant délicat d'imaginer le comportement des utilisateurs de la base sans étude préalable.
+\indent Pour conclure, réaliser une base de données impose de faire certains choix. Un des aspects fondamentaux n'ayant pas été pris en compte dans ce travail est les cas d'utilisation de l'application. En effet, selon les opérations qui seront le plus effectuées sur la base de données, la modélisation peut changer pour optimiser ces opérations. Il est cependant délicat d'imaginer le comportement des utilisateurs de la base sans étude préalable.
 
 \end{document}
