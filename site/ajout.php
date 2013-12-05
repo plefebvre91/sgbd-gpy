@@ -55,7 +55,7 @@
 		$id = $options["idCategorie"];
 		echo "<option value=\"$id\">$name</option>";
 	      }
-	      ;?>
+	      ?>
 	    </select>
 	    <!-- Fin de : Liste déroulante des catégories de jeu -->   
 	  </div>
@@ -70,7 +70,7 @@
 		$id = $options["idPlateforme"];
 		echo "<option value=\"$id\">$name</option>";
 	      }
-	      ;?>
+	      ?>
 	    </select>
 	    <!-- Fin de : Liste déroulante des plateformes -->   
 	  </div>
@@ -101,7 +101,7 @@
   		$name = $options["nomEditeur"];
 		echo "<option value=\"$name\">$name</option>";
 	      }
-	      ;?>
+	      ?>
 	    </select>
 	    <!-- Fin de : Liste déroulante des noms d'éditeurs -->   
 	  </div>
@@ -148,7 +148,7 @@
 	      echo "  <label><input type=\"checkbox\" name=\"idCategorie[]\" value=\"$id\">$name</label>";
 	      echo "</div>\n";
 	    }
-	    ;?>
+	    ?>
 	    <!-- Fin de : Cases à chocher des noms de catégories -->   
 	  </div>
  	  
