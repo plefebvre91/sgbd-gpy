@@ -226,35 +226,29 @@
 	  </select>
 	  <!-- Fin de : Liste déroulante des pseudos -->
 	</div>
-
+	
+	<table class="table table-striped">
+	  
+	  <tr><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Jeu</th><th>Plateforme</th><th>Note</th><th>Supression</th></tr>
 	<?php
-	$comments = select_all("commentaire");
-
-	echo "<table class=\"table table-striped\">";
-	echo "<tr><th>Commentaire</th>";
-	echo "<th>Auteur</th>";
-	echo "<th>Date</th>";
-	echo "<th>Note</th>";
-	echo "<th align=\"center\">Appréciation</th></tr>";
-
+	// Utilisation de la vue info_commentaires pour récupérer les informations de chaque commentaire
+	$comments = select_all("info_commentaires");
+	
 	while($att = mysql_fetch_array($comments)){
 	  $id = $att["idCommentaire"];
 	  $mark = $att["note"];
 	  $author = $att["pseudo"];
 	  $date = $att["dateCommentaire"];
+	  $game = $att["nomJeu"];
+	  $platform = $att["nomPlateforme"];
 	  $comment = $att["commentaire"];
-
-	  
-	  echo "<tr id=\"comment$id\">";
-	  echo "<td>$comment</td>";
-	  echo "<td>$author</td>";
-	  echo "<td>$date</td>";
-	  echo "<td>$mark</td>";
+	  echo "<tr id=\"comment$id\"><td>$comment</td><td>$author</td><td>$date</td><td>$game</td><td>$platform</td><td>$mark</td>";
 	  echo "<td align=\"center\"><button class=\"btn btn-success btn-xs\" onclick=\"javascript:add_inch($id, '+');\">+</button>&nbsp;";
 	  echo "<button class=\"btn btn-danger btn-xs\" onclick=\"javascript:add_inch($id, '-');\">-</button></td></tr>";
 	}
-
-	echo "</table>";?>
+	?>
+	  
+	</table>
       </div> 
     </div>
 
