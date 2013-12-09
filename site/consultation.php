@@ -12,7 +12,7 @@
     <li><a href="#consultation-joueur" data-toggle="tab">Joueurs</a></li>
     <li><a href="#consultation-categorie" data-toggle="tab">Catégories</a></li>
     <li><a href="#consultation-plateforme" data-toggle="tab">Plateformes</a></li>
-    <li><a href="#consultation-editeur" data-toggle="tab">Editeurs</a></li>		
+    <li><a href="#consultation-editeur" data-toggle="tab">Éditeurs</a></li>		
     <li><a href="#consultation-commentaire" data-toggle="tab">Commentaires</a></li>
     <li><a href="#consultation-pouce" data-toggle="tab">Appréciations de commentaires</a></li>
   </ul>
@@ -174,12 +174,11 @@
 	$categories = select_all("categorie");
 	?>
 	<table class="table table-hover">
-	  <tr class="active"><th>ID</th><th>Catégorie</th></tr>
+	  <tr class="active"><th>Catégories</th></tr>
 	  <?php
 	  while($att = mysql_fetch_array($categories)) {
-	    $id = $att["idCategorie"];
 	    $name = $att["nomCategorie"];
-	    echo "<tr><td>$id</td><td>$name</td></tr>\n";
+	    echo "<tr><td>$name</td></tr>\n";
 	  }
 	  ?>
 	</table>
@@ -192,12 +191,11 @@
 	$platforms = select_all("plateforme");
 	?>
 	<table class="table table-hover">
-	  <tr class="active"><th>ID</th><th>Plateforme</th></tr>
+	  <tr class="active"><th>Plateformes</th></tr>
 	  <?php
 	  while($att = mysql_fetch_array($platforms)) {
-	    $id = $att["idPlateforme"];
 	    $name = $att["nomPlateforme"];
-	    echo "<tr><td>$id</td><td>$name</td></tr>\n";
+	    echo "<tr><td>$name</td></tr>\n";
 	  }
 	  ?>
 	</table>
@@ -210,12 +208,11 @@
 	$editors = select_all("editeur");
 	?>
 	<table class="table table-hover">
-	  <tr class="active"><th>ID</th><th>Editeur</th></tr>
+	  <tr class="active"><th>Éditeurs</th></tr>
 	  <?php
 	  while($att = mysql_fetch_array($editors)) {
-	    $id = $att["idEditeur"];
 	    $name = $att["nomEditeur"];
-	    echo "<tr><td>$id</td><td>$name</td></tr>\n";
+	    echo "<tr><td>$name</td></tr>\n";
 	  }
 	  ?>
 	</table>

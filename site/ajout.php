@@ -9,7 +9,7 @@
   <ul class="nav nav-tabs" id="myTab">
     <li><a href="#ajout1" data-toggle="tab">Joueur</a></li>
     <li><a href="#ajout2" data-toggle="tab">Jeu</a></li>
-    <li><a href="#ajout3" data-toggle="tab">Editeur</a></li>
+    <li><a href="#ajout3" data-toggle="tab">Éditeur</a></li>
     <li><a href="#ajout4" data-toggle="tab">Plateforme</a></li>
     <li><a href="#ajout5" data-toggle="tab">Catégorie</a></li>
     <li><a href="#ajout6" data-toggle="tab">Appréciation de commentaire</a></li>
