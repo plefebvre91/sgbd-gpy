@@ -17,8 +17,8 @@
 
     <div class="tab-pane active" id="consultation1">
       <div class="container">
-	<table class="table table-striped">
-	  <tr><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Jeu</th><th>Plateforme</th><th>Note</th><th>Suppression</th></tr>
+	<table class="table table-hover">
+	  <tr class="active"><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Jeu</th><th>Plateforme</th><th>Note</th><th>Suppression</th></tr>
 	<?php
 	$comments = select_all("info_commentaires");
 
@@ -42,8 +42,8 @@
     <div class="tab-pane" id="consultation2">
       <div class="container">
 
-	<table class="table table-striped">
-	  <tr><th>Jeu</th><th>Suppression</th></tr>
+	<table class="table table-hover">
+	  <tr class="active"><th>Jeu</th><th>Suppression</th></tr>
 	<?php
 	$games = select_all("jeu");
 	
@@ -59,8 +59,8 @@
 
     <div class="tab-pane" id="consultation3">
       <div class="container">
-	<table class="table table-striped">
-	  <tr><th>Pseudo</th><th>Nom</th><th>Prenom</th><th>Adresse mail</th><th>Suppression</th></tr>
+	<table class="table table-hover">
+	  <tr class="active"><th>Pseudo</th><th>Nom</th><th>Prenom</th><th>Adresse mail</th><th>Suppression</th></tr>
 	  <?php
 	  $players = select_all("joueur");
 	  
