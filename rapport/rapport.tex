@@ -238,6 +238,7 @@ SELECT distinct commentaire.* FROM pouce INNER JOIN commentaire
 \begin{equation}
   \frac{1+c}{1+d}
 \end{equation}
+Pour calculer ce dernier, nous commençons par calculer $c$ et $d$ de manière identique. Dans ce but, nous utilisons l'opérateur \emph{IF} qui permet d'exprimer une condition. Ainsi, en ajoutant une condition sur la valeur d'une appréciation -- qui est soit positive \emph{'+'} -- soit négative \emph{'-'} -- nous pouvons calculer ...
 \begin{verbatim}
 SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlateforme,
        (1 + res.c)/(1 + res.d) AS indiceConfiance FROM 
