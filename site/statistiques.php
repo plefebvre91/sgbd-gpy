@@ -30,8 +30,8 @@
 	<?php
 	$comments = get_last_comments($nb_comments);
 
-	echo "<table class=\"table table-striped\">";
-	echo "<tr><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th></tr>";
+	echo "<table class=\"table table-hover\">";
+	echo "<tr class=\"active\"><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th></tr>";
 
 	while($att = mysql_fetch_array($comments)){
 	  $id = $att["idCommentaire"];
@@ -56,8 +56,8 @@
 	//Commentaires classes par appreciation
 	$comments = get_comments_by_appreciation();
 
-	echo "<table class=\"table table-striped\">";
-	echo "<tr><th>ID</th><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th><th>Indice de confiance</th></tr>";
+	echo "<table class=\"table table-hover\">";
+	echo "<tr class=\"active\"><th>ID</th><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th><th>Indice de confiance</th></tr>";
 
 	while($att = mysql_fetch_array($comments)){
 	  $id = $att["idCommentaire"];
@@ -89,8 +89,8 @@
 	//Joueurs ayant note le plus de commentaires
 	$players = get_active_players();
 
-	echo "<table class=\"table table-striped\">";
-	echo "<tr><th>Pseudo</th><th>Nombre d'appréciation(s)</th></tr>";
+	echo "<table class=\"table table-hover\">";
+	echo "<tr class=\"active\"><th>Pseudo</th><th>Nombre d'appréciation(s)</th></tr>";
 
 	while($att = mysql_fetch_array($players)){
 	  $id = $att["pseudo"];
@@ -112,8 +112,8 @@
 	//Le commentaire ayant laisse le moins indifferent
 	$comments = get_most_attractive_comment();
 
-	echo "<table class=\"table table-striped\">";
-	echo "<tr><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th></tr>";
+	echo "<table class=\"table table-hover\">";
+	echo "<tr class=\"active\"><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th></tr>";
 
 	while($att = mysql_fetch_array($comments)){
 	  $id = $att["idCommentaire"];
@@ -136,8 +136,8 @@
     <div class="tab-pane" id="consultation5">
 
       <div class="container">
-	<table class="table table-striped">
-	  <tr><th>Nom du jeu</th><th>Moyenne pondérée</th><th>Total Indice de Confiance des commentaires sur le jeu</th></tr>
+	<table class="table table-hover">
+	  <tr class="active"><th>Nom du jeu</th><th>Moyenne pondérée</th><th>Total Indice de Confiance des commentaires sur le jeu</th></tr>
 	  
 	  <?php
 	  // Requête de classement des jeux
