@@ -57,7 +57,7 @@
 	$comments = get_comments_by_appreciation();
 
 	echo "<table class=\"table table-hover\">";
-	echo "<tr class=\"active\"><th>ID</th><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th><th>Indice de confiance</th></tr>";
+	echo "<tr class=\"active\"><th>Commentaire</th><th>Auteur</th><th>Date</th><th>Note</th><th>Indice de confiance</th></tr>";
 
 	while($att = mysql_fetch_array($comments)){
 	  $id = $att["idCommentaire"];
@@ -72,7 +72,7 @@
 	  $index = round($index, 2);
 	  
 	  echo "<tr id=\"comment$id\">
-        <td>$id</td><td>$comment</td><td>$author</td><td>$date</td><td>$mark</td>
+        <td>$comment</td><td>$author</td><td>$date</td><td>$mark</td>
         <td>$index</td></tr>";
 	}
 
