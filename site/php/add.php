@@ -102,11 +102,25 @@ function add_category($category) {
 
 function add_comment($note, $comment, $pseudo, $id_game, $id_platform) {
   //$id_game = get_game_by_name($game);
+  
+  $insertionAllowed = false;
+  
+  // Parcours de la table estDisponible pour vérifier que le jeu choisi est bien disponible sur la plateforme choisie
+  $disponibilities = select_all("estDisponible where idJeu = '$id_game'");
+  while ( ($row = mysql_fetch_array($disponibilities)) && ($insertionAllowed == false) ) {
+    $base_platform = $row["idPlateforme"];
+    if ($base_platform == $id_platform) // Si le jeu choisi est disponible sur la plateforme choisie
+      $insertionAllowed = true; // Autoriser l'insertion
+  }
+  
+  if ($insertionAllowed) {
+    $query = "INSERT INTO commentaire VALUES ('', '$note', '$comment', (SELECT CURDATE()), '$pseudo', '$id_game', '$id_platform')";
+    $result = mysql_query($query) or die(mysql_error());
 
-  $query = "INSERT INTO commentaire VALUES ('', '$note', '$comment', (SELECT CURDATE()), '$pseudo', '$id_game', '$id_platform')";
-  $result = mysql_query($query) or die(mysql_error());
-
-  return $result;
+    return $result;
+  }
+  else
+    die("Ajout de commentaire impossible car ce jeu n'existe pas sur cette plateforme.");
 }
 
 function add_inch($value, $pseudo, $id_comment) {
