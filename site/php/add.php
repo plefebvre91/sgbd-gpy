@@ -63,9 +63,9 @@ function add_game($name, $categories, $platforms, $editor, $dates) {
   return $result;
 }
 
- /* Ajout d'un joueur */
- /* idPlateforme preferee = selection avec (2) */
- /* idCategorie preferee = selection avec (3) */
+/* Ajout d'un joueur */
+/* idPlateforme preferee = selection avec (2) */
+/* idCategorie preferee = selection avec (3) */
 function add_player($login, $last_name, $first_name, $mail, $id_category, $id_platform) {
   //$id_platform = get_platform_by_name($platform);
   //$id_category = get_category_by_name($category);

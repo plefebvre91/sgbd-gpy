@@ -13,9 +13,17 @@ function add_player() {
 
 function add_game() {
     $("#result").html("Chargement...");
-    var request = $.get("ajax/ajax_add_game.php", $("#form-ajout2").serialize());
+    var url = $("#form-ajout2").serialize();
+    if (url.indexOf("=&nomEditeur") != -1) {
+	$("#result").html("Veuillez saisir le nom du jeu.");
+	return;
+    }
+    var request = $.get("ajax/ajax_add_game.php", url);
+
     request.done(function(msg){$("#result").html(msg);
-			       $("#form-ajout2").fadeOut("slow");});
+			       //$("#form-ajout2").fadeOut("slow");});
+			      });
+
     request.fail(failure);
 }
 
