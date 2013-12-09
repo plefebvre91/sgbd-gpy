@@ -28,21 +28,21 @@
 	<form action="#" id="form-ajout1">
  	  <div class="form-group">
 	    <label for="pseudo">Pseudo</label>
-	    <input required type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo du joueur à ajouter ici..">
+	    <input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Saisissez le pseudo du joueur à ajouter ici..">
 	  </div>
 	  <div class="form-group">
 	    <label for="nom">Nom</label>
-	    <input required type="text" name="nom" id="nom" class="form-control" placeholder="Saisissez le nom du joueur à ajouter ici..">
+	    <input type="text" name="nom" id="nom" class="form-control" placeholder="Saisissez le nom du joueur à ajouter ici..">
 	  </div>
 	  <div class="form-group">
 	    <label for="prenom">Prénom</label>
-	    <input required type="text" name="prenom" id="prenom" class="form-control" placeholder="Saisissez le prénom du joueur à ajouter ici..">
+	    <input type="text" name="prenom" id="prenom" class="form-control" placeholder="Saisissez le prénom du joueur à ajouter ici..">
 	  </div>
 	  <div class="form-group">
 	    <label for="mail">Mail</label>
   	    <div class="input-group">
 	      <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-	      <input required type="email" name="mail" id="mail" class="form-control" placeholder="Saisissez le mail du joueur à ajouter ici..">
+	      <input type="email" name="mail" id="mail" class="form-control" placeholder="Saisissez le mail du joueur à ajouter ici..">
 	    </div>
 	  </div>
 	  <div class="form-group">
@@ -328,6 +328,7 @@
 </div> <!-- Container -->
 
 <script>
+ $("form").submit(function(event){event.preventDefault();});
  $("#form-ajout1").submit(add_player);
  $("#form-ajout2").submit(add_game);
  $("#form-ajout3").submit(add_editor);
