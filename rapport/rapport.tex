@@ -150,9 +150,9 @@
 \indent Il est également possible de supprimer des données de la table. Il est imaginable de supprimer un jeu, auquel cas l'ensemble des commentaires relatifs à ce jeu seront également supprimés. On peut aussi supprimer un commentaire, et donc l'ensemble des pouces relatifs à ce commentaire. Pour finir, un joueur pourra être supprimé de la base de donné (par exemple s'il est banni du forum). Dans ce cas, on supposera qu'il y a des raisons valables à son exclusion et que l'ensemble des commentaires qu'il a postés et des pouces qu'il a pu donner seront supprimés.
 
 \subsection{Modèle relationnel}
-\indent En considérant l'ensemble des associations, le passage au modèle relationnel <<naïf>> a seulement consisté à ajouter deux tables pour les deux relations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mises dans les tables du côté unique. \\
+\indent En considérant l'ensemble des associations, le passage au modèle relationnel \og naïf \fg a consisté à ajouter deux tables pour les deux relations avec une cardinalité obligatoire de chaque côté. Par ailleurs, les relations de type obligatoire ou multiple d'un côté et unique de l'autre ont été mises dans les tables du côté unique. \\
 
-\indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (idJeu, idPlateforme) pour la table commentaire. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un idCommentaire a été ajouté. Par ailleurs, le choix initial de mettre un idJoueur a posé un problème de redondance avec le fait de définir un pseudo unique. Le pseudo du joueur a alors constitué sa clé primaire. Finalement, voici le modèle relationnel retenu: \\
+\indent Plusieurs problèmes se sont alors posés. Une première idée a été de mettre en clé primaire le couple (\texttt{idJeu}, \texttt{idPlateforme}) pour la table \texttt{commentaire}. Cependant, ce choix n'a finalement pas été retenu pour plus de simplicité, et un identifiant a été ajouté pour chaque commentaire. Par ailleurs, le choix initial de mettre un identifiant aux joueurs a posé un problème de redondance avec le fait de définir un pseudo unique. Le pseudo du joueur a alors constitué sa clé primaire. Finalement, voici le modèle relationnel retenu: \\
 
 \begin{mld}
   \relat{Joueur} & (\prim{pseudo}, \attr{nom}, \attr{prenom}, \attr{mail}, \foreign{idCategorie}, \foreign{idPlateforme})\\
@@ -166,7 +166,7 @@
   \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}}, \attr{dateSortie})\\ \\
 \end{mld}
 
-\indent \`{A} noter que le modèle ci-dessus n'est pas en troisième forme normale. En effet, il est possible de connaître le nom et le prénom d'un joueur à partir de son adresse mail, qui n'est pas une clé primaire. Pour éviter ce problème, il aurait fallut créer une table informations en association avec la table joueur et contenant son nom et son prénom. Cependant, après discussion, cette solution n'a pas été retenue pour plus de clarté quant à l'entité joueur.
+\indent \`{A} noter que le modèle ci-dessus n'est pas en troisième forme normale. En effet, il est possible de connaître le nom et le prénom d'un joueur à partir de son adresse mail, qui n'est pas une clé primaire. Pour éviter ce problème, il aurait fallu créer une table supplémentaire contenant le nom et le prénom. Cependant, après discussion, cette solution n'a pas été retenue pour plus de clarté quant à l'entité \texttt{joueur}.
 
 \newpage
 \section{Zoom sur les requêtes importantes}
@@ -213,17 +213,17 @@ SELECT commentaire.* FROM commentaire INNER JOIN jeu ON commentaire.idJeu = jeu.
 \end{verbatim}
 
 \subsubsection{Liste des joueurs ayant apprécié un commentaire}
-\indent Il suffit ici de faire une double jointure interne entre les tables joueur, pouce et commentaire. Les pouces positifs pour un commentaire donné sont retenus et on peut alors accéder au joueur ayant émis cet avis.
+\indent Il suffit ici de faire une double jointure interne entre les tables \texttt{joueur}, \texttt{pouce} et \texttt{commentaire}. Les pouces positifs pour un commentaire donné sont retenus et on peut alors accéder au joueur ayant émis cet avis.
 
 \subsection{Requêtes de statistiques}
 \subsubsection{Classement des joueurs selon leur nombre de commentaires}
-\indent Le nombre de commentaires par joueur est disponible avec une jointure interne entre les tables joueur et commentaire. En utilisant le schéma \emph{count (*) group by}, on peut compter ce nombre de commentaire et les classer avec un \emph{order by count(*) desc}.
+\indent Le nombre de commentaires par joueur est disponible avec une jointure interne entre les tables joueur et commentaire. En utilisant le schéma \emph{count (*) group by}, on peut compter ce nombre de commentaires et les classer avec un \emph{order by count(*) desc}.
 
 \subsubsection{Sélection des $n$ commentaires les plus récents}
-\indent Pour recenser les $n$ plus récents commentaires, on peut se baser sur leur date d'émission. Avec MySQL il est possible de limiter en nombre d'éléments un tri avec un \emph{order by * desc limit n}.
+\indent Pour recenser les $n$ plus récents commentaires, on peut se baser sur leur date d'émission. Avec \emph{MySQL} il est possible de limiter en nombre d'éléments un tri avec un \emph{order by * desc limit n}.
 
 \subsubsection{Commentaire laissant le moins indifférent}
-\indent Pour cette requête on renverra le ou les commentaire(s) laissant le moins indifférent. On commence par rechercher dans la table pouce le nombre maximal d'avis sur un commentaire. Il est ensuite possible de récupérer l'ensemble des identifiants de commentaire, dans la table pouce, ayant ce nombre maximal d'avis. Pour finir, avec une jointure interne avec la table commentaire, l'accès aux commentaires est possible. \\ \\ \\
+\indent Pour cette requête on renverra le ou les commentaire(s) laissant le moins indifférent. On commence par rechercher dans la table \texttt{pouce} le nombre maximal d'avis sur un commentaire. Il est ensuite possible de récupérer l'ensemble des identifiants de commentaire, dans la table \texttt{pouce}, ayant ce nombre maximal d'avis. Pour finir, avec une jointure interne avec la table \texttt{commentaire}, l'accès aux commentaires est possible. \\ \\ \\
 \begin{verbatim}
 SELECT distinct commentaire.* FROM pouce INNER JOIN commentaire 
        ON pouce.idCommentaire = commentaire.idCommentaire
@@ -253,16 +253,18 @@ SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlate
 \subsubsection{Classement des jeux}
 
 \subsection{Requêtes de mise à jour}
-\indent Garder la base de données cohérente avec des insertions et des suppressions d'éléments pose certains problèmes. Lorsqu'un élément est ajouté à la table, ou plus simplement mis à jour, il faut s'assurer que l'ensemble des champs de l'entité ont été complétés. Par ailleurs, dans le cas de certaines contraintes, il faut parcourir la table entière. Par exemple, lorsqu'un commentaire est ajouté, il faut s'assurer que le joueur qui émet ce commentaire n'a pas encore déposé de commentaire pour le jeu considéré. \\
+\indent Garder la base de données cohérente avec des insertions et des suppressions d'éléments pose certains problèmes. Lorsqu'un élément est ajouté à la table, ou plus simplement mis à jour, il faut s'assurer que l'ensemble des champs de l'entité a été complété. Par ailleurs, dans le cas de certaines contraintes, il faut parcourir la table entière. Par exemple, lorsqu'un commentaire est ajouté, il faut s'assurer que le joueur qui émet ce commentaire n'a pas encore déposé de commentaire pour le jeu considéré. \\
 
-\indent En outre, il faut gérer correctement la suppression de données de la base. Par exemple, lorsqu'un jeu est supprimé de la base, il faut supprimer les associations jeu-catégorie et jeu-plateforme cor\-res\-pondantes. Cela est possible avec la syntaxe suivante en MySQL: \\
+\indent En outre, il faut gérer correctement la suppression de données de la base. Par exemple, lorsqu'un jeu est supprimé de la base, il faut supprimer les associations jeu-catégorie et jeu-plateforme cor\-res\-pondantes. Cela est possible avec la syntaxe suivante: \\
 
 \begin{verbatim}
 ALTER TABLE estDisponible ADD CONSTRAINT fk1_estDisponible FOREIGN KEY (idJeu) 
             REFERENCES jeu (idJeu) ON DELETE CASCADE;
 \end{verbatim}
 
-\indent Au delà des requêtes de mise à jour, il faut prendre certaines précautions lors de l'insertion ou de la suppression de données de la base. Lors de l'ajout d'un joueur par exemple, on doit s'assurer qu'il a bien une plateforme et une catégorie préférée valides. Par ailleurs, lors de la suppresion d'un jeu les <<on delete cascade>> dans les tables appartient et estDisponible assurent que les associations seront correctement supprimées de manière à garantir l'intégrité de la base.
+\indent Au delà des requêtes de mise à jour, il faut prendre certaines précautions lors de l'insertion ou de la suppression de données de la base. Lors de l'ajout d'un joueur par exemple, on doit s'assurer qu'il a bien une plateforme et une catégorie préférée valides. Par ailleurs, lors de la suppresion d'un jeu les suppressions en cascade dans les tables \texttt{appartient} et \texttt{estDisponible} assurent que les associations seront correctement supprimées, garantissant ainsi l'intégrité de la base.
+
+\paragraph{Remarque:} Des vues ont été créées pour récupérer les informations concernant les joueurs et les commentaires. Elles effectuent des opérations de jointure entre les différentes tables. Ces vues n'ont pour but que de centraliser ces lourdes requêtes, et non de cacher ou limiter l'accés à certaines partie de la base. 
 
 \newpage
 \input{interface.tex}
