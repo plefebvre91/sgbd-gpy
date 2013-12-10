@@ -24,7 +24,7 @@ db_connect();
       <div class="container">
 
 	<p class="lead">Mise à jour d'un joueur.</p>
-	<div class="panel-group" id="accordion">
+	<div class="panel-group" id="accordion-joueur">
 	<?php
 	$players = select_all("joueur");
 	
@@ -40,7 +40,7 @@ db_connect();
 	  echo "<div class=\"panel panel-default\">";
 	  echo "<div class=\"panel-heading\">";
 	  echo "<h4 class=\"panel-title\">";
-	  echo "<a id=\"result-$id\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-$id\">$id</a>";
+	  echo "<a id=\"result-$id\" data-toggle=\"collapse\" data-parent=\"#accordion-joueur\" href=\"#collapse-$id\">$id</a>";
 	  echo "</h4>";
 	  echo "</div><!--panel-heading-->"; 
 	  echo "<div id=\"collapse-$id\" class=\"panel-collapse collapse\">";
@@ -124,7 +124,7 @@ db_connect();
 	<?php
 	$games = select_all("jeu");
 
-	echo "<div class=\"panel-group\" id=\"accordion\">";
+	echo "<div class=\"panel-group\" id=\"accordion-jeu\">";
 
 	while ($att = mysql_fetch_array($games)) {
 	  $idJeu = $att["idJeu"];
@@ -134,7 +134,7 @@ db_connect();
 	  echo "<div class=\"panel panel-default\">";
 	  echo "<div class=\"panel-heading\">";
 	  echo "<h4 class=\"panel-title\">";
-	  echo "<a id=\"result-jeu-$idJeu\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-jeu-$idJeu\">$nomJeu</a>";
+	  echo "<a id=\"result-jeu-$idJeu\" data-toggle=\"collapse\" data-parent=\"#accordion-jeu\" href=\"#collapse-jeu-$idJeu\">$nomJeu</a>";
 	  echo "</h4>";
 	  echo "</div><!--panel-heading-->"; 
 	  echo "<div id=\"collapse-jeu-$idJeu\" class=\"panel-collapse collapse\">";
@@ -242,7 +242,7 @@ db_connect();
 	<?php
 	$comments = select_all("info_commentaires");
 
-	echo "<div class=\"panel-group\" id=\"accordion\">";
+	echo "<div class=\"panel-group\" id=\"accordion-commentaire\">";
 
 	while ($att = mysql_fetch_array($comments)) {
 	  $idCommentaire = $att["idCommentaire"];
@@ -256,7 +256,7 @@ db_connect();
 	  echo "<div class=\"panel panel-default\">";
 	  echo "<div class=\"panel-heading\">";
 	  echo "<h4 class=\"panel-title\">";
-	  echo "<a id=\"result-commentaire-$idCommentaire\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-commentaire-$idCommentaire\">Commentaire $idCommentaire - $commentaire</a>";
+	  echo "<a id=\"result-commentaire-$idCommentaire\" data-toggle=\"collapse\" data-parent=\"#accordion-commentaire\" href=\"#collapse-commentaire-$idCommentaire\">Commentaire $idCommentaire - $commentaire</a>";
 	  echo "</h4>";
 	  echo "</div><!--panel-heading-->"; 
 	  echo "<div id=\"collapse-commentaire-$idCommentaire\" class=\"panel-collapse collapse\">";
