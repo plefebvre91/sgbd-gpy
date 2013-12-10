@@ -70,9 +70,16 @@ function add_inch(id, value) {
 
 function add_comment() {
     $("#result").html("Chargement...");
+    $("body").scrollTop(0);
 
     var request = $.get("ajax/ajax_add_comment.php", $("#form-ajout7").serialize());
-    request.done(function(msg){$("#result").html(msg);
-			       $("#form-ajout7").fadeOut("slow");});
+
+    request.done(
+	function(msg){
+	    $("#result").html(msg);
+	    if (msg.indexOf("plateforme") == -1) { // S'il n'y a pas eu d'erreur,
+		$("#form-ajout7").fadeOut("slow"); // replier le formulaire
+	    }
+	});
     request.fail(failure);
 }
