@@ -18,12 +18,17 @@ function add_game() {
 	$("#result").html("Veuillez saisir le nom du jeu.");
 	return;
     }
+    $("body").scrollTop(0);
     var request = $.get("ajax/ajax_add_game.php", url);
 
-    request.done(function(msg){$("#result").html(msg);
-			       //$("#form-ajout2").fadeOut("slow");});
-			      });
-
+    request.done(
+	function(msg){
+	    $("#result").html(msg);
+	    if (msg.indexOf("Veuillez") == -1) {
+		$("#form-ajout2").fadeOut("slow");
+	    }
+	});
+    
     request.fail(failure);
 }
 
