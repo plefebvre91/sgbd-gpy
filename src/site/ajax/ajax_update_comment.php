@@ -18,7 +18,7 @@ $pseudo      = secure_string($_GET["pseudo"]);
 $id_game     = secure_string($_GET["idJeu"]);
 $id_platform = secure_string($_GET["idPlateforme"]);
 
-if ( (! filter_var($note, FILTER_VALIDATE_INT)) || $note > 20 || $note < 0){
+if ( !is_numeric($note) || $note > 20 || $note < 0){
   echo "La note doit être un nombre compris entre 0 et 20.";
   exit;
 }
