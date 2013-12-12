@@ -1,4 +1,8 @@
--- Suppression des données
+-- Sélection de la base de données à utiliser, par sécurité
+
+USE jeuxvideos;
+
+-- Suppression des données préexistantes
 
 delete from appartient;
 delete from estDisponible;

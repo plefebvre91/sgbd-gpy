@@ -1,17 +1,24 @@
--- Supression des tables qui existent déjà
--- Rq : Il semble que l'ordre soit important.
---      On ne peut pas supprimer JOUEUR avant POUCE,
---      car une des colonnes de JOUEUR est un clé étrangère de POUCE.
+-- Suppression de la base de données au cas où elle existerait déjà
 
-drop table if exists appartient;
-drop table if exists estDisponible;
-drop table if exists pouce;
-drop table if exists commentaire;
-drop table if exists joueur;
-drop table if exists jeu;
-drop table if exists categorie;
-drop table if exists plateforme;
-drop table if exists editeur;
+DROP DATABASE IF EXISTS jeuxvideos;
+CREATE DATABASE jeuxvideos;
+
+-- Sélection de la base de données à utiliser, par sécurité
+
+USE jeuxvideos;
+
+-- Suppression des tables et vues qui existent déjà
+DROP TABLE IF EXISTS appartient;
+DROP TABLE IF EXISTS estDisponible;
+DROP TABLE IF EXISTS pouce;
+DROP TABLE IF EXISTS commentaire;
+DROP TABLE IF EXISTS joueur;
+DROP TABLE IF EXISTS jeu;
+DROP TABLE IF EXISTS categorie;
+DROP TABLE IF EXISTS plateforme;
+DROP TABLE IF EXISTS editeur;
+DROP VIEW IF EXISTS info_joueur; 
+DROP VIEW IF EXISTS info_commentaires;
 
 -- Création des tables
 
