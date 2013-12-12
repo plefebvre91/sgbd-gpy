@@ -235,5 +235,36 @@ insert into appartient values(11, 16);
 
 commit;
 
-
 -- Vérification des données
+
+select (select if (((select count(*) from jeu) = 16),
+       'Nombre jeux insere correct (16)',
+       'Nombre jeux insere incorrect !') AS "jeux") AS "Table jeu",
+       (select if (((select count(*) from joueur) = 17),
+       'Nombre joueurs insere correct (17)',
+       'Nombre joueurs insere incorrect !') AS "joueurs") AS "Table joueur";
+
+select (select if (((select count(*) from categorie) = 11),
+       'Nombre categories insere correct (11)',
+       'Nombre categories insere incorrect !') AS "categories") AS "Table categorie",
+       (select if (((select count(*) from appartient) = 17),
+       'Nombre appartenances insere correct (17)',
+       'Nombre appartenances insere incorrect !') AS "appartenances") AS "Table appartient";
+
+select (select if (((select count(*) from plateforme) = 10),
+       'Nombre plateformes insere correct (10)',
+       'Nombre plateformes insere incorrect !') AS "plateformes") AS "Table plateforme",
+       (select if (((select count(*) from estDisponible) = 43),
+       'Nombre disponibilites insere correct (43)',
+       'Nombre disponibilites insere incorrect !') AS "disponibilites") AS "Table estDisponible";
+
+select (select if (((select count(*) from commentaire) = 20),
+       'Nombre commentaires insere correct (20)',
+       'Nombre commentaires insere incorrect !') AS "commentaires") AS "Table commentaire",
+       (select if (((select count(*) from pouce) = 13),
+       'Nombre pouces insere correct (13)',
+       'Nombre pouces insere incorrect !') AS "pouces") AS "Table pouce";
+
+select if (((select count(*) from editeur) = 7),
+       'Nombre editeurs insere correct (7)',
+       'Nombre editeurs insere incorrect !')  AS "Table editeur";
