@@ -253,7 +253,23 @@ SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlate
 \end{verbatim}
 
 \subsubsection{Classement des jeux}
+
 % Todo : Expliquer la requête !
+\begin{verbatim}
+SELECT nomJeu AS "Nom du jeu", MP AS "Moyenne pondérée",
+       TotalIC AS "Total des Indices de Confiance des commentaires du jeu"
+FROM jeu NATURAL JOIN (
+    SELECT idJeu, ( SUM(note * (1+res.c)/(1+res.d)) ) / ( SUM((1+res.c)/(1+res.d)) ) AS "MP",
+           SUM((1 + res.c)/(1 + res.d)) AS "TotalIC"
+    FROM (
+       SELECT commentaire.*,
+              SUM(IF(pouce.valeur = '+', 1, 0)) AS "c", SUM(IF(pouce.valeur = '-', 1, 0)) AS "d"
+       FROM commentaire LEFT OUTER JOIN pouce ON commentaire.idCommentaire = pouce.idCommentaire
+       GROUP BY commentaire.idCommentaire) AS res
+    GROUP BY idJeu
+    ORDER BY ( SUM(note * (1+res.c)/(1+res.d)) ) / ( SUM((1+res.c)/(1+res.d)) ) DESC,
+             SUM((1+res.c)/(1+res.d)) DESC) AS classement;
+\end{verbatim}
 
 \subsection{Requêtes de mise à jour}
 \indent Garder la base de données cohérente avec des insertions et des suppressions d'éléments pose certains problèmes. Lorsqu'un élément est ajouté à la table, ou plus simplement mis à jour, il faut s'assurer que l'ensemble des champs de l'entité a été complété. Par ailleurs, dans le cas de certaines contraintes, il faut parcourir la table entière. Par exemple, lorsqu'un commentaire est ajouté, il faut s'assurer que le joueur qui émet ce commentaire n'a pas encore déposé de commentaire pour le jeu considéré. \\
