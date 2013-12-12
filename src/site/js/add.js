@@ -78,7 +78,7 @@ function add_comment() {
     request.done(
 	function(msg){
 	    $("#result").html(msg);
-	    if (msg.indexOf("plateforme") == -1) { // S'il n'y a pas eu d'erreur,
+	    if ((msg.indexOf("plateforme") == -1) && (msg.indexOf("déjà") == -1) )  { // S'il n'y a pas eu d'erreur,
 		$("#form-ajout7").fadeOut("slow"); // replier le formulaire
 	    }
 	});

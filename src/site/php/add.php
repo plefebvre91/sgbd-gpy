@@ -118,7 +118,7 @@ function add_comment($note, $comment, $pseudo, $id_game, $id_platform) {
   $result = mysql_query("SELECT * FROM commentaire WHERE pseudo='$pseudo' AND idJeu='$id_game'");
   if(mysql_num_rows($result) != 0){
     
-    die("Vous avez déjà commenté ce jeu");
+    die("Vous avez déjà commenté ce jeu.");
   }
 
   if ($insertionAllowed) {
