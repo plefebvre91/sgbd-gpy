@@ -115,7 +115,7 @@ function add_comment($note, $comment, $pseudo, $id_game, $id_platform) {
   
 
   //Verification que le votant n'a pas dejà commenté ce jeu
-  $result = mysql_query("SELECT count(*) FROM commentaire WHERE pseudo='$pseudo' AND idPlateforme='$id_platform' AND idJeu='$id_game'");
+  $result = mysql_query("SELECT * FROM commentaire WHERE pseudo='$pseudo' AND idJeu='$id_game'");
   if(mysql_num_rows($result) != 0){
     
     die("Vous avez déjà commenté ce jeu");
