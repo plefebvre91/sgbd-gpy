@@ -113,6 +113,14 @@ function add_comment($note, $comment, $pseudo, $id_game, $id_platform) {
       $insertionAllowed = true; // Autoriser l'insertion
   }
   
+
+  //Verification que le votant n'a pas dejà commenté ce jeu
+  $result = mysql_query("SELECT count(*) FROM commentaire WHERE pseudo='$pseudo' AND idPlateforme='$id_platform' AND idJeu='$id_game'");
+  if(mysql_num_rows($result) != 0){
+    
+    die("Vous avez déjà commenté ce jeu");
+  }
+
   if ($insertionAllowed) {
     $query = "INSERT INTO commentaire VALUES ('', '$note', '$comment', (SELECT CURDATE()), '$pseudo', '$id_game', '$id_platform')";
     $result = mysql_query($query) or die(mysql_error());
