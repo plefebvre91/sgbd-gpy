@@ -63,6 +63,7 @@ function add_inch(id, value) {
     var comment_id = "#comment"+id;
     $("#result").html("Chargement...");
     var login = $("#liste_pseudo_pouce").val();
+    $("body").scrollTop(0);
     var request = $.get("ajax/ajax_add_inch.php", {idCommentaire: id, value: value, pseudo: login});
     request.done(function(msg){$("#result").html(msg);});
     request.fail(failure);
