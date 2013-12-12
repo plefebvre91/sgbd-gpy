@@ -240,7 +240,7 @@ SELECT distinct commentaire.* FROM pouce INNER JOIN commentaire
   \label{eq:ic}
 \end{equation}
 \indent Pour calculer ce dernier, nous commençons par calculer $c$ et $d$ en une requête. Dans ce but, nous utilisons l'opérateur \emph{IF} qui permet d'exprimer une condition. Ainsi, en ajoutant une condition sur la valeur d'une appréciation, nous incrémentons $c$ si la valeur du commentaire est positive ('\emph{+}') ou $d$ si elle est négative ('\emph{-}'). Dans cette requête interne, une jointure externe gauche est réalisée entre les table commentaire et pouce, afin que les commentaires n'ayant pas reçus de pouce soient conservés.
-\indent La requête englobante utilise les valeurs de $c$ et $d$ calculées pour chaque commentaire par la requête interne pour déduire le rapport \eqref{eq:ic}. Une sélection est effectuée afin de ne conserver que les colonnes utiles. Finalement, les lignes sont classées par indice de confiance décroissant, puis par date de la plus récente à la plus ancienne, en cas d'égalité.
+\indent La requête englobante utilise les valeurs de $c$ et $d$ calculées pour chaque commentaire par la requête interne pour déduire le rapport \eqref{eq:ic}. Une sélection est effectuée afin de ne conserver que les colonnes utiles. Finalement, les lignes sont classées par indice de confiance décroissant, puis par date de la plus récente à la plus ancienne, en cas d'égalité. Le code complet de la requête est le suivant :
 \begin{verbatim}
 SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlateforme,
        (1 + res.c)/(1 + res.d) AS indiceConfiance FROM 
@@ -253,8 +253,16 @@ SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlate
 \end{verbatim}
 
 \subsubsection{Classement des jeux}
+\indent L'objectif de cette requête est de calculer un classement des jeux selon une moyenne dans laquelle chaque note est pondérée par l'indice de confiance du commentaire correspondant. Cette moyenne, calculée pour chaque jeu, est le résultat du calcul suivant :
+\begin{equation}
+  \frac{\sum \left( note~\times~indice~de~confiance~du~commentaire~correspondant \right)}{\sum indices~de~confiance~des~commentaires~du~jeu}
+  \label{eq:moyenne}
+\end{equation}
+\indent De façon similaire à ce qui est fait dans la requête précédente, une requête interne permet de calculer $c$ et $d$ pour chaque commentaire. Cependant, la requête l'englobant fait un calcul plus complexe que celui de l'indice de confiance. La somme des notes pondérées par l'indice de confiance est calculée pour chaque jeu (\emph{SUM(note * (1+res.c)/(1+res.d))}), ainsi que la somme des indices de confiance des commentaire du jeu (\emph{SUM((1+res.c)/(1+res.d))}). La division de la première somme par la seconde est effectuée pour obtenir la moyenne pondérée.
 
-% Todo : Expliquer la requête !
+\indent La somme des indices de confiance des commentaires du jeu est calculée à nouveau séparément dans une autre colonne, ce qui permet de départager des jeux en cas d'égalité de leur moyenne pondérée.
+\indent La requête la plus englobante permet de grouper les résultats par jeu, et les trie par moyenne pondérée décroissante, puis par total des indices de confiance décroissant en cas d'égalité de moyenne. Elle permet également d'obtenir le nom du jeu plutôt que son identifiant. Le code complet de la requête est le suivant :
+
 \begin{verbatim}
 SELECT nomJeu AS "Nom du jeu", MP AS "Moyenne pondérée",
        TotalIC AS "Total des Indices de Confiance des commentaires du jeu"
