@@ -234,11 +234,13 @@ SELECT distinct commentaire.* FROM pouce INNER JOIN commentaire
 \end{verbatim}
 
 \subsubsection{Classement des commentaires selon leur indice de confiance}
-\indent Chaque commentaire possède un indice de confiance. Soit $c$ le nombre d'appréciations positives d'un commentaire et $d$ son nombre d'appréciations négatives. L'indice de confiance correspond alors au rapport:
+\indent Chaque commentaire possède un indice de confiance. Soit $c$ le nombre d'appréciations positives d'un commentaire et $d$ son nombre d'appréciations négatives. L'indice de confiance correspond au rapport :
 \begin{equation}
   \frac{1+c}{1+d}
+  \label{eq:ic}
 \end{equation}
-Pour calculer ce dernier, nous commençons par calculer $c$ et $d$ de manière identique. Dans ce but, nous utilisons l'opérateur \emph{IF} qui permet d'exprimer une condition. Ainsi, en ajoutant une condition sur la valeur d'une appréciation -- qui est soit positive \emph{'+'} -- soit négative \emph{'-'} -- nous pouvons calculer ...
+\indent Pour calculer ce dernier, nous commençons par calculer $c$ et $d$ en une requête. Dans ce but, nous utilisons l'opérateur \emph{IF} qui permet d'exprimer une condition. Ainsi, en ajoutant une condition sur la valeur d'une appréciation, nous incrémentons $c$ si la valeur du commentaire est positive ('\emph{+}') ou $d$ si elle est négative ('\emph{-}'). Dans cette requête interne, une jointure externe gauche est réalisée entre les table commentaire et pouce, afin que les commentaires n'ayant pas reçus de pouce soient conservés.
+\indent La requête englobante utilise les valeurs de $c$ et $d$ calculées pour chaque commentaire par la requête interne pour déduire le rapport \eqref{eq:ic}. Une sélection est effectuée afin de ne conserver que les colonnes utiles. Finalement, les lignes sont classées par indice de confiance décroissant, puis par date de la plus récente à la plus ancienne, en cas d'égalité.
 \begin{verbatim}
 SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlateforme,
        (1 + res.c)/(1 + res.d) AS indiceConfiance FROM 
@@ -251,6 +253,7 @@ SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlate
 \end{verbatim}
 
 \subsubsection{Classement des jeux}
+% Todo : Expliquer la requête !
 
 \subsection{Requêtes de mise à jour}
 \indent Garder la base de données cohérente avec des insertions et des suppressions d'éléments pose certains problèmes. Lorsqu'un élément est ajouté à la table, ou plus simplement mis à jour, il faut s'assurer que l'ensemble des champs de l'entité a été complété. Par ailleurs, dans le cas de certaines contraintes, il faut parcourir la table entière. Par exemple, lorsqu'un commentaire est ajouté, il faut s'assurer que le joueur qui émet ce commentaire n'a pas encore déposé de commentaire pour le jeu considéré. \\
