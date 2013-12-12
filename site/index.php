@@ -87,7 +87,7 @@ if(isset($_POST["nbCommentaires"]) && !empty($_POST["nbCommentaires"])){
     <div id="footer">
       <div class="container text-center">
         <p class="text-muted credit">Projet SGBD - dotgame</p>
-        <p class="credit">Grégoire PICHON - Pierre LEFEBVRE - Yvon GARBAGE</p>
+        <p class="credit">Yvon Garbage - Pierre Lefebvre - Grégoire Pichon</p>
       </div>
     </div>
   </body>
