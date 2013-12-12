@@ -239,7 +239,7 @@ SELECT distinct commentaire.* FROM pouce INNER JOIN commentaire
   \frac{1+c}{1+d}
   \label{eq:ic}
 \end{equation}
-\indent Pour calculer ce dernier, nous commençons par calculer $c$ et $d$ en une requête. Dans ce but, nous utilisons l'opérateur \emph{IF} qui permet d'exprimer une condition. Ainsi, en ajoutant une condition sur la valeur d'une appréciation, nous incrémentons $c$ si la valeur du commentaire est positive ('\emph{+}') ou $d$ si elle est négative ('\emph{-}'). Dans cette requête interne, une jointure externe gauche est réalisée entre les table commentaire et pouce, afin que les commentaires n'ayant pas reçus de pouce soient conservés.
+\indent Pour calculer ce dernier, nous commençons par calculer $c$ et $d$ en une requête. Dans ce but, nous utilisons l'opérateur \emph{IF} qui permet d'exprimer une condition. Ainsi, en ajoutant une condition sur la valeur d'une appréciation, nous incrémentons $c$ si la valeur du commentaire est positive ('\emph{+}') ou $d$ si elle est négative ('\emph{-}'). Dans cette requête interne, une jointure externe gauche est réalisée entre les tables commentaire et pouce, afin que les commentaires n'ayant pas reçus de pouce soient conservés.
 \indent La requête englobante utilise les valeurs de $c$ et $d$ calculées pour chaque commentaire par la requête interne pour déduire le rapport \eqref{eq:ic}. Une sélection est effectuée afin de ne conserver que les colonnes utiles. Finalement, les lignes sont classées par indice de confiance décroissant, puis par date de la plus récente à la plus ancienne, en cas d'égalité. Le code complet de la requête est le suivant :
 \begin{verbatim}
 SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlateforme,
@@ -258,7 +258,7 @@ SELECT idCommentaire, note, commentaire, dateCommentaire, pseudo, idJeu, idPlate
   \frac{\sum \left( note~\times~indice~de~confiance~du~commentaire~correspondant \right)}{\sum indices~de~confiance~des~commentaires~du~jeu}
   \label{eq:moyenne}
 \end{equation}
-\indent De façon similaire à ce qui est fait dans la requête précédente, une requête interne permet de calculer $c$ et $d$ pour chaque commentaire. Cependant, la requête l'englobant fait un calcul plus complexe que celui de l'indice de confiance. La somme des notes pondérées par l'indice de confiance est calculée pour chaque jeu (\emph{SUM(note * (1+res.c)/(1+res.d))}), ainsi que la somme des indices de confiance des commentaire du jeu (\emph{SUM((1+res.c)/(1+res.d))}). La division de la première somme par la seconde est effectuée pour obtenir la moyenne pondérée.
+\indent De façon similaire à ce qui est fait dans la requête précédente, une requête interne permet de calculer $c$ et $d$ pour chaque commentaire. Cependant, la requête l'englobant fait un calcul plus complexe que celui de l'indice de confiance. La somme des notes pondérées par l'indice de confiance est calculée pour chaque jeu (\emph{SUM(note * (1+res.c)/(1+res.d))}), ainsi que la somme des indices de confiance des commentaires du jeu (\emph{SUM((1+res.c)/(1+res.d))}). La division de la première somme par la seconde est effectuée pour obtenir la moyenne pondérée.
 
 \indent La somme des indices de confiance des commentaires du jeu est calculée à nouveau séparément dans une autre colonne, ce qui permet de départager des jeux en cas d'égalité de leur moyenne pondérée.
 \indent La requête la plus englobante permet de grouper les résultats par jeu, et les trie par moyenne pondérée décroissante, puis par total des indices de confiance décroissant en cas d'égalité de moyenne. Elle permet également d'obtenir le nom du jeu plutôt que son identifiant. Le code complet de la requête est le suivant :
@@ -291,7 +291,7 @@ ALTER TABLE estDisponible ADD CONSTRAINT fk1_estDisponible FOREIGN KEY (idJeu)
 
 \indent Au delà des requêtes de mise à jour, il faut prendre certaines précautions lors de l'insertion ou de la suppression de données de la base. Lors de l'ajout d'un joueur par exemple, on doit s'assurer qu'il a bien une plateforme et une catégorie préférée valides. Par ailleurs, lors de la suppresion d'un jeu les suppressions en cascade dans les tables \texttt{appartient} et \texttt{estDisponible} assurent que les associations seront correctement supprimées, garantissant ainsi l'intégrité de la base.
 
-\paragraph{Remarque:} Des vues ont été créées pour récupérer les informations concernant les joueurs et les commentaires. Elles effectuent des opérations de jointure entre les différentes tables. Ces vues n'ont pour but que de centraliser ces lourdes requêtes, et non de cacher ou limiter l'accés à certaines partie de la base. 
+\paragraph{Remarque:} Des vues ont été créées pour récupérer les informations concernant les joueurs et les commentaires. Elles effectuent des opérations de jointure entre les différentes tables. Ces vues n'ont pour but que de centraliser ces lourdes requêtes, et non de cacher ou limiter l'accès à certaines partie de la base. 
 
 \newpage
 \input{interface.tex}
