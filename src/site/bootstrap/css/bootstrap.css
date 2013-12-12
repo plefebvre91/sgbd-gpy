@@ -4042,7 +4042,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .nav {
   padding-left: 0;
-  margin-bottom: 0;
+  margin-bottom: 16px;
   list-style: none;
 }
 
