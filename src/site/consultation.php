@@ -5,7 +5,7 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTab">
-    <li><a href="#consultation1" data-toggle="tab">Requête 1</a></li>
+    <li class="active"><a href="#consultation1" data-toggle="tab">Requête 1</a></li>
     <li><a href="#consultation2" data-toggle="tab">Requête 2</a></li>
     <li><a href="#consultation3" data-toggle="tab">Requête 3</a></li>
     <li><a href="#consultation-jeu" data-toggle="tab">Jeux</a></li>

@@ -6,7 +6,7 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTab">
-    <li><a href="#consultation1" data-toggle="tab">Les derniers commentaires</a></li>
+    <li class="active"><a href="#consultation1" data-toggle="tab">Les derniers commentaires</a></li>
     <li><a href="#consultation2" data-toggle="tab">Commentaires les plus appréciés</a></li>
     <li><a href="#consultation3" data-toggle="tab">Joueurs les plus actifs</a></li>
     <li><a href="#consultation4" data-toggle="tab">Commentaire ayant laissé le moins indifférent</a></li>

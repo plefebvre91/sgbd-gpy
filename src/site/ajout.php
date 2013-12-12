@@ -7,7 +7,7 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTab">
-    <li><a href="#ajout1" data-toggle="tab">Joueur</a></li>
+    <li class="active"><a href="#ajout1" data-toggle="tab">Joueur</a></li>
     <li><a href="#ajout2" data-toggle="tab">Jeu</a></li>
     <li><a href="#ajout3" data-toggle="tab">Éditeur</a></li>
     <li><a href="#ajout4" data-toggle="tab">Plateforme</a></li>

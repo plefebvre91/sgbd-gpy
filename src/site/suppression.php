@@ -7,7 +7,7 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTab">
-    <li><a href="#consultation1" data-toggle="tab">Commentaires</a></li>
+    <li class="active"><a href="#consultation1" data-toggle="tab">Commentaires</a></li>
     <li><a href="#consultation2" data-toggle="tab">Jeux</a></li>
     <li><a href="#consultation3" data-toggle="tab">Joueurs</a></li>
   </ul>

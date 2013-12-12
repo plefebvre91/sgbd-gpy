@@ -11,7 +11,7 @@ db_connect();
   
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTab">
-    <li><a href="#maj-joueur" data-toggle="tab">Joueur</a></li>
+    <li class="active"><a href="#maj-joueur" data-toggle="tab">Joueur</a></li>
     <li><a href="#maj-jeu" data-toggle="tab">Jeu</a></li>
     <li><a href="#maj-commentaire" data-toggle="tab">Commentaire</a></li>
   </ul>
