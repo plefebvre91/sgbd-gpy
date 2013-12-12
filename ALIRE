@@ -1,0 +1,14 @@
+1. Mise en place de la base de données
+---------------
+
+La base de données a pour nom 'jeuxvideos'
+Le script de création des tables se trouve dans /src/sql/base.sql
+Le script d'insertion des données se trouve dans /src/sql/donnees.sql
+Le script de destruction de la base (tables + donnees) se trouve dans /src/sql/destruction.sql
+
+2. Interface
+------------
+
+L'ensemble de l'interface se trouve dans /src/site
+
+Vous pouvez modifier les identifiants de connexion à la base dans /src/site/php/config.php
