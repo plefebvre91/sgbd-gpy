@@ -126,7 +126,7 @@ insert into commentaire values ( 5, 18, 'fantastique'                           
 insert into commentaire values ( 6, 20, 'ne peux plus dormir...'                 , '2012-04-01', 'ldauphin'    , 12, 1);
 insert into commentaire values ( 7,  4, 'vraiment pas terrible'                  , '2012-04-05', 'ygarbage'    , 12, 7);
 insert into commentaire values ( 8, 14, 'pas mal'                                , '2013-01-01', 'sguitouni'   , 12, 3);
-insert into commentaire values ( 9,  6, 'pourquoi tant de haine?'                , '2013-11-01', 'ldauphin'    , 12, 5);
+insert into commentaire values ( 9,  6, 'pourquoi tant de haine?'                , '2013-11-01', 'ldauphin'    ,  8, 5);
 insert into commentaire values (10, 17, 'parfait'                                , '2013-02-01', 'mherbreteau' , 13, 4);
 insert into commentaire values (11, 13, 'cool a jouer'                           , '2012-01-01', 'klabourdette', 13, 5);
 insert into commentaire values (12, 11, 'design nul'                             , '2012-01-14', 'plefebvre'   , 14, 1);
@@ -136,8 +136,7 @@ insert into commentaire values (15, 18, 'j adore'                               
 insert into commentaire values (16,  5, 'euh..'                                  , '2013-11-01', 'gpichon'     , 15, 7);
 insert into commentaire values (17, 10, 'pas d accord'                           , '2013-02-01', 'grollin'     , 16, 1);
 insert into commentaire values (18,  8, 'pas top, vraiment pas top'              , '2012-01-01', 'wandujar'    , 16, 3);
-insert into commentaire values (19,  9, 'non'                                    , '2012-01-14', 'wandujar'    , 16, 5);
-insert into commentaire values (20, 13, 'passe le temps mais pas trop longtemps' , '2012-04-01', 'ldauphin'    , 16, 7);
+insert into commentaire values (19, 13, 'passe le temps mais pas trop longtemps' , '2012-04-01', 'ldauphin'    , 16, 7);
 
 commit;
 
@@ -157,7 +156,7 @@ insert into pouce values (9 , '+', 'ldauphin' , 12);
 insert into pouce values (10, '+', 'rmillet'  , 12);
 insert into pouce values (11, '+', 'jcatala'  , 12);
 insert into pouce values (12, '-', 'achoblet' , 12);
-insert into pouce values (13, '-', 'wandujar' , 20);
+insert into pouce values (13, '-', 'wandujar' , 19);
 
 commit;
 
@@ -258,8 +257,8 @@ select (select if (((select count(*) from plateforme) = 10),
        'Nombre disponibilites insere correct (43)',
        'Nombre disponibilites insere incorrect !') AS "disponibilites") AS "Table estDisponible";
 
-select (select if (((select count(*) from commentaire) = 20),
-       'Nombre commentaires insere correct (20)',
+select (select if (((select count(*) from commentaire) = 19),
+       'Nombre commentaires insere correct (19)',
        'Nombre commentaires insere incorrect !') AS "commentaires") AS "Table commentaire",
        (select if (((select count(*) from pouce) = 13),
        'Nombre pouces insere correct (13)',

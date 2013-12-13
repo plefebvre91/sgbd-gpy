@@ -51,7 +51,8 @@ CREATE TABLE commentaire (
   pseudo          VARCHAR(32)  NOT NULL,
   idJeu           int,
   idPlateforme    int,
-  CONSTRAINT pk_commentaire PRIMARY KEY(idCommentaire)
+  CONSTRAINT pk_commentaire PRIMARY KEY(idCommentaire),
+  CONSTRAINT uc_commentaire UNIQUE (pseudo, idJeu)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
