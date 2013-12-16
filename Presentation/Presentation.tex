@@ -39,9 +39,8 @@
 \section*{Introduction}
 \begin{frame}
 \begin{block}{Sujet}
-\begin{center}
-Gérer une communauté de joueurs de jeux vidéos. Un ensemble de joueurs doit pouvoir commenter et juger des commentaires sur un ensemble de jeux. Chaque jeu est relatif à un ensemble de catégories et un ensemble de plateformes où il est disponible.
-\end{center}
+Gérer une \textbf{communauté de joueurs} de jeux vidéos. Les joueurs doit pouvoir \textbf{commenter et juger des commentaires} sur différents jeux. Chaque jeu est relatif à \textbf{différentes catégories et plateformes} où il est disponible.
+
 \end{block}
 
 \begin{block}{Objectifs}
@@ -62,7 +61,7 @@ Gérer une communauté de joueurs de jeux vidéos. Un ensemble de joueurs doit p
 \begin{center}
 \begin{itemize}
 \item Un joueur a forcément une catégorie et une plateforme préférées.
-\item Un joueur ne peut noter qu'un fois un jeu, pour un plateforme donnée.
+\item Un joueur ne peut noter qu'une fois un jeu, pour un plateforme donnée.
 \item Un joueur ne peut donner qu'un seul pouce à un commentaire et aucun à un commentaire qu'il a émis.
 \item Gestion de la cohérence des dates.
 \item Précisions des cardinalités des associations.
@@ -124,9 +123,26 @@ ALTER TABLE estDisponible ADD CONSTRAINT fk1\_estDisponible \\
 \ \ \ \ \ \ \ \ \ \ \ \ REFERENCES jeu (idJeu) ON DELETE CASCADE;
 \end{frame}
 
+
+\subsection{Modèle conceptuel}
+\begin{frame}
+\begin{block}{Interface}
+\begin{center}
+\includegraphics[scale=0.20]{capture2.png}
+\end{center}
+\begin{itemize}
+\item Site web
+\item PHP/MySQL
+\item BootStrap / jQuery
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
 \section*{Conclusion}
 \begin{frame}
-\begin{block}{}
+\begin{block}{Conclusion}
 \begin{center}
 \begin{itemize}
 \item Difficulté du choix des contraintes.
