@@ -101,20 +101,16 @@ Gérer une \textbf{communauté de joueurs} de jeux vidéos. Les joueurs doivent 
 \begin{frame}
 \begin{block}{Gestion de la cohérence}
 \begin{itemize}
-  \item Clés étrangères \\
-    \begin{center}\footnotesize{Ex:~~\texttt{ALTER TABLE estDisponible ADD CONSTRAINT fk1\_estDisponible FOREIGN KEY (idJeu) REFERENCES jeu (idJeu) ON DELETE CASCADE;}}\end{center}
-  \item Contrainte \texttt{UNIQUE} sur certains attributs\\
-    \begin{center}\footnotesize{Ex:~~\texttt{nomPlateforme VARCHAR(128) UNIQUE}}\end{center}
-\end{itemize}
-\huge{ Autre chose ?}
+  \item {\textbf{Clés étrangères} \\
+    \footnotesize{Ex:~~\texttt{ALTER TABLE estDisponible ADD CONSTRAINT fk1\_estDisponible FOREIGN KEY (idJeu) REFERENCES jeu (idJeu) ON DELETE CASCADE;}}}
+  \item{  \textbf{Contrainte \texttt{UNIQUE} sur certains attributs}\\
+    \footnotesize{Ex:~~\texttt{nomPlateforme VARCHAR(128) UNIQUE}}}
+  \item {\textbf{Contrôles réalisés en PHP}\\
+    \footnotesize{Ex: note d'un commentaire comprise entre $0$ et $20$}}
 
+\end{itemize}
 \end{block}
 \end{frame}
-
-
-%\texttt{ALTER TABLE estDisponible ADD CONSTRAINT fk1\_estDisponible \\
-%\ \ \ \ \ \ \ \ \ \ \ \ FOREIGN KEY (idJeu) \\
-%\ \ \ \ \ \ \ \ \ \ \ \ REFERENCES jeu (idJeu) ON DELETE CASCADE;}
 
 
 \subsection{Interface}
@@ -133,35 +129,18 @@ Gérer une \textbf{communauté de joueurs} de jeux vidéos. Les joueurs doivent 
 
 \section*{Conclusion}
 \begin{frame}
-
 \begin{block}{Conclusion}
-\begin{exampleblock}{}
-\begin{center}
 \begin{itemize}
+
+\item{difficulté du choix des contraintes,}
+\item{optimisations supplémentaires possibles,}
+\item{le vrai cas d'étude: la prise en compte des cas d'utilisation,}
+
 \item{toutes les requêtes ont été réalisées,}
 \item{base cohérente,}
-\item{interface simple et intutive}
-\end{itemize}
-\end{center}
-\end{exampleblock}
-
-
-
-\begin{block}{}
-\begin{center}
-\begin{itemize}
-
-\item Difficulté du choix des contraintes.
-\item Plus d'optimisations possibles.
-\item Le vrai cas d'étude: la prise en compte des cas d'utilisation.
+\item{interface simple}
 
 \end{itemize}
-\end{center}
-\end{block}
-
-
-
-
 \end{block}
 \end{frame}
 
