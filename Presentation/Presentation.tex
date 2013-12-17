@@ -9,18 +9,10 @@
 \usepackage{graphicx}
 \usepackage[normalem]{ulem}
 
-\newenvironment{mld}
-{\par\begin{minipage}{\linewidth}\begin{tabular}{rp{\linewidth}}}
-{\end{tabular}\end{minipage}\par}
-\newcommand{\relat}[1]{\textsc{#1}}
-\newcommand{\attr}[1]{\emph{#1}}
-\newcommand{\prim}[1]{\uline{#1}}
-\newcommand{\foreign}[1]{\#\textsl{#1}}
-
 \usetheme{CambridgeUS}
 \title[Projet de SGBD]{Jeux vidéos}
-\author[Les Manchots]{Yvon Garbage, Pierre Lefebvre, Grégoire Pichon}
-\institute[ENSEIRB-MATMECA]{ENSEIRB-MATMECA}
+\author[ENSEIRB-MATMECA]{Yvon Garbage, Pierre Lefebvre, Grégoire Pichon}
+\institute[S7]{ENSEIRB-MATMECA}
 \date{\today}
 %\date{}
 
@@ -39,16 +31,17 @@
 \section*{Introduction}
 \begin{frame}
 \begin{block}{Sujet}
-Gérer une \textbf{communauté de joueurs} de jeux vidéos. Les joueurs doit pouvoir \textbf{commenter et juger des commentaires} sur différents jeux. Chaque jeu est relatif à \textbf{différentes catégories et plateformes} où il est disponible.
+Gérer une \textbf{communauté de joueurs} de jeux vidéos. Les joueurs doivent pouvoir \textbf{commenter et juger des commentaires} sur différents jeux. Chaque jeu est lié à \textbf{différentes catégories et plateformes}.
 
 \end{block}
 
 \begin{block}{Objectifs}
 \begin{center}
 \begin{itemize}
-  \item{Modélisation du problème}
-  \item{Réalisation de requêtes en SQL}
-  \item{Gestion de la cohérence de la base}
+  \item{modélisation du problème,}
+  \item{réalisation de requêtes en SQL,}
+  \item{gestion de la cohérence de la base,}
+  \item{développement d'une interface aux requêtes.}
 \end{itemize}
 \end{center}
 \end{block}
@@ -60,11 +53,11 @@ Gérer une \textbf{communauté de joueurs} de jeux vidéos. Les joueurs doit pou
 \begin{block}{Choix effectués}
 \begin{center}
 \begin{itemize}
-\item Un joueur a forcément une catégorie et une plateforme préférées.
-\item Un joueur ne peut noter qu'une fois un jeu, pour un plateforme donnée.
-\item Un joueur ne peut donner qu'un seul pouce à un commentaire et aucun à un commentaire qu'il a émis.
-\item Gestion de la cohérence des dates.
-\item Précisions des cardinalités des associations.
+\item un joueur doit avoir une catégorie et une plateforme préférées,
+\item un joueur ne peut noter un jeu qu'une fois,
+\item un joueur ne peut critiquer un commentaire qu'une fois,
+\item un joueur ne peut pas critiquer un commentaire qu'il a émis,
+\item les dates sont cohérentes.
 \end{itemize}
 \end{center}
 \end{block}
@@ -73,47 +66,33 @@ Gérer une \textbf{communauté de joueurs} de jeux vidéos. Les joueurs doit pou
 \subsection{Modèle conceptuel}
 \begin{frame}
 \begin{center}
-\includegraphics[scale=0.30]{modele_conceptuel.png}
+\begin{figure}[t]
+  \includegraphics[scale=0.36]{modele_conceptuel.png}
+\end{figure}
 \end{center}
 \end{frame}
 
 \subsection{Modèle relationnel}
 \begin{frame}
+\begin{block}{Modèle relationnel}
 \begin{center}
-\begin{mld}
-  \relat{Joueur} & (\prim{pseudo}, \attr{nom}, \attr{prenom}, \attr{mail}, \foreign{idCategorie}, \\ 
-  \relat{} & \foreign{idPlateforme})\\
-  \relat{Pouce} & (\prim{idPouce}, \attr{valeur}, \foreign{pseudo}, \foreign{idCommentaire})\\
-  \relat{Commentaire} & (\prim{idCommentaire}, \attr{note}, \attr{commentaire}, \attr{date}, \foreign{pseudo},\\ 
-  \relat{} & \foreign{idJeu}, \foreign{idPlateforme})\\
-  \relat{Categorie} & (\prim{idCategorie}, \attr{nomCategorie})\\
-  \relat{Jeu} & (\prim{idJeu}, \attr{nomJeu}, \foreign{idEditeur})\\
-  \relat{Plateforme} & (\prim{idPlateforme}, \attr{nomPlateforme})\\
-  \relat{Editeur} & (\prim{idEditeur}, \attr{nomEditeur})\\
-  \relat{Appartient} & (\prim{\foreign{idCategorie}, \foreign{idJeu}})\\
-  \relat{Est disponible} & (\prim{\foreign{idPlateforme}, \foreign{idJeu}}, \attr{dateSortie})\\ \\
-\end{mld}
+\begin{figure}[t]
+  \includegraphics[scale=0.3]{modeleR.png}
+\end{figure}
 \end{center}
+\end{block}
 \end{frame}
 
 \section{Requêtes}
 \subsection{Classement des jeux}
 \begin{frame}
+\begin{block}{Requête de classement des jeux}
 \begin{center}
-SELECT nomJeu AS "Nom du jeu", MP AS "Moyenne pondérée", \\
-\ \ \ \ \ \ \ \ \ \ \ \        TotalIC AS "Total des Indices de Confiance des commentaires du jeu" \\
-\ \ \ \ \ \ \ \ \ \ \ \ FROM jeu NATURAL JOIN ( \\
-\ \ \ \ \ \ \ \ \ \ \ \   SELECT idJeu, ( SUM(note * (1+res.c)/(1+res.d)) ) / ( SUM((1+res.c)/(1+res.d)) ) AS "MP", \\
-\ \ \ \ \ \ \ \ \ \ \ \          SUM((1 + res.c)/(1 + res.d)) AS "TotalIC" \\
-\ \ \ \ \ \ \ \ \ \ \ \   FROM ( \\
-\ \ \ \ \ \ \ \ \ \ \ \      SELECT commentaire.*, \\
-\ \ \ \ \ \ \ \ \ \ \ \             SUM(IF(pouce.valeur = '+', 1, 0)) AS "c", SUM(IF(pouce.valeur = '-', 1, 0)) AS "d" \\
-\ \ \ \ \ \ \ \ \ \ \ \      FROM commentaire LEFT OUTER JOIN pouce ON commentaire.idCommentaire = pouce.idCommentaire \\
-\ \ \ \ \ \ \ \ \ \ \ \      GROUP BY commentaire.idCommentaire) AS res \\
-\ \ \ \ \ \ \ \ \ \ \ \   GROUP BY idJeu \\
-\ \ \ \ \ \ \ \ \ \ \ \   ORDER BY ( SUM(note * (1+res.c)/(1+res.d)) ) / ( SUM((1+res.c)/(1+res.d)) ) DESC, \\
-\ \ \ \ \ \ \ \ \ \ \ \            SUM((1+res.c)/(1+res.d)) DESC) AS classement; \\
+\begin{figure}[t]
+  \includegraphics[scale=0.3]{requete.png}
+\end{figure}
 \end{center}
+\end{block}
 \end{frame}
 
 \subsection{Gestion de la cohérence}
@@ -123,8 +102,7 @@ ALTER TABLE estDisponible ADD CONSTRAINT fk1\_estDisponible \\
 \ \ \ \ \ \ \ \ \ \ \ \ REFERENCES jeu (idJeu) ON DELETE CASCADE;
 \end{frame}
 
-
-\subsection{Modèle conceptuel}
+\subsection{Interface}
 \begin{frame}
 \begin{block}{Interface}
 \begin{center}
@@ -137,8 +115,6 @@ ALTER TABLE estDisponible ADD CONSTRAINT fk1\_estDisponible \\
 \end{itemize}
 \end{block}
 \end{frame}
-
-
 
 \section*{Conclusion}
 \begin{frame}
