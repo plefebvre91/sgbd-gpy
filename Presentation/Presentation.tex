@@ -102,11 +102,14 @@ Gérer une \textbf{communauté de joueurs} de jeux vidéos. Les joueurs doivent 
 \begin{block}{Gestion de la cohérence}
 \begin{itemize}
   \item {\textbf{Clés étrangères} \\
-    \footnotesize{Ex:~~\texttt{ALTER TABLE estDisponible ADD CONSTRAINT fk1\_estDisponible FOREIGN KEY (idJeu) REFERENCES jeu (idJeu) ON DELETE CASCADE;}}}
+      \footnotesize{Ex:~~\texttt{ALTER TABLE jeu ADD CONSTRAINT fk1\_jeu FOREIGN KEY (idEditeur) REFERENCES editeur (idEditeur);}}}
+
+  \item {\textbf{Actions en cascade} \\
+    \footnotesize{Ex:~~\texttt{ALTER TABLE estDisponible ADD CONSTRAINT fk1\_estDisponible FOREIGN KEY (idJeu) REFERENCES jeu (idJeu) \textbf{ON DELETE CASCADE;}}}}
   \item{  \textbf{Contrainte \texttt{UNIQUE} sur certains attributs}\\
     \footnotesize{Ex:~~\texttt{nomPlateforme VARCHAR(128) UNIQUE}}}
   \item {\textbf{Contrôles réalisés en PHP}\\
-    \footnotesize{Ex: note d'un commentaire comprise entre $0$ et $20$}}
+    \footnotesize{Ex: un joueur ne peut apprécier ses propres commentaires}}
 
 \end{itemize}
 \end{block}
